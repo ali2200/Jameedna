@@ -2,7 +2,7 @@
 
 ## Overview
 
-Al Fursan Quadruple Factory is a comprehensive web application for a Jordanian food manufacturing company specializing in traditional Jameed production. The application serves as both a corporate website and product showcase, featuring the company's two main product lines: "Jameedna Zaman" and "Jameed Badawya". Built with modern web technologies, the site emphasizes Arabic-first design with RTL support, elegant visual presentation, and comprehensive business information including certifications, production capabilities, and contact management.
+Al Fursan Quadruple Factory is a comprehensive web application built on Replit for a Jordanian food manufacturing company specializing in traditional Jameed production. The application serves as both a corporate website and product showcase, featuring the company's two main product lines: "Jameedna Zaman" and "Jameed Badawya". Built with modern web technologies and optimized for Replit's deployment platform, the site emphasizes Arabic-first design with RTL support, elegant visual presentation, and comprehensive business information including certifications, production capabilities, and contact management.
 
 ## User Preferences
 
@@ -56,11 +56,34 @@ The application includes image optimization strategies, lazy loading implementat
 ### Development and Build Tools
 - **ESLint**: Code linting with TypeScript and React configurations
 - **PostCSS**: CSS processing with Tailwind and Autoprefixer
-- **Lovable Tagger**: Development-specific component tagging
+- **Vite**: Modern build tool with fast HMR for Replit development
+- **Replit Deployments**: Automated deployment and hosting on Replit platform
 
 ### Design and Animation
 - **Next Themes**: Theme management system
 - **CMDK**: Command menu functionality
 - **Input OTP**: One-time password input components
 
-The architecture prioritizes performance, maintainability, and user experience while supporting the specific needs of a bilingual, culturally-sensitive business website for traditional food manufacturing.
+## Recent Changes (Migration to Replit)
+
+### December 2024
+- **Complete Platform Migration**: Successfully migrated from external platform to native Replit development environment
+- **Asset Optimization**: Reorganized all images to `/assets/images/` with descriptive names for better maintainability
+- **Configuration Updates**: Optimized Vite configuration for Replit's hosting environment (port 5000, proper host binding)
+- **Dependency Cleanup**: Removed external platform dependencies and streamlined for Replit-native development
+- **Deployment Ready**: Configured for seamless deployment using Replit's built-in deployment system
+
+## Replit-Specific Architecture
+
+### Development Environment
+- **Replit Workspace**: Fully configured for in-browser development with auto-save and collaboration features
+- **Port Configuration**: Application runs on port 5000 with proper host binding for Replit's environment
+- **Asset Management**: Organized static assets in `/public/assets/` for optimal performance
+- **Environment Variables**: Ready for Replit Secrets integration for any future API requirements
+
+### Deployment Strategy
+- **Replit Deployments**: Configured for one-click deployment with automatic SSL and custom domain support
+- **Build Optimization**: Vite build process optimized for Replit's edge deployment network
+- **Performance**: Lightweight bundle with efficient asset loading for fast global delivery
+
+The architecture prioritizes performance, maintainability, and user experience while being fully optimized for Replit's development and deployment ecosystem, supporting the specific needs of a bilingual, culturally-sensitive business website for traditional food manufacturing.
