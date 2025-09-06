@@ -6,8 +6,8 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-// Using the new uploaded image
-const jameedZamanImage = "/lovable-uploads/29d4bd03-e9a3-4b63-8302-c7e4b543f677.png";
+// Product image
+const jameedZamanImage = "/assets/images/jameed-zaman-product.png";
 
 const JameednaZaman = () => {
   const navigate = useNavigate();

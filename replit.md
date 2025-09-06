@@ -1,0 +1,66 @@
+# Al Fursan Quadruple Factory - Traditional Jordanian Jameed Production
+
+## Overview
+
+Al Fursan Quadruple Factory is a comprehensive web application for a Jordanian food manufacturing company specializing in traditional Jameed production. The application serves as both a corporate website and product showcase, featuring the company's two main product lines: "Jameedna Zaman" and "Jameed Badawya". Built with modern web technologies, the site emphasizes Arabic-first design with RTL support, elegant visual presentation, and comprehensive business information including certifications, production capabilities, and contact management.
+
+## User Preferences
+
+Preferred communication style: Simple, everyday language.
+
+## System Architecture
+
+### Frontend Architecture
+The application is built using React 18 with TypeScript, following a component-based architecture pattern. The routing system uses React Router for client-side navigation with dedicated pages for products, company information, blog content, and contact forms. The design system implements shadcn/ui components with extensive customization for Arabic typography and RTL layout support.
+
+### Design System and Styling
+Tailwind CSS provides the styling foundation with a comprehensive design system featuring brand-specific color schemes for each product line. The application includes custom CSS variables for consistent theming, specialized Arabic font support (Tajawal and Cairo), and glass morphism effects for modern visual appeal. The responsive design adapts across all device sizes with container-based layouts.
+
+### State Management and Data Flow
+The application uses React's built-in state management with hooks, complemented by TanStack React Query for any future API integration needs. Form handling is implemented with React Hook Form and validation through resolvers. Toast notifications provide user feedback across the application.
+
+### Component Organization
+Components are organized in a hierarchical structure with reusable UI components in the `components/ui` directory, feature-specific components grouped by functionality, and page-level components handling routing and layout composition. The architecture supports code reusability and maintainability through consistent patterns.
+
+### Internationalization and Accessibility
+The application is primarily Arabic with English support, implementing proper RTL text direction, Arabic-optimized typography, and semantic HTML structure. The design accommodates both languages with appropriate font loading and text rendering.
+
+### Performance Optimizations
+The application includes image optimization strategies, lazy loading implementation, component-level code splitting potential, and efficient bundle management through Vite's build system. Custom hooks handle complex functionality like count-up animations and mobile detection.
+
+## External Dependencies
+
+### Core Framework Dependencies
+- **React 18.3.1**: Primary frontend framework with hooks and modern features
+- **TypeScript**: Type safety and enhanced development experience
+- **React Router**: Client-side routing and navigation management
+- **Vite**: Build tool and development server with fast HMR
+
+### UI and Styling Libraries
+- **Tailwind CSS**: Utility-first CSS framework with custom configuration
+- **Radix UI**: Comprehensive component library for accessible UI primitives
+- **Lucide React**: Icon library with consistent visual design
+- **Class Variance Authority**: Component variant management
+- **Clsx**: Utility for conditional CSS class construction
+
+### Form and Validation
+- **React Hook Form**: Efficient form handling with minimal re-renders
+- **Hookform Resolvers**: Validation integration for form schemas
+
+### Advanced Features
+- **Hugging Face Transformers**: AI-powered image processing capabilities
+- **Embla Carousel**: Touch-friendly carousel component
+- **TanStack React Query**: Server state management and caching
+- **Date-fns**: Date manipulation and formatting utilities
+
+### Development and Build Tools
+- **ESLint**: Code linting with TypeScript and React configurations
+- **PostCSS**: CSS processing with Tailwind and Autoprefixer
+- **Lovable Tagger**: Development-specific component tagging
+
+### Design and Animation
+- **Next Themes**: Theme management system
+- **CMDK**: Command menu functionality
+- **Input OTP**: One-time password input components
+
+The architecture prioritizes performance, maintainability, and user experience while supporting the specific needs of a bilingual, culturally-sensitive business website for traditional food manufacturing.

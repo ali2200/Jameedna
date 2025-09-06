@@ -17,7 +17,7 @@ const Footer = () => {
             {/* Company Info */}
             <div className="space-y-4">
               <img 
-                src="/lovable-uploads/0125dec0-b560-43e6-b1a2-cd8ccb5ec28f.png" 
+                src="/assets/images/alfursan-logo.png" 
                 alt="شعار الفرسان الرباعية للإدارة والاستثمار"
                 className="h-8 w-auto object-contain brightness-0 invert transition-all duration-300"
                 loading="lazy"

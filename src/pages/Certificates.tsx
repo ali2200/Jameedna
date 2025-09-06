@@ -131,7 +131,7 @@ const Certificates = () => {
                 <div className="text-center">
                   <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                     <img 
-                      src="/lovable-uploads/706ea940-5d23-4faf-8897-3a1528410980.png"
+                      src="/assets/images/certificate-1.png"
                       alt="ISO 22000 Certificate"
                       className="w-full h-full object-contain"
                     />
@@ -141,7 +141,7 @@ const Certificates = () => {
                 <div className="text-center">
                   <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                     <img 
-                      src="/lovable-uploads/dcfb331c-bae4-480c-8e7c-d30a55611016.png"
+                      src="/assets/images/certificate-2.png"
                       alt="ISO 9001 Certificate"
                       className="w-full h-full object-contain"
                     />
@@ -151,7 +151,7 @@ const Certificates = () => {
                 <div className="text-center">
                   <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                     <img 
-                      src="/lovable-uploads/58d26267-5e1f-47a1-802b-d08134eb5120.png"
+                      src="/assets/images/certificate-3.png"
                       alt="Halal Certificate"
                       className="w-full h-full object-contain"
                     />
@@ -161,7 +161,7 @@ const Certificates = () => {
                 <div className="text-center">
                   <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                     <img 
-                      src="/lovable-uploads/fe47d08b-d9cf-48cf-ac37-e7ec1f3f8d14.png"
+                      src="/assets/images/certificate-4.png"
                       alt="FDA Approved Certificate"
                       className="w-full h-full object-contain"
                     />
@@ -171,7 +171,7 @@ const Certificates = () => {
                 <div className="text-center">
                   <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                     <img 
-                      src="/lovable-uploads/d06089eb-733f-45bb-80fb-cdc379d7e9d1.png"
+                      src="/assets/images/certificate-5.png"
                       alt="TÜV Austria Certificate"
                       className="w-full h-full object-contain"
                     />
@@ -181,7 +181,7 @@ const Certificates = () => {
                 <div className="text-center">
                   <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                     <img 
-                      src="/lovable-uploads/483545ae-0308-4102-93df-dc238d3f8133.png"
+                      src="/assets/images/certificate-6.png"
                       alt="Made in Jordan Certificate"
                       className="w-full h-full object-contain"
                     />
@@ -197,7 +197,7 @@ const Certificates = () => {
                   <div className="text-center">
                     <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                       <img 
-                        src="/lovable-uploads/4b4277c2-0c42-49ac-a952-80e0600e87bf.png"
+                        src="/assets/images/industry-cert-1.png"
                         alt="FDA Gold Approved Certificate"
                         className="w-full h-full object-contain"
                       />
@@ -207,7 +207,7 @@ const Certificates = () => {
                   <div className="text-center">
                     <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                       <img 
-                        src="/lovable-uploads/da73e2d9-4ceb-48da-ac05-0afc318f5388.png"
+                        src="/assets/images/industry-cert-2.png"
                         alt="FDA Red Stamp Certificate"
                         className="w-full h-full object-contain"
                       />
@@ -217,7 +217,7 @@ const Certificates = () => {
                   <div className="text-center">
                     <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                       <img 
-                        src="/lovable-uploads/232332e7-b13a-4fd6-9a82-277c926a4b71.png"
+                        src="/assets/images/industry-cert-3.png"
                         alt="FDA Green Badge Certificate"
                         className="w-full h-full object-contain"
                       />
@@ -227,7 +227,7 @@ const Certificates = () => {
                   <div className="text-center">
                     <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                       <img 
-                        src="/lovable-uploads/c9033cd6-95c5-49b8-a7c9-e1463f7c55ca.png"
+                        src="/assets/images/industry-cert-4.png"
                         alt="FDA Green Check Certificate"
                         className="w-full h-full object-contain"
                       />
@@ -237,7 +237,7 @@ const Certificates = () => {
                   <div className="text-center">
                     <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                       <img 
-                        src="/lovable-uploads/e3653393-180f-4ca2-9d3f-3259b93bc00d.png"
+                        src="/assets/images/industry-cert-5.png"
                         alt="FDA Black Text Certificate"
                         className="w-full h-full object-contain"
                       />
@@ -247,7 +247,7 @@ const Certificates = () => {
                   <div className="text-center">
                     <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                       <img 
-                        src="/lovable-uploads/87ad5e4e-2b40-43cf-badc-5693f68225e7.png"
+                        src="/assets/images/industry-cert-6.png"
                         alt="FDA Red Badge Certificate"
                         className="w-full h-full object-contain"
                       />
