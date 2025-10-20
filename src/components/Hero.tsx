@@ -10,15 +10,10 @@ const Hero = () => {
       {/* Video Background */}
       <div className="absolute inset-0">
         {/* Background Video */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/factory-video.mp4" type="video/mp4" />
-        </video>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${factoryImage})` }}
+        />
         
         {/* Dark Overlay for Text Readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/70 to-primary-dark/90" />
