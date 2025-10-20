@@ -1,10 +1,8 @@
-import { Package, Award, Truck, Shield, Sparkles, Star, ChevronRight, Eye } from "lucide-react";
+import { Package, Award, Truck, Shield, Sparkles, Star, ChevronRight, Eye, BarChart3 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link, useNavigate } from "react-router-dom";
-import jameedZamanImage from "@/assets/jameedna-zaman-package.jpg";
-import jameedBadawyaImage from "@/assets/jameed-badawya-package.jpg";
 import productionLineImage from "@/assets/production-line.jpg";
 
 const ProductShowcase = () => {
@@ -14,37 +12,61 @@ const ProductShowcase = () => {
       id: 'jameedna-zaman',
       name: 'جميدنا زمان',
       nameEn: 'Jameedna Zaman',
-      description: 'جميد أردني أصيل مصنوع من حليب الغنم الطازج المبستر مع البهارات والملح، معبأ بطريقة عصرية تحافظ على الطعم التقليدي الأصيل',
-      descriptionEn: 'Authentic Jordanian Jameed made from fresh pasteurized sheep milk, spices, and salt, aseptically packed to preserve its traditional taste',
-      barcode: '6251591112007',
-      weight: '1000غ',
-      packaging: 'كرتونة 6×1',
-      packagingType: 'اسيبتك',
-      dimensions: '21×24×52',
+      ingredients: '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.',
+      features: 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',
       certificates: ['ISO', 'HACCP', 'FDA'],
-      colors: ['jameed-red', 'jameed-burgundy', 'jameed-yellow'],
-      gradient: 'gradient-jameed',
-      image: jameedZamanImage,
+      gradient: 'gradient-badawya',
+      image: '/jameedna-zaman-package.png',
       rating: 4.9,
-      reviews: 127
+      reviews: 127,
+      sizes: [
+        {
+          size: 1,
+          barcode: '6251591112205',
+          weight: '1000 gm',
+          netWeight: '2.2 lbs',
+          packagingType: 'Aseptic',
+          dimensions: '19.5cm x 10.5cm x 7cm'
+        },
+        {
+          size: 2,
+          barcode: '6251591112199',
+          weight: '500 gm',
+          netWeight: '1.1 lbs',
+          packagingType: 'Aseptic',
+          dimensions: '9cm x 9.5cm x 6.5cm'
+        }
+      ]
     },
     {
       id: 'jameed-badawya',
-      name: 'جميد بدوية',
+      name: 'جميد البدوية',
       nameEn: 'Jameed Badawya',
-      description: 'جميد بدوي تقليدي بلمسة حديثة، يجمع بين النكهة الأصيلة والتعبئة الصحية العصرية لتجربة فريدة وصحية',
-      descriptionEn: 'Traditional Bedouin Jameed with a modern touch, combining authentic flavor with hygienic modern packaging',
-      barcode: '6251591112144',
-      weight: '1000غ',
-      packaging: 'اسيبتك 6×1',
-      packagingType: 'اسيبتك',
-      dimensions: '21×24×52',
+      ingredients: '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.',
+      features: 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',
       certificates: ['Halal', 'FDA', 'HACCP'],
-      colors: ['badawya-cream', 'badawya-gold', 'badawya-sand'],
-      gradient: 'gradient-badawya',
-      image: jameedBadawyaImage,
+      gradient: 'gradient-jameed',
+      image: '/jameed-badawya-package.png',
       rating: 4.8,
-      reviews: 93
+      reviews: 93,
+      sizes: [
+        {
+          size: 1,
+          barcode: '6251591112229',
+          weight: '1000 gm',
+          netWeight: '2.2 lbs',
+          packagingType: 'Aseptic',
+          dimensions: '19.5cm x 10.5cm x 7cm'
+        },
+        {
+          size: 2,
+          barcode: '6251591112212',
+          weight: '500 gm',
+          netWeight: '1.1 lbs',
+          packagingType: 'Aseptic',
+          dimensions: '9cm x 9.5cm x 6.5cm'
+        }
+      ]
     }
   ];
 
@@ -168,30 +190,72 @@ const ProductShowcase = () => {
               </div>
 
               <CardContent className="p-6 sm:p-8">
-                {/* Product Description */}
-                <p className="text-muted-foreground mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg">
-                  {product.description}
-                </p>
+                {/* Product Ingredients */}
+                <div className="mb-6 sm:mb-8">
+                  <h4 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2 mb-3">
+                    <Package className="h-4 sm:h-5 w-4 sm:w-5 text-primary" />
+                    المكونات
+                  </h4>
+                  <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                    {product.ingredients}
+                  </p>
+                </div>
 
-                {/* Product Specifications with Modern Design */}
+                {/* Product Features */}
+                <div className="mb-6 sm:mb-8">
+                  <h4 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2 mb-3">
+                    <Shield className="h-4 sm:h-5 w-4 sm:w-5 text-primary" />
+                    مميزات المنتج
+                  </h4>
+                  <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                    {product.features}
+                  </p>
+                </div>
+
+                {/* Product Specifications Table */}
                 <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                   <h4 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
-                    <Package className="h-4 sm:h-5 w-4 sm:w-5 text-primary" />
-                    مواصفات المنتج
+                    <BarChart3 className="h-4 sm:h-5 w-4 sm:w-5 text-primary" />
+                    المواصفات التفصيلية
                   </h4>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                    {[
-                      { label: 'الباركود', value: product.barcode },
-                      { label: 'الوزن', value: product.weight },
-                      { label: 'التعبئة', value: product.packaging },
-                      { label: 'الأبعاد (سم)', value: product.dimensions }
-                    ].map((spec, idx) => (
-                      <div key={idx} className="bg-gradient-glass rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-border/20">
-                        <span className="text-xs sm:text-sm font-medium text-muted-foreground block mb-1">{spec.label}</span>
-                        <span className="font-semibold text-foreground text-xs sm:text-sm">{spec.value}</span>
-                      </div>
-                    ))}
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse">
+                      <thead>
+                        <tr className="bg-gradient-glass">
+                          <th className="p-3 text-right text-xs sm:text-sm font-semibold border border-border/20"></th>
+                          <th className="p-3 text-center text-xs sm:text-sm font-semibold border border-border/20">الحجم 1</th>
+                          <th className="p-3 text-center text-xs sm:text-sm font-semibold border border-border/20">الحجم 2</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="p-3 text-right text-xs sm:text-sm font-medium bg-muted/30 border border-border/20">Barcode</td>
+                          <td className="p-3 text-center text-xs sm:text-sm border border-border/20">{product.sizes[0].barcode}</td>
+                          <td className="p-3 text-center text-xs sm:text-sm border border-border/20">{product.sizes[1].barcode}</td>
+                        </tr>
+                        <tr>
+                          <td className="p-3 text-right text-xs sm:text-sm font-medium bg-muted/30 border border-border/20">Weight</td>
+                          <td className="p-3 text-center text-xs sm:text-sm border border-border/20">{product.sizes[0].weight}</td>
+                          <td className="p-3 text-center text-xs sm:text-sm border border-border/20">{product.sizes[1].weight}</td>
+                        </tr>
+                        <tr>
+                          <td className="p-3 text-right text-xs sm:text-sm font-medium bg-muted/30 border border-border/20">Packaging Type</td>
+                          <td className="p-3 text-center text-xs sm:text-sm border border-border/20">{product.sizes[0].packagingType}</td>
+                          <td className="p-3 text-center text-xs sm:text-sm border border-border/20">{product.sizes[1].packagingType}</td>
+                        </tr>
+                        <tr>
+                          <td className="p-3 text-right text-xs sm:text-sm font-medium bg-muted/30 border border-border/20">Net Weight</td>
+                          <td className="p-3 text-center text-xs sm:text-sm border border-border/20">{product.sizes[0].netWeight}</td>
+                          <td className="p-3 text-center text-xs sm:text-sm border border-border/20">{product.sizes[1].netWeight}</td>
+                        </tr>
+                        <tr>
+                          <td className="p-3 text-right text-xs sm:text-sm font-medium bg-muted/30 border border-border/20">Carton Dimensions<br/>(H x W x D)</td>
+                          <td className="p-3 text-center text-xs sm:text-sm border border-border/20">{product.sizes[0].dimensions}</td>
+                          <td className="p-3 text-center text-xs sm:text-sm border border-border/20">{product.sizes[1].dimensions}</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
 
