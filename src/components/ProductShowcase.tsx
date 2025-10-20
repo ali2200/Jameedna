@@ -1,4 +1,4 @@
-import { Package, Award, Truck, Shield, Sparkles, Star, ChevronRight, Eye, BarChart3 } from "lucide-react";
+import { Package, Award, Truck, Shield, Sparkles, ChevronRight, Eye, BarChart3 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,10 +15,7 @@ const ProductShowcase = () => {
       ingredients: '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.',
       features: 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',
       certificates: ['ISO', 'HACCP', 'FDA'],
-      gradient: 'gradient-badawya',
       image: '/jameedna-zaman-package.png',
-      rating: 4.9,
-      reviews: 127,
       sizes: [
         {
           size: 1,
@@ -45,10 +42,7 @@ const ProductShowcase = () => {
       ingredients: '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.',
       features: 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',
       certificates: ['Halal', 'FDA', 'HACCP'],
-      gradient: 'gradient-jameed',
       image: '/jameed-badawya-package.png',
-      rating: 4.8,
-      reviews: 93,
       sizes: [
         {
           size: 1,
@@ -148,43 +142,23 @@ const ProductShowcase = () => {
                 </Badge>
               </div>
 
-              {/* Product Header with Modern Gradient */}
-              <div className={`h-48 sm:h-56 md:h-64 bg-${product.gradient} relative overflow-hidden rounded-t-3xl`}>
-                {/* Animated Background Pattern */}
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-black/20" />
-                  <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)] 
-                                bg-[length:20px_20px] animate-shimmer" />
-                </div>
-                
-                {/* Product Image with Float Animation */}
-                <div className="absolute inset-0 flex items-center justify-center p-8">
+              {/* Product Header with White Background */}
+              <div className="h-80 sm:h-96 md:h-[450px] bg-white relative overflow-hidden rounded-t-3xl">
+                {/* Product Image */}
+                <div className="absolute inset-0 flex items-center justify-center p-6 sm:p-8 md:p-12">
                   <img 
                     src={product.image} 
                     alt={product.name}
-                    className="max-h-full max-w-full object-contain drop-shadow-2xl animate-float 
-                             transition-transform duration-700 group-hover:scale-110"
+                    className="max-h-full max-w-full object-contain drop-shadow-xl 
+                             transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 
-                {/* Product Title with Glass Effect */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/50 to-transparent">
-                  <div className="flex items-center justify-between text-white">
-                    <div>
-                      <h3 className="text-3xl font-bold mb-1">{product.name}</h3>
-                      <p className="text-white/90 text-lg font-medium">{product.nameEn}</p>
-                    </div>
-                    <div className="text-right">
-                      <div className="flex items-center gap-1 mb-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star 
-                            key={i} 
-                            className={`h-4 w-4 ${i < Math.floor(product.rating) ? 'text-yellow-400 fill-current' : 'text-white/30'}`} 
-                          />
-                        ))}
-                      </div>
-                      <p className="text-sm text-white/80">({product.reviews} تقييم)</p>
-                    </div>
+                {/* Product Title */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-primary/90 to-transparent">
+                  <div className="text-white">
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-1">{product.name}</h3>
+                    <p className="text-white/90 text-base sm:text-lg font-medium">{product.nameEn}</p>
                   </div>
                 </div>
               </div>
