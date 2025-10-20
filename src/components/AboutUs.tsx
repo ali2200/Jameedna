@@ -1,7 +1,6 @@
-import { Users, UserCheck, Building2 } from "lucide-react";
+import { Users, Briefcase, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCountUp } from "@/hooks/useCountUp";
-import factoryImage from "@/assets/factory-exterior.jpg";
 
 const AboutUs = () => {
   const stats = [
@@ -12,15 +11,15 @@ const AboutUs = () => {
       color: "text-primary"
     },
     {
-      icon: UserCheck,
+      icon: Briefcase,
       number: 10,
       label: "مهندس",
       color: "text-primary"
     },
     {
-      icon: Building2,
+      icon: Clock,
       number: 40,
-      label: "عميل مياومة",
+      label: "عامل مياومة",
       color: "text-primary"
     }
   ];
@@ -40,21 +39,20 @@ const AboutUs = () => {
                 </div>
               </div>
               
-              <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
-                تسعى الفرسان الرباعية إلى التميز الدائم في توفير منتجات صحية وذات جودة عالية من خيرات 
-                الطبيعة الأردنية.
+              <p className="text-muted-foreground leading-relaxed text-base sm:text-lg font-medium">
+                تسعى الفرسان الرباعية إلى التميز الدائم في توفير منتجات صحية وذات جودة عالية من خيرات الطبيعة الأردنية.
               </p>
 
               <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                شركة الفرسان الرباعية للإدارة والاستثمار هي من أكبر الشركات الرائدة في المملكة الأردنية الهاشمية 
-                وهي شركة ذات مسؤولية محدودة تعمل في مجال صناعة المواد الغذائية المختلفة ويقع مبنى الشركة في منطقة المفرق.
+                شركة الفرسان الرباعية للإدارة والاستثمار هي من أكبر الشركات الرائدة في المملكة الأردنية الهاشمية وهي شركة ذات مسئولية محدودة تعمل في مجال صناعة المواد الغذائية المختلفة ويقع مبني الشركة في منطقة المفرق.
               </p>
 
               <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                تضم الشركة مجموعة من مصانع المنتجات الغذائية عالية الجودة وفق أعلى المعايير الدولية. 
-                يبلغ عدد موظفي الشركة حوالي مئة وخمسون موظف وعشرة مهندسين وأربعين موظف مياومة تقريباً 
-                وتطرح الشركة منتجاتها في الأسواق بأسعار معقولة تناسب الجميع كما تحرص 
-                دوماً على التجديد ومراقبة جودة منتجاتها وتطويرها والاستجابة لمتطلبات المستهلك.
+                تضم الشركة مجموعة من مصانع المنتجات الغذائية عالية الجودة وفق أعلي المعايير الدولية.
+              </p>
+
+              <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                يبلغ عدد موظفي الشركة حوالي مئة و خمسون موظف وعشرة مهندسين وأربعين موظف مياومة تقريبا وتطرح الشركة منتجاتها في الأسواق بأسعار معقولة تناسب الجميع كما تحرص دوما علي التجديد ومراقبة جودة منتجاتها وتطويرها والاستجابة لمتطلبات المستهلك.
               </p>
             </div>
           </div>
@@ -63,7 +61,7 @@ const AboutUs = () => {
           <div className="lg:order-1">
             <div className="relative overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl">
               <img 
-                src={factoryImage} 
+                src="/factory-building.png" 
                 alt="مصنع الفرسان الرباعية" 
                 className="w-full h-64 sm:h-80 lg:h-[500px] object-cover transition-transform duration-300 hover:scale-105"
               />
