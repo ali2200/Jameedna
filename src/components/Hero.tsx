@@ -11,8 +11,12 @@ const Hero = () => {
       <div className="absolute inset-0">
         {/* Background Video */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${factoryImage})` }}
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: `url(${factoryImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         />
         
         {/* Dark Overlay for Text Readability */}
