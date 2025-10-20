@@ -79,8 +79,7 @@ const Hero = () => {
             </h1>
 
             <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto leading-relaxed animate-slide-in-right px-4 sm:px-0">
-              شركة الفرسان الرباعية - رائدة في صناعة الألبان والجميد الأردني الأصيل، 
-              بجودة عالمية ونكهة تراثية أصيلة
+              شركة الفرسان الرباعية - رائدة في صناعة المنتجات الأردنية الأصيلة، بجودة عالمية ونكهة تراثية أصيلة.
             </p>
           </div>
 
