@@ -17,8 +17,7 @@ const Hero = () => {
           muted
           playsInline
         >
-          {/* Placeholder video - replace with actual factory video */}
-          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+          <source src="https://drive.google.com/uc?export=download&id=1rGJ4n3llgcxm9fs57AjAHSVBgcIHnEcH" type="video/mp4" />
           {/* Fallback to factory image if video fails to load */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
