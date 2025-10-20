@@ -1,10 +1,14 @@
-import { Play, Sparkles, ArrowDown, Package } from "lucide-react";
+import { Play, Sparkles, ArrowDown, Package, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import factoryImage from "@/assets/factory-exterior.jpg";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { useState } from "react";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-hero flex items-center justify-center">
       {/* Video Background */}
@@ -87,6 +91,8 @@ const Hero = () => {
               className="group relative overflow-hidden bg-primary-foreground text-primary hover:bg-primary-foreground/90 
                        shadow-glass px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold rounded-2xl transition-all duration-300 
                        hover:scale-105 hover:shadow-glow border border-primary-foreground/20 w-full sm:w-auto"
+              onClick={() => setIsVideoOpen(true)}
+              data-testid="button-watch-video"
             >
               {/* Shimmer Effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/20 to-transparent 
@@ -142,6 +148,24 @@ const Hero = () => {
       
       {/* Clean Straight Transition to Next Section */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+      
+      {/* Video Dialog */}
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+        <DialogContent className="max-w-5xl w-[95vw] p-0 bg-background/95 backdrop-blur-xl border-2 border-primary/20 overflow-hidden">
+          <DialogTitle className="sr-only">الفيديو التعريفي - شركة الفرسان الرباعية</DialogTitle>
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              className="absolute inset-0 w-full h-full rounded-lg"
+              src={isVideoOpen ? "https://www.youtube.com/embed/Qqm7n4iHC5I?si=8PtMKwiCbb-OtBvk&autoplay=1" : ""}
+              title="الفيديو التعريفي - شركة الفرسان الرباعية"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
