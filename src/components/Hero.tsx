@@ -17,12 +17,7 @@ const Hero = () => {
           muted
           playsInline
         >
-          <source src="https://drive.google.com/uc?export=download&id=1rGJ4n3llgcxm9fs57AjAHSVBgcIHnEcH" type="video/mp4" />
-          {/* Fallback to factory image if video fails to load */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${factoryImage})` }}
-          />
+          <source src="/factory-video.mp4" type="video/mp4" />
         </video>
         
         {/* Dark Overlay for Text Readability */}
