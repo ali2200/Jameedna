@@ -10,14 +10,24 @@ const Hero = () => {
       {/* Video Background */}
       <div className="absolute inset-0">
         {/* Background Video */}
-        <div 
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-          style={{ 
-            backgroundImage: `url(${factoryImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <iframe
+            className="absolute top-1/2 left-1/2"
+            src="https://www.youtube.com/embed/Qqm7n4iHC5I?si=8PtMKwiCbb-OtBvk&controls=0&start=33&autoplay=1&mute=1&loop=1&playlist=Qqm7n4iHC5I&rel=0&modestbranding=1"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            referrerPolicy="strict-origin-when-cross-origin"
+            style={{
+              width: '100vw',
+              height: '56.25vw',
+              minHeight: '100vh',
+              minWidth: '177.77vh',
+              transform: 'translate(-50%, -50%)',
+              pointerEvents: 'none',
+            }}
+          />
+        </div>
         
         {/* Dark Overlay for Text Readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/70 to-primary-dark/90" />
