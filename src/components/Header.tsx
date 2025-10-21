@@ -4,15 +4,16 @@ import { Menu, X, Globe, Sparkles, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const Header = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const navigate = useNavigate();
+  const { language, toggleLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState('ar');
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -20,45 +21,28 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  const navigation = [{
-    name: 'الرئيسية',
-    nameEn: 'Home',
-    href: '/'
-  }, {
-    name: 'من نحن',
-    nameEn: 'About Us',
-    href: '/about'
-  }, {
-    name: 'منتجاتنا',
-    nameEn: 'Our Products',
-    href: '/products'
-  }, {
-    name: 'الجودة والشهادات',
-    nameEn: 'Quality & Certificates',
-    href: '/certificates'
-  }, {
-    name: 'أخبارنا',
-    nameEn: 'Our News',
-    href: '/blog'
-  }, {
-    name: 'اتصل بنا',
-    nameEn: 'Contact Us',
-    href: '/contact'
-  }];
+  
+  const navigation = [
+    { key: 'nav.home', href: '/' },
+    { key: 'nav.about', href: '/about' },
+    { key: 'nav.products', href: '/products' },
+    { key: 'nav.certificates', href: '/certificates' },
+    { key: 'nav.news', href: '/blog' },
+    { key: 'nav.contact', href: '/contact' }
+  ];
+  
   const isCurrentPage = (href: string) => {
     if (href.startsWith('#')) {
       return location.pathname === '/' && location.hash === href;
     }
     return location.pathname === href;
   };
+  
   const downloadProfile = () => {
     toast({
-      title: "تحميل ملف الشركة",
-      description: "يتم تحضير ملف الشركة للتحميل..."
+      title: t('nav.downloadProfile'),
+      description: language === 'ar' ? "يتم تحضير ملف الشركة للتحميل..." : "Preparing company profile for download..."
     });
-  };
-  const toggleLanguage = () => {
-    setLanguage(language === 'ar' ? 'en' : 'ar');
   };
   return <header className={cn("fixed top-0 w-full z-50 transition-all duration-500", isScrolled || location.pathname !== '/' ? "bg-background/95 backdrop-blur-xl shadow-elegant border-b border-border/50" : "bg-transparent backdrop-blur-none")}>
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
@@ -80,26 +64,54 @@ const Header = () => {
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
               {navigation.map((item, index) => {
-              const isCurrent = isCurrentPage(item.href);
-              const isHashLink = item.href.startsWith('#');
-              return isHashLink ? <a key={item.href} href={item.href} className={cn("relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 group", "hover:scale-105 animate-fade-in-up", isCurrent ? "bg-primary/90 text-primary-foreground shadow-glow" : isScrolled || location.pathname !== '/' ? "text-foreground hover:bg-accent/50 hover:text-accent-foreground" : "text-primary-foreground/80 hover:bg-primary-foreground/10 hover:text-primary-foreground")} style={{
-                animationDelay: `${index * 100}ms`
-              }} aria-current={isCurrent ? 'page' : undefined}>
-                    <span className="relative z-10">
-                      {language === 'ar' ? item.name : item.nameEn}
-                    </span>
-                    {!isCurrent && <div className="absolute inset-0 bg-gradient-glass rounded-xl opacity-0 
-                                    group-hover:opacity-100 transition-opacity duration-300 -z-10" />}
-                  </a> : <Link key={item.href} to={item.href} className={cn("relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 group", "hover:scale-105 animate-fade-in-up", isCurrent ? "bg-primary/90 text-primary-foreground shadow-glow" : isScrolled || location.pathname !== '/' ? "text-foreground hover:bg-accent/50 hover:text-accent-foreground" : "text-primary-foreground/80 hover:bg-primary-foreground/10 hover:text-primary-foreground")} style={{
-                animationDelay: `${index * 100}ms`
-              }} aria-current={isCurrent ? 'page' : undefined}>
-                    <span className="relative z-10">
-                      {language === 'ar' ? item.name : item.nameEn}
-                    </span>
-                    {!isCurrent && <div className="absolute inset-0 bg-gradient-glass rounded-xl opacity-0 
-                                    group-hover:opacity-100 transition-opacity duration-300 -z-10" />}
-                  </Link>;
-            })}
+                const isCurrent = isCurrentPage(item.href);
+                const isHashLink = item.href.startsWith('#');
+                return isHashLink ? (
+                  <a 
+                    key={item.href} 
+                    href={item.href} 
+                    className={cn(
+                      "relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 group",
+                      "hover:scale-105 animate-fade-in-up",
+                      isCurrent 
+                        ? "bg-primary/90 text-primary-foreground shadow-glow" 
+                        : isScrolled || location.pathname !== '/' 
+                          ? "text-foreground hover:bg-accent/50 hover:text-accent-foreground" 
+                          : "text-primary-foreground/80 hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                    )} 
+                    style={{ animationDelay: `${index * 100}ms` }}
+                    aria-current={isCurrent ? 'page' : undefined}
+                  >
+                    <span className="relative z-10">{t(item.key)}</span>
+                    {!isCurrent && (
+                      <div className="absolute inset-0 bg-gradient-glass rounded-xl opacity-0 
+                                    group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+                    )}
+                  </a>
+                ) : (
+                  <Link 
+                    key={item.href} 
+                    to={item.href} 
+                    className={cn(
+                      "relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 group",
+                      "hover:scale-105 animate-fade-in-up",
+                      isCurrent 
+                        ? "bg-primary/90 text-primary-foreground shadow-glow" 
+                        : isScrolled || location.pathname !== '/' 
+                          ? "text-foreground hover:bg-accent/50 hover:text-accent-foreground" 
+                          : "text-primary-foreground/80 hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                    )} 
+                    style={{ animationDelay: `${index * 100}ms` }}
+                    aria-current={isCurrent ? 'page' : undefined}
+                  >
+                    <span className="relative z-10">{t(item.key)}</span>
+                    {!isCurrent && (
+                      <div className="absolute inset-0 bg-gradient-glass rounded-xl opacity-0 
+                                    group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+                    )}
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
@@ -123,7 +135,7 @@ const Header = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/20 to-transparent 
                             -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
               <span className="relative z-10 font-semibold">
-                {language === 'ar' ? 'اطلب عرض سعر' : 'Request Quote'}
+                {t('nav.requestQuote')}
               </span>
             </Button>
           </div>
@@ -142,24 +154,49 @@ const Header = () => {
             <div className="px-4 pt-6 pb-6 space-y-3 bg-background/98 backdrop-blur-xl rounded-2xl mt-4 
                           shadow-elegant border border-border/30 mx-2">
               {navigation.map((item, index) => {
-            const isCurrent = isCurrentPage(item.href);
-            const isHashLink = item.href.startsWith('#');
-            return isHashLink ? <a key={item.href} href={item.href} className={cn("block rounded-xl px-6 py-4 text-lg font-semibold transition-all duration-300 animate-slide-in-right", "border border-transparent", isCurrent ? "bg-gradient-primary text-primary-foreground shadow-glow border-primary/30" : "text-foreground hover:bg-primary/10 hover:text-primary hover:scale-[1.02] hover:border-primary/20 active:scale-[0.98]")} style={{
-              animationDelay: `${index * 50}ms`
-            }} aria-current={isCurrent ? 'page' : undefined}>
+                const isCurrent = isCurrentPage(item.href);
+                const isHashLink = item.href.startsWith('#');
+                return isHashLink ? (
+                  <a 
+                    key={item.href} 
+                    href={item.href} 
+                    className={cn(
+                      "block rounded-xl px-6 py-4 text-lg font-semibold transition-all duration-300 animate-slide-in-right",
+                      "border border-transparent",
+                      isCurrent 
+                        ? "bg-gradient-primary text-primary-foreground shadow-glow border-primary/30" 
+                        : "text-foreground hover:bg-primary/10 hover:text-primary hover:scale-[1.02] hover:border-primary/20 active:scale-[0.98]"
+                    )} 
+                    style={{ animationDelay: `${index * 50}ms` }}
+                    aria-current={isCurrent ? 'page' : undefined}
+                  >
                     <div className="flex items-center justify-between">
-                      <span>{language === 'ar' ? item.name : item.nameEn}</span>
+                      <span>{t(item.key)}</span>
                       {isCurrent && <div className="w-2 h-2 bg-primary-foreground rounded-full" />}
                     </div>
-                  </a> : <Link key={item.href} to={item.href} onClick={() => setIsMenuOpen(false)} className={cn("block rounded-xl px-6 py-4 text-lg font-semibold transition-all duration-300 animate-slide-in-right", "border border-transparent", isCurrent ? "bg-gradient-primary text-primary-foreground shadow-glow border-primary/30" : "text-foreground hover:bg-primary/10 hover:text-primary hover:scale-[1.02] hover:border-primary/20 active:scale-[0.98]")} style={{
-              animationDelay: `${index * 50}ms`
-            }} aria-current={isCurrent ? 'page' : undefined}>
+                  </a>
+                ) : (
+                  <Link 
+                    key={item.href} 
+                    to={item.href} 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={cn(
+                      "block rounded-xl px-6 py-4 text-lg font-semibold transition-all duration-300 animate-slide-in-right",
+                      "border border-transparent",
+                      isCurrent 
+                        ? "bg-gradient-primary text-primary-foreground shadow-glow border-primary/30" 
+                        : "text-foreground hover:bg-primary/10 hover:text-primary hover:scale-[1.02] hover:border-primary/20 active:scale-[0.98]"
+                    )} 
+                    style={{ animationDelay: `${index * 50}ms` }}
+                    aria-current={isCurrent ? 'page' : undefined}
+                  >
                     <div className="flex items-center justify-between">
-                      <span>{language === 'ar' ? item.name : item.nameEn}</span>
+                      <span>{t(item.key)}</span>
                       {isCurrent && <div className="w-2 h-2 bg-primary-foreground rounded-full" />}
                     </div>
-                  </Link>;
-          })}
+                  </Link>
+                );
+              })}
               
               <div className="pt-4 mt-4 border-t border-border/30">
                 <div className="space-y-3">
@@ -177,7 +214,7 @@ const Header = () => {
                 navigate('/request-quote');
               }}>
                     <div className="flex items-center justify-center gap-2">
-                      <span>{language === 'ar' ? 'اطلب عرض سعر' : 'Request Quote'}</span>
+                      <span>{t('nav.requestQuote')}</span>
                     </div>
                   </Button>
                   
@@ -185,7 +222,7 @@ const Header = () => {
                              hover:bg-primary rounded-xl transition-all duration-300 py-4 text-base font-medium
                              border-primary/30 hover:border-primary">
                     <Download className="h-5 w-5 ml-2 rtl:ml-0 rtl:mr-2" />
-                    {language === 'ar' ? 'تحميل ملف الشركة' : 'Download Profile'}
+                    {t('nav.downloadProfile')}
                   </Button>
                 </div>
               </div>

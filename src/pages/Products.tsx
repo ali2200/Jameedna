@@ -6,18 +6,27 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Products = () => {
   const navigate = useNavigate();
+  const { language, t, dir } = useLanguage();
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.title = "منتجاتنا - الفرسان الرباعية | Al Fursan Quadruple Products";
+    const title = language === 'ar' 
+      ? "منتجاتنا - الفرسان الرباعية | Al Fursan Quadruple Products"
+      : "Our Products - Al Fursan Quadruple | Authentic Jameed Products";
+    document.title = title;
+    
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'اكتشف مجموعة منتجات الفرسان الرباعية من الجميد الأردني الأصيل - جميدنا زمان وجميد البدوية بأعلى معايير الجودة العالمية');
+      const desc = language === 'ar'
+        ? 'اكتشف مجموعة منتجات الفرسان الرباعية من الجميد الأردني الأصيل - جميدنا زمان وجميد البدوية بأعلى معايير الجودة العالمية'
+        : 'Discover Al Fursan Quadruple collection of authentic Jordanian Jameed products - Jameedna Zaman and Jameed Badawya with international quality standards';
+      metaDescription.setAttribute('content', desc);
     }
-  }, []);
+  }, [language]);
 
   const products = [
     {
@@ -93,7 +102,7 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background" dir={dir}>
       <Header />
       
       <main className="pt-20">
@@ -102,15 +111,15 @@ const Products = () => {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <Badge className="mb-6 bg-primary-foreground/10 text-primary-foreground">
-              منتجاتنا المميزة
+              {t('products.hero.badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              منتجات الجميد الأصيل
+              {t('products.hero.title')}
             </h1>
             <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto">
-              اكتشف مجموعة منتجاتنا من الجميد الأردني الأصيل
+              {t('products.hero.description')}
               <br />
-              طعم أصيل • جودة استثنائية • تراث أردني
+              {t('products.hero.subtitle')}
             </p>
           </div>
         </section>
@@ -130,10 +139,10 @@ const Products = () => {
                   data-testid={`card-product-${product.id}`}
                 >
                   {/* Premium Badge */}
-                  <div className="absolute top-6 right-6 z-20">
+                  <div className={`absolute top-6 ${dir === 'rtl' ? 'right-6' : 'left-6'} z-20`}>
                     <Badge className="bg-gradient-primary text-primary-foreground border border-primary-foreground/20 
                                    shadow-glow animate-pulse">
-                      منتج مميز
+                      {t('common.featured')}
                     </Badge>
                   </div>
 
@@ -162,17 +171,17 @@ const Products = () => {
                   <CardContent className="p-6 sm:p-8">
                     {/* Product Description */}
                     <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
-                      {product.description}
+                      {language === 'ar' ? product.description : t(`products.${product.id.replace('-', '')}.description`)}
                     </p>
 
                     {/* Product Ingredients */}
                     <div className="mb-6">
                       <h4 className="text-lg font-bold text-foreground flex items-center gap-2 mb-3">
                         <Package className="h-5 w-5 text-primary" />
-                        المكونات
+                        {t('products.ingredients')}
                       </h4>
                       <p className="text-muted-foreground leading-relaxed">
-                        {product.ingredients}
+                        {language === 'ar' ? product.ingredients : t(`products.${product.id.replace('-', '')}.ingredients`)}
                       </p>
                     </div>
 
@@ -180,10 +189,10 @@ const Products = () => {
                     <div className="mb-8">
                       <h4 className="text-lg font-bold text-foreground flex items-center gap-2 mb-3">
                         <Shield className="h-5 w-5 text-primary" />
-                        مميزات المنتج
+                        {t('products.features')}
                       </h4>
                       <p className="text-muted-foreground leading-relaxed">
-                        {product.features}
+                        {language === 'ar' ? product.features : t(`products.${product.id.replace('-', '')}.features`)}
                       </p>
                     </div>
 
@@ -191,7 +200,7 @@ const Products = () => {
                     <div className="mb-8">
                       <h4 className="text-lg font-bold text-foreground flex items-center gap-2 mb-4">
                         <BarChart3 className="h-5 w-5 text-primary" />
-                        الأحجام المتوفرة
+                        {language === 'ar' ? 'الأحجام المتوفرة' : 'Available Sizes'}
                       </h4>
                       <div className="grid grid-cols-2 gap-4">
                         {product.sizes.map((size, idx) => (
@@ -210,7 +219,7 @@ const Products = () => {
                     <div className="mb-8">
                       <h4 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
                         <Award className="h-5 w-5 text-primary" />
-                        الشهادات والمعايير
+                        {t('products.certificates')}
                       </h4>
                       <div className="flex flex-wrap gap-3">
                         {product.certificates.map((cert, idx) => (
@@ -240,9 +249,9 @@ const Products = () => {
                         }}
                         data-testid={`button-view-details-${product.id}`}
                       >
-                        <Eye className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
-                        عرض التفاصيل
-                        <ChevronRight className="mr-2 rtl:mr-0 rtl:ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                        <Eye className={`${dir === 'rtl' ? 'ml-2' : 'mr-2'} h-5 w-5 transition-transform group-hover:scale-110`} />
+                        {language === 'ar' ? 'عرض التفاصيل' : 'View Details'}
+                        <ChevronRight className={`${dir === 'rtl' ? 'mr-2' : 'ml-2'} h-5 w-5 transition-transform group-hover:translate-x-1`} />
                       </Button>
                       
                       <Button 
@@ -255,8 +264,8 @@ const Products = () => {
                         }}
                         data-testid={`button-quote-${product.id}`}
                       >
-                        <Package className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
-                        اطلب عرض سعر
+                        <Package className={`${dir === 'rtl' ? 'ml-2' : 'mr-2'} h-5 w-5 transition-transform group-hover:scale-110`} />
+                        {t('nav.requestQuote')}
                       </Button>
                     </div>
                   </CardContent>
@@ -271,7 +280,7 @@ const Products = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                لماذا تختار منتجاتنا؟
+                {language === 'ar' ? 'لماذا تختار منتجاتنا؟' : 'Why Choose Our Products?'}
               </h2>
               <p className="text-xl text-muted-foreground">
                 التزامنا بالجودة والأصالة في كل منتج
