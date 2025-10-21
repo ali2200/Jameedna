@@ -67,20 +67,20 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "العنوان",
-      info: "المفرق، الأردن",
-      details: "منطقة المدينة الصناعية"
+      info: "المفرق - الزعتري - شارع بغداد القديم",
+      details: "P.O.Box 841 Al-Mafraq 25110 Jordan"
     },
     {
       icon: Phone,
       title: "الهاتف",
-      info: "+962 2 626 4582",
-      details: "متاح من 8 صباحاً - 6 مساءً"
+      info: "+962 2 626 4582 | +201147877414",
+      details: "Fax: +962 2 626 4474"
     },
     {
       icon: Mail,
       title: "البريد الإلكتروني",
       info: "info@alfursanjo.com",
-      details: "نرد خلال 24 ساعة"
+      details: "www.altursanjo.com"
     },
     {
       icon: Clock,

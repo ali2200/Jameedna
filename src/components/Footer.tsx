@@ -24,8 +24,7 @@ const Footer = () => {
                 decoding="async"
               />
               <p className="text-primary-foreground/90 text-sm leading-relaxed">
-                رائدون في صناعة الألبان والجميد الأردني الأصيل منذ أكثر من 20 عامًا، 
-                نقدم منتجات عالية الجودة بمعايير دولية.
+                رائدون في صناعة المنتجات الأردنية الأصيلة منذ أكثر من 20 عامًا، نقدم منتجات عالية الجودة بمعايير دولية.
               </p>
               <div className="flex space-x-2 rtl:space-x-reverse">
                 <Award className="h-4 w-4 text-primary-foreground/80" />
@@ -90,17 +89,19 @@ const Footer = () => {
             <div>
               <h3 className="font-bold text-lg mb-4">معلومات التواصل</h3>
               <div className="space-y-3">
-                <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                  <MapPin className="h-4 w-4 text-primary-foreground/80 flex-shrink-0" />
-                  <span className="text-sm text-primary-foreground/80">
-                    الأردن - المفرق
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                  <Phone className="h-4 w-4 text-primary-foreground/80 flex-shrink-0" />
+                <div className="flex items-start space-x-3 rtl:space-x-reverse">
+                  <MapPin className="h-4 w-4 text-primary-foreground/80 flex-shrink-0 mt-1" />
                   <div className="text-sm text-primary-foreground/80">
-                    <div>+962 2 626 4582</div>
-                    <div>+201147877414</div>
+                    <div>المفرق - الزعتري - شارع بغداد القديم</div>
+                    <div className="mt-1">P.O.Box 841 Al-Mafraq 25110 Jordan</div>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3 rtl:space-x-reverse">
+                  <Phone className="h-4 w-4 text-primary-foreground/80 flex-shrink-0 mt-1" />
+                  <div className="text-sm text-primary-foreground/80">
+                    <div>Tel: +962 2 626 4582</div>
+                    <div>Tel: +201147877414</div>
+                    <div>Fax: +962 2 626 4474</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -112,7 +113,7 @@ const Footer = () => {
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
                   <Globe className="h-4 w-4 text-primary-foreground/80 flex-shrink-0" />
                   <span className="text-sm text-primary-foreground/80">
-                    www.alfursanjo.com
+                    www.altursanjo.com
                   </span>
                 </div>
               </div>
