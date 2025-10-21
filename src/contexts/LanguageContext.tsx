@@ -76,14 +76,18 @@ const translations: Record<Language, Record<string, string>> = {
     'common.featured': 'منتج مميز',
     'common.home': 'الرئيسية',
     'common.products': 'المنتجات',
+    'common.companyName': 'الفرسان الرباعية للإدارة والاستثمار',
     
     // Home Page
     'home.hero.badge': 'مصنع رائد منذ أكثر من 20 عاماً',
     'home.hero.title': 'من خيرات الطبيعة الأردنية',
+    'home.hero.title1': 'من خيرات الطبيعة',
+    'home.hero.title2': 'الأردنية',
     'home.hero.subtitle': 'نمنحكم جميد أصيل بطعم لا ينسى',
-    'home.hero.description': 'شركة الفرسان الرباعية - رائدة في صناعة المنتجات الأردنية الأصيلة، بجودة عالمية وتقنية تراثية أصيلة.',
+    'home.hero.description': 'شركة الفرسان الرباعية - رائدة في صناعة المنتجات الأردنية الأصيلة، بجودة عالمية ونكهة تراثية أصيلة.',
     'home.hero.watchVideo': 'شاهد الفيديو التعريفي',
     'home.hero.viewProducts': 'عرض المنتجات',
+    'home.hero.requestQuote': 'اطلب عرض سعر الآن',
     
     'home.discover.title': 'اكتشف المزيد',
     'home.about.badge': 'عن الشركة',
@@ -204,6 +208,12 @@ const translations: Record<Language, Record<string, string>> = {
     // Request Quote Page
     'quote.title': 'طلب عرض سعر',
     'quote.description': 'املأ النموذج وسنتواصل معك في أقرب وقت',
+    
+    // Footer
+    'footer.companyDescription': 'رائدون في صناعة المنتجات الأردنية الأصيلة منذ أكثر من 20 عامًا، نقدم منتجات عالية الجودة بمعايير دولية.',
+    'footer.quickLinks': 'روابط سريعة',
+    'footer.ourProducts': 'منتجاتنا',
+    'footer.contactInfo': 'معلومات التواصل',
   },
   en: {
     // Navigation
@@ -228,14 +238,18 @@ const translations: Record<Language, Record<string, string>> = {
     'common.featured': 'Featured Product',
     'common.home': 'Home',
     'common.products': 'Products',
+    'common.companyName': 'Al Fursan Quadruple',
     
     // Home Page
     'home.hero.badge': 'Leading Manufacturer Since 20+ Years',
     'home.hero.title': 'From the Bounties of Jordanian Nature',
+    'home.hero.title1': 'From the Bounties of',
+    'home.hero.title2': 'Jordanian Nature',
     'home.hero.subtitle': 'We Bring You Authentic Jameed with Unforgettable Taste',
-    'home.hero.description': 'Al Fursan Quadruple - A leader in authentic Jordanian products manufacturing, with world-class quality and traditional heritage techniques.',
+    'home.hero.description': 'Al Fursan Quadruple - A leader in authentic Jordanian products manufacturing, with world-class quality and traditional heritage flavor.',
     'home.hero.watchVideo': 'Watch Intro Video',
     'home.hero.viewProducts': 'View Products',
+    'home.hero.requestQuote': 'Request Quote Now',
     
     'home.discover.title': 'Discover More',
     'home.about.badge': 'About the Company',
@@ -356,5 +370,11 @@ const translations: Record<Language, Record<string, string>> = {
     // Request Quote Page
     'quote.title': 'Request a Quote',
     'quote.description': 'Fill the form and we will contact you soon',
+    
+    // Footer
+    'footer.companyDescription': 'Leading in authentic Jordanian products manufacturing for over 20 years, offering high-quality products with international standards.',
+    'footer.quickLinks': 'Quick Links',
+    'footer.ourProducts': 'Our Products',
+    'footer.contactInfo': 'Contact Information',
   }
 };
