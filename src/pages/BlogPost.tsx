@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -5,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, User, ArrowRight, Share2, Facebook, Twitter, Linkedin } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import factoryImage from "@/assets/factory-exterior.jpg";
 
 interface BlogPost {
   id: string;
@@ -26,6 +28,122 @@ const BlogPost = () => {
 
   // In a real application, you would fetch this data based on the slug
   const blogPosts: Record<string, BlogPost> = {
+    'alfursan-excellence-journey': {
+      id: '1',
+      title: 'الفرسان الرباعية: رحلة التميز في صناعة الجميد الأردني',
+      titleEn: 'Al Fursan Quadruple: Journey of Excellence in Jordanian Jameed Manufacturing',
+      content: `
+        <p class="lead text-lg font-medium">شركة الفرسان الرباعية للإدارة والاستثمار هي شركة رائدة في صناعة المنتجات الأردنية الأصيلة، تأسست منذ أكثر من 20 عاماً من الخبرة في مجال الأغذية. بدأنا كعمل عائلي، ونمت خبرتنا لتصبح علامة تجارية ناجحة تمتلك قاعدة عملاء واسعة محلياً ودولياً.</p>
+
+        <h2>البداية: من عمل عائلي إلى علامة تجارية رائدة</h2>
+        <p>في الفرسان الرباعية، نؤمن بالاستفادة من وفرة وغنى الأردن، حيث يتم التعامل مع منتجاتنا الغذائية بأقصى درجات العناية والاهتمام للحفاظ على نضارتها وخصائصها الأصيلة. بدأت رحلتنا كعمل عائلي صغير، حيث نشأت الإدارة العليا في هذا المجال وطبقت معرفتها العميقة لتحقيق منتجات عالية الجودة.</p>
+
+        <p>اليوم، أصبحنا علامة تجارية رائدة وناجحة في الأردن، مع تاريخ عريق في السوق وقاعدة عملاء واسعة. استطاع فريق الفرسان بناء حضور وسمعة قوية محلياً ودوليً بفضل التزامنا الراسخ بالجودة والأصالة.</p>
+
+        <h2>رؤيتنا: الريادة في المنتجات الأردنية الأصيلة</h2>
+        <p>رؤيتنا هي أن نكون الخيار الأول للمنتجات الغذائية الأردنية الأصيلة عالمياً، من خلال الحفاظ على التراث والأصالة مع تطبيق أعلى معايير الجودة العالمية. نسعى للاستفادة من غنى الأردن وخيراته، ومعالجة منتجاتنا بعناية فائقة للحفاظ على نضارتها وخصائصها الطبيعية الأصيلة.</p>
+
+        <h2>رسالتنا: الالتزام بالجودة والتميز</h2>
+        <p>نلتزم بإنتاج منتجات عالية الجودة من خلال استخدام التكنولوجيا المتقدمة والالتزام الصارم بمعايير السلامة. عملياتنا مبنية على الكفاءة والاستدامة، مدفوعة بالتزام وخبرة فريقنا بأكمله.</p>
+
+        <p>نستثمر باستمرار في:</p>
+        <ul>
+          <li>موظفينا المتميزين وتدريبهم المستمر</li>
+          <li>التكنولوجيا المتطورة والمعدات الحديثة</li>
+          <li>أنظمة الجودة والسلامة الصارمة</li>
+          <li>البحث والتطوير لمنتجات جديدة</li>
+        </ul>
+
+        <h2>قيمنا الأساسية</h2>
+        
+        <h3>1. الالتزام</h3>
+        <p>نلتزم بفعل الصواب في جميع الأوقات، سواء في تعاملنا مع عملائنا، موظفينا، أو في عملياتنا الإنتاجية. الالتزام هو حجر الأساس لكل ما نقوم به.</p>
+
+        <h3>2. التواصل</h3>
+        <p>نؤمن بالتواصل الواضح والفعال والتغذية الراجعة كأساس للنجاح. نحرص على الاستماع لعملائنا وفريق العمل والعالم من حولنا لنكون دائماً في تحسين مستمر.</p>
+
+        <h3>3. النزاهة</h3>
+        <p>نمارس أعمالنا بمعايير أخلاقية عالية وشفافية تامة وصدق في كل تعاملاتنا. النزاهة ليست خياراً، بل هي جزء من هويتنا.</p>
+
+        <h3>4. المسؤولية</h3>
+        <p>نتحمل مسؤولياتنا ونسعى لتجاوز التوقعات في كل ما نقوم به. نتخذ المبادرة في امتلاك مسؤولياتنا وتحقيق نتائج استثنائية.</p>
+
+        <h3>5. العائلة</h3>
+        <p>نحب ونهتم وندعم بعضنا البعض كعائلة واحدة. فريق الفرسان الرباعية هو عائلة كبيرة تعمل معاً بروح الفريق الواحد.</p>
+
+        <h2>التميز في الإنتاج والجودة</h2>
+        <p>نحرص على معالجة المواد الخام لإنتاج منتجات غذائية عالية الجودة بأقصى درجات الاهتمام والنزاهة فيما يتعلق بالنظافة والحفاظ على جودتها الطبيعية وطعمها الأصيل.</p>
+
+        <h3>مصنعنا الحديث</h3>
+        <p>يضم مصنعنا:</p>
+        <ul>
+          <li><strong>خطوط إنتاج متطورة:</strong> مجهزة بأحدث التقنيات الأوروبية</li>
+          <li><strong>مختبرات حديثة:</strong> لفحص الجودة والسلامة في كل مرحلة</li>
+          <li><strong>أنظمة تحكم إلكترونية:</strong> لضمان دقة العمليات الإنتاجية</li>
+          <li><strong>مرافق تخزين مثالية:</strong> للحفاظ على المنتجات بأفضل حالة</li>
+        </ul>
+
+        <h2>الشهادات والاعتمادات الدولية</h2>
+        <p>حصلنا على أهم الشهادات العالمية التي تؤكد التزامنا بالجودة:</p>
+        <ul>
+          <li><strong>ISO 22000:</strong> نظام إدارة سلامة الغذاء</li>
+          <li><strong>ISO 9001:</strong> نظام إدارة الجودة</li>
+          <li><strong>HACCP:</strong> تحليل المخاطر ونقاط التحكم الحرجة</li>
+          <li><strong>HALAL:</strong> شهادة الحلال المعتمدة</li>
+          <li><strong>FDA Approved:</strong> موافقة إدارة الغذاء والدواء الأمريكية</li>
+          <li><strong>TÜV AUSTRIA:</strong> شهادة الجودة الأوروبية</li>
+        </ul>
+
+        <h2>منتجاتنا المميزة</h2>
+        
+        <h3>جميدنا زمان</h3>
+        <p>خط إنتاج متميز يحمل الطابع التقليدي الأصيل، مصنوع من حليب الأغنام الطازج 100% بطرق تقليدية محسّنة بتقنيات حديثة.</p>
+
+        <h3>جميد بدوية</h3>
+        <p>يمثل أصالة البادية الأردنية، مصنوع من حليب الماعز الطبيعي بجودة عالية تحافظ على المذاق التقليدي.</p>
+
+        <h2>التوسع والنمو</h2>
+        <p>نصدر منتجاتنا إلى العديد من الدول حول العالم، مع التركيز على الأسواق التي تقدر الجودة والأصالة. نواصل التوسع في أسواق جديدة مع المحافظة على معاييرنا العالية.</p>
+
+        <h3>أسواقنا الرئيسية:</h3>
+        <ul>
+          <li>دول الخليج العربي (السعودية، الكويت، الإمارات، قطر، البحرين، عمان)</li>
+          <li>بلاد الشام (سوريا، لبنان، فلسطين)</li>
+          <li>شمال أفريقيا (مصر، ليبيا، المغرب)</li>
+          <li>أوروبا (ألمانيا، بلجيكا، فرنسا، إيطاليا، إسبانيا، بولندا)</li>
+          <li>آسيا (اليمن وأسواق ناشئة أخرى)</li>
+        </ul>
+
+        <h2>المسؤولية المجتمعية</h2>
+        <p>نؤمن بدورنا في خدمة المجتمع والحفاظ على التراث الأردني. نعمل على:</p>
+        <ul>
+          <li>دعم المزارعين المحليين وتوفير أسعار عادلة</li>
+          <li>توظيف وتدريب الكوادر الأردنية</li>
+          <li>الحفاظ على البيئة من خلال ممارسات إنتاج مستدامة</li>
+          <li>نقل التراث الغذائي الأردني للأجيال القادمة</li>
+        </ul>
+
+        <h2>المستقبل</h2>
+        <p>نتطلع إلى مستقبل مشرق نواصل فيه رحلة التميز والنمو. خططنا تشمل:</p>
+        <ul>
+          <li>التوسع في أسواق جديدة في آسيا وأفريقيا</li>
+          <li>تطوير خطوط إنتاج جديدة مع الحفاظ على الأصالة</li>
+          <li>زيادة الطاقة الإنتاجية لتلبية الطلب المتزايد</li>
+          <li>الاستثمار في البحث والتطوير</li>
+          <li>تعزيز الاستدامة البيئية في عملياتنا</li>
+        </ul>
+
+        <p class="text-lg font-medium mt-8">الفرسان الرباعية ليست مجرد شركة، بل هي قصة نجاح أردنية تجمع بين الأصالة والحداثة، التراث والتكنولوجيا، الجودة والشغف. نحن فخورون بما حققناه ومتحمسون لما سنحققه في المستقبل.</p>
+      `,
+      contentEn: '',
+      category: 'company-news',
+      categoryEn: 'Company News',
+      author: 'إدارة الفرسان الرباعية',
+      date: '2024-10-21',
+      image: factoryImage,
+      slug: 'alfursan-excellence-journey',
+      tags: ['الفرسان الرباعية', 'جميد أردني', 'جودة', 'تراث', 'منتجات أصيلة', 'تصدير']
+    },
     'saudi-food-expo-2024': {
       id: '1',
       title: 'مشاركة الفرسان الرباعية في معرض الغذاء السعودي 2024',
@@ -181,6 +299,96 @@ const BlogPost = () => {
   };
 
   const post = slug ? blogPosts[slug] : null;
+
+  useEffect(() => {
+    if (post) {
+      // Set page title for SEO
+      document.title = `${post.title} | الفرسان الرباعية - Al Fursan Quadruple`;
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        const excerpt = post.content.replace(/<[^>]+>/g, '').substring(0, 160);
+        metaDescription.setAttribute('content', excerpt);
+      }
+
+      // Add Open Graph meta tags for social sharing
+      let ogTitle = document.querySelector('meta[property="og:title"]');
+      if (!ogTitle) {
+        ogTitle = document.createElement('meta');
+        ogTitle.setAttribute('property', 'og:title');
+        document.head.appendChild(ogTitle);
+      }
+      ogTitle.setAttribute('content', post.title);
+
+      let ogDescription = document.querySelector('meta[property="og:description"]');
+      if (!ogDescription) {
+        ogDescription = document.createElement('meta');
+        ogDescription.setAttribute('property', 'og:description');
+        document.head.appendChild(ogDescription);
+      }
+      const excerpt = post.content.replace(/<[^>]+>/g, '').substring(0, 160);
+      ogDescription.setAttribute('content', excerpt);
+
+      let ogImage = document.querySelector('meta[property="og:image"]');
+      if (!ogImage) {
+        ogImage = document.createElement('meta');
+        ogImage.setAttribute('property', 'og:image');
+        document.head.appendChild(ogImage);
+      }
+      ogImage.setAttribute('content', window.location.origin + post.image);
+
+      let ogType = document.querySelector('meta[property="og:type"]');
+      if (!ogType) {
+        ogType = document.createElement('meta');
+        ogType.setAttribute('property', 'og:type');
+        document.head.appendChild(ogType);
+      }
+      ogType.setAttribute('content', 'article');
+
+      // Add structured data for SEO
+      const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.title,
+        "description": excerpt,
+        "image": window.location.origin + post.image,
+        "datePublished": post.date,
+        "author": {
+          "@type": "Organization",
+          "name": post.author
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "الفرسان الرباعية للإدارة والاستثمار",
+          "logo": {
+            "@type": "ImageObject",
+            "url": window.location.origin + "/logo.png"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": window.location.href
+        },
+        "keywords": post.tags.join(', '),
+        "articleSection": post.categoryEn,
+        "inLanguage": "ar"
+      };
+
+      let script = document.querySelector('script[type="application/ld+json"]');
+      if (script) {
+        script.textContent = JSON.stringify(structuredData);
+      } else {
+        script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(structuredData);
+        document.head.appendChild(script);
+      }
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [post]);
 
   if (!post) {
     return (
