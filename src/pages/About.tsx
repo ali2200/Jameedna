@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faBullseye } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faBullseye, faHandshake, faComments, faBalanceScale, faUserCheck, faUsers } from '@fortawesome/free-solid-svg-icons';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -148,8 +148,78 @@ const About = () => {
           </div>
         </section>
 
-        {/* الجودة والتكنولوجيا */}
+        {/* القيم */}
         <section className="py-20 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 animate-fade-in-up">
+              <h2 className="text-3xl md:text-4xl font-bold mb-2" data-testid="heading-values">
+                <span className="text-muted-foreground">قيمنا</span>{" "}
+                <span className="text-primary">الأساسية</span>
+              </h2>
+              <div className="w-32 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-0 rounded-3xl overflow-hidden shadow-2xl">
+              {/* الالتزام */}
+              <div className="bg-primary text-white p-8 flex flex-col items-center text-center animate-fade-in-up" data-testid="value-commitment">
+                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
+                  <FontAwesomeIcon icon={faHandshake} className="h-12 w-12 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">الالتزام</h3>
+                <p className="text-sm text-primary-foreground/90 leading-relaxed">
+                  نلتزم بفعل الصواب في جميع الأوقات
+                </p>
+              </div>
+
+              {/* التواصل */}
+              <div className="bg-muted text-foreground p-8 flex flex-col items-center text-center animate-fade-in-up" style={{ animationDelay: '0.1s' }} data-testid="value-communication">
+                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
+                  <FontAwesomeIcon icon={faComments} className="h-12 w-12 text-muted-foreground" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">التواصل</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  نؤمن بالتواصل الواضح والفعال والتغذية الراجعة كأساس للنجاح
+                </p>
+              </div>
+
+              {/* النزاهة */}
+              <div className="bg-primary text-white p-8 flex flex-col items-center text-center animate-fade-in-up" style={{ animationDelay: '0.2s' }} data-testid="value-integrity">
+                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
+                  <FontAwesomeIcon icon={faBalanceScale} className="h-12 w-12 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">النزاهة</h3>
+                <p className="text-sm text-primary-foreground/90 leading-relaxed">
+                  نمارس أعمالنا بمعايير أخلاقية عالية وشفافية تامة
+                </p>
+              </div>
+
+              {/* المسؤولية */}
+              <div className="bg-muted text-foreground p-8 flex flex-col items-center text-center animate-fade-in-up" style={{ animationDelay: '0.3s' }} data-testid="value-accountability">
+                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
+                  <FontAwesomeIcon icon={faUserCheck} className="h-12 w-12 text-muted-foreground" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">المسؤولية</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  نتحمل مسؤولياتنا ونسعى لتجاوز التوقعات
+                </p>
+              </div>
+
+              {/* العائلة */}
+              <div className="bg-primary text-white p-8 flex flex-col items-center text-center animate-fade-in-up" style={{ animationDelay: '0.4s' }} data-testid="value-family">
+                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
+                  <FontAwesomeIcon icon={faUsers} className="h-12 w-12 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">العائلة</h3>
+                <p className="text-sm text-primary-foreground/90 leading-relaxed">
+                  نحب ونهتم وندعم بعضنا البعض كعائلة واحدة
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* الجودة والتكنولوجيا */}
+        <section className="py-20 bg-muted/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 animate-fade-in-up">
               <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20 px-4 py-1" data-testid="badge-quality">
