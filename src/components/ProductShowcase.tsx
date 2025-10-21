@@ -277,7 +277,9 @@ const ProductShowcase = () => {
                       e.preventDefault();
                       e.stopPropagation();
                       navigate('/request-quote');
+                      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
                     }}
+                    data-testid="button-request-quote"
                   >
                     <Package className="ml-2 rtl:ml-0 rtl:mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
                     اطلب عرض سعر
@@ -347,7 +349,11 @@ const ProductShowcase = () => {
                     variant="outline" 
                     size="lg" 
                     className="text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/20"
-                    onClick={() => navigate('/request-quote')}
+                    onClick={() => {
+                      navigate('/request-quote');
+                      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                    }}
+                    data-testid="button-request-quote-full"
                   >
                     <Package className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
                     اطلب عرض سعر شامل
