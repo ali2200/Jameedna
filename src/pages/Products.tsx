@@ -283,7 +283,7 @@ const Products = () => {
                 {language === 'ar' ? 'لماذا تختار منتجاتنا؟' : 'Why Choose Our Products?'}
               </h2>
               <p className="text-xl text-muted-foreground">
-                التزامنا بالجودة والأصالة في كل منتج
+                {language === 'ar' ? 'التزامنا بالجودة والأصالة في كل منتج' : 'Our commitment to quality and authenticity in every product'}
               </p>
             </div>
 
@@ -291,35 +291,43 @@ const Products = () => {
               {[
                 {
                   icon: Shield,
-                  title: 'جودة مضمونة',
-                  description: 'شهادات عالمية ISO، HACCP، FDA، Halal',
+                  titleAr: 'جودة مضمونة',
+                  titleEn: 'Guaranteed Quality',
+                  descAr: 'شهادات عالمية ISO، HACCP، FDA، Halal',
+                  descEn: 'International certifications: ISO, HACCP, FDA, Halal',
                   color: 'text-emerald-600',
                   bg: 'bg-emerald-50'
                 },
                 {
                   icon: Package,
-                  title: 'تعبئة عصرية',
-                  description: 'تقنية Aseptic للحفاظ على الجودة والنضارة',
+                  titleAr: 'تعبئة عصرية',
+                  titleEn: 'Modern Packaging',
+                  descAr: 'تقنية Aseptic للحفاظ على الجودة والنضارة',
+                  descEn: 'Aseptic technology to preserve quality and freshness',
                   color: 'text-blue-600',
                   bg: 'bg-blue-50'
                 },
                 {
                   icon: Award,
-                  title: 'خبرة 20+ عام',
-                  description: 'رائدون في صناعة الجميد الأردني الأصيل',
+                  titleAr: 'خبرة 20+ عام',
+                  titleEn: '20+ Years Experience',
+                  descAr: 'رائدون في صناعة الجميد الأردني الأصيل',
+                  descEn: 'Pioneers in authentic Jordanian Jameed production',
                   color: 'text-purple-600',
                   bg: 'bg-purple-50'
                 },
                 {
                   icon: Sparkles,
-                  title: 'منتجات طبيعية',
-                  description: '100% طبيعي بدون مواد حافظة أو ألوان صناعية',
+                  titleAr: 'منتجات طبيعية',
+                  titleEn: 'Natural Products',
+                  descAr: '100% طبيعي بدون مواد حافظة أو ألوان صناعية',
+                  descEn: '100% natural without preservatives or artificial colors',
                   color: 'text-amber-600',
                   bg: 'bg-amber-50'
                 }
               ].map((feature, index) => (
                 <Card 
-                  key={feature.title}
+                  key={language === 'ar' ? feature.titleAr : feature.titleEn}
                   className="text-center bg-gradient-glass backdrop-blur-sm border border-border/20 hover:shadow-lg 
                            hover:scale-105 transition-all duration-300 animate-fade-in-up"
                   style={{ animationDelay: `${index * 100}ms` }}
@@ -328,8 +336,12 @@ const Products = () => {
                     <div className={`w-16 h-16 ${feature.bg} rounded-2xl flex items-center justify-center mx-auto mb-6`}>
                       <feature.icon className={`h-8 w-8 ${feature.color}`} />
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-4">{feature.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                    <h3 className="text-xl font-bold text-foreground mb-4">
+                      {language === 'ar' ? feature.titleAr : feature.titleEn}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {language === 'ar' ? feature.descAr : feature.descEn}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
@@ -341,10 +353,12 @@ const Products = () => {
         <section className="py-20 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              جاهز لتجربة الطعم الأصيل؟
+              {language === 'ar' ? 'جاهز لتجربة الطعم الأصيل؟' : 'Ready to Experience Authentic Taste?'}
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              اطلب منتجاتنا الآن واستمتع بأجود أنواع الجميد الأردني الأصيل
+              {language === 'ar' 
+                ? 'اطلب منتجاتنا الآن واستمتع بأجود أنواع الجميد الأردني الأصيل'
+                : 'Order now and enjoy the finest authentic Jordanian Jameed'}
             </p>
             <Button 
               variant="outline"
@@ -353,9 +367,9 @@ const Products = () => {
               onClick={handleQuoteClick}
               data-testid="button-cta-quote"
             >
-              <Package className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
-              اطلب عرض سعر شامل
-              <ChevronRight className="mr-2 rtl:mr-0 rtl:ml-2 h-5 w-5" />
+              <Package className={`${dir === 'rtl' ? 'ml-2' : 'mr-2'} h-5 w-5`} />
+              {language === 'ar' ? 'اطلب عرض سعر شامل' : 'Request Complete Quote'}
+              <ChevronRight className={`${dir === 'rtl' ? 'mr-2' : 'ml-2'} h-5 w-5`} />
             </Button>
           </div>
         </section>
