@@ -12,6 +12,10 @@ const Certificates = () => {
     document.title = "الشهادات والجودة - الفرسان الرباعية | Quality & Certificates";
   }, []);
 
+  const downloadCompanyProfile = () => {
+    // فتح الملف في صفحة جديدة
+    window.open('/alfursan-company-profile.pdf', '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-background" dir="rtl">
@@ -32,7 +36,11 @@ const Certificates = () => {
               نلتزم بأعلى معايير الجودة والسلامة المعترف بها عالمياً لضمان تقديم منتجات آمنة وعالية الجودة
             </p>
             
-            <Button className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 px-8 py-3 text-lg">
+            <Button 
+              onClick={downloadCompanyProfile}
+              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 px-8 py-3 text-lg"
+              data-testid="button-download-certificates"
+            >
               <Download className="ml-2 h-5 w-5" />
               تحميل ملف الشهادات
             </Button>

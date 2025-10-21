@@ -91,9 +91,12 @@ const Contact = () => {
   ];
 
   const downloadCompanyProfile = () => {
+    // فتح الملف في صفحة جديدة وتحميله
+    window.open('/alfursan-company-profile.pdf', '_blank');
+    
     toast({
-      title: "تحميل الملف الشخصي",
-      description: "يتم تحضير ملف الشركة للتحميل...",
+      title: "جاري التحميل",
+      description: "تم فتح ملف الشركة في صفحة جديدة",
     });
   };
 
