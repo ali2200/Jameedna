@@ -1,7 +1,7 @@
 import { Award, Shield, CheckCircle, Globe, FileCheck, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import productionLineImage from "@/assets/production-line.jpg";
+const factoryWorkersImage = "/factory-workers.png";
 
 const QualityCertificates = () => {
   const certificates = [
@@ -46,29 +46,6 @@ const QualityCertificates = () => {
       icon: Globe,
       color: "text-badawya-sand",
       bgColor: "bg-badawya-sand/10"
-    }
-  ];
-
-  const qualityFeatures = [
-    {
-      title: "خطوط إنتاج حديثة",
-      description: "أحدث التقنيات في التصنيع والتعبئة",
-      percentage: "100"
-    },
-    {
-      title: "رقابة جودة صارمة",
-      description: "فحص شامل في جميع مراحل الإنتاج",
-      percentage: "100"
-    },
-    {
-      title: "مواد خام طبيعية",
-      description: "حليب غنم طازج من المراعي الأردنية",
-      percentage: "100"
-    },
-    {
-      title: "تعبئة آمنة",
-      description: "تقنية Aseptic للحفاظ على الجودة",
-      percentage: "100"
     }
   ];
 
@@ -221,56 +198,6 @@ const QualityCertificates = () => {
           </div>
         </div>
 
-        {/* Quality Features */}
-        <div className="bg-muted/30 rounded-3xl p-8 md:p-12">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-foreground mb-4">
-              لماذا نتميز في الجودة؟
-            </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              من المواد الخام إلى المنتج النهائي، نضمن أعلى مستويات الجودة في كل مرحلة
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {qualityFeatures.map((feature, index) => (
-              <Card 
-                key={feature.title} 
-                className="hover:shadow-card transition-all duration-300 animate-slide-up"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4 rtl:space-x-reverse">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                        <CheckCircle className="h-6 w-6 text-primary" />
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-foreground mb-2">
-                        {feature.title}
-                      </h4>
-                      <p className="text-muted-foreground mb-4">
-                        {feature.description}
-                      </p>
-                      <div className="w-full bg-border rounded-full h-2">
-                        <div 
-                          className="bg-gradient-primary h-2 rounded-full transition-all duration-1000"
-                          style={{ width: `${feature.percentage}%` }}
-                        ></div>
-                      </div>
-                      <div className="flex justify-between items-center mt-2">
-                        <span className="text-sm text-muted-foreground">مستوى الجودة</span>
-                        <span className="text-sm font-semibold text-primary">{feature.percentage}%</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
         {/* Production Capacity Banner */}
         <div className="mt-16">
           <Card className="overflow-hidden">
@@ -278,8 +205,8 @@ const QualityCertificates = () => {
               {/* Production Image */}
               <div className="relative h-64 lg:h-auto">
                 <img 
-                  src={productionLineImage} 
-                  alt="خطوط الإنتاج في مصنع الفرسان الرباعية"
+                  src={factoryWorkersImage} 
+                  alt="عمال مصنع الفرسان الرباعية"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-jameed-red/80 to-transparent"></div>
