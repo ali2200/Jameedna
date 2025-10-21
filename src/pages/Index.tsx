@@ -6,18 +6,25 @@ import ProductShowcase from "@/components/ProductShowcase";
 import QualityCertificates from "@/components/QualityCertificates";
 import ContactRFQ from "@/components/ContactRFQ";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
+  const { language, dir } = useLanguage();
+  
   useEffect(() => {
     // Set document title for SEO
-    document.title = "الفرسان الرباعية - مصنع الجميد الأردني الأصيل | Al Fursan Quadruple";
+    const title = language === 'ar'
+      ? "الفرسان الرباعية - مصنع الجميد الأردني الأصيل | Al Fursan Quadruple"
+      : "Al Fursan Quadruple - Authentic Jordanian Jameed Factory";
+    document.title = title;
     
     // Add meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 
-        'مصنع الفرسان الرباعية للجميد الأردني الأصيل - أكثر من 20 عامًا من الخبرة في تصنيع جميدنا زمان وجميد بدوية بأعلى معايير الجودة العالمية'
-      );
+      const desc = language === 'ar'
+        ? 'مصنع الفرسان الرباعية للجميد الأردني الأصيل - أكثر من 20 عامًا من الخبرة في تصنيع جميدنا زمان وجميد بدوية بأعلى معايير الجودة العالمية'
+        : 'Al Fursan Quadruple Factory for authentic Jordanian Jameed - Over 20 years of experience in manufacturing Jameedna Zaman and Jameed Badawya with highest international quality standards';
+      metaDescription.setAttribute('content', desc);
     }
 
     // Add structured data for SEO
@@ -54,10 +61,10 @@ const Index = () => {
       // Cleanup
       document.head.removeChild(script);
     };
-  }, []);
+  }, [language]);
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background" dir={dir}>
       {/* Header Navigation */}
       <Header />
       

@@ -4,16 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link, useNavigate } from "react-router-dom";
 import productionLineImage from "@/assets/production-line.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ProductShowcase = () => {
+  const { language, t, dir } = useLanguage();
   const navigate = useNavigate();
+  
   const jameedProducts = [
     {
       id: 'jameedna-zaman',
-      name: 'جميدنا زمان',
+      name: language === 'ar' ? 'جميدنا زمان' : 'Jameedna Zaman',
       nameEn: 'Jameedna Zaman',
-      ingredients: '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.',
-      features: 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',
+      ingredients: t('products.jameednaZaman.ingredients'),
+      features: t('products.jameednaZaman.features'),
       certificates: ['ISO', 'HACCP', 'FDA'],
       image: '/jameedna-zaman-package.png',
       sizes: [
@@ -37,10 +40,10 @@ const ProductShowcase = () => {
     },
     {
       id: 'jameed-badawya',
-      name: 'جميد البدوية',
+      name: language === 'ar' ? 'جميد البدوية' : 'Jameed Badawya',
       nameEn: 'Jameed Badawya',
-      ingredients: '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.',
-      features: 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',
+      ingredients: language === 'ar' ? '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.' : '100% pure Jameed (fresh pasteurized sheep milk, salt, starter culture), water, spices, salt.',
+      features: t('products.jameedBadawya.features'),
       certificates: ['Halal', 'FDA', 'HACCP'],
       image: '/jameed-badawya-package.png',
       sizes: [
@@ -67,36 +70,36 @@ const ProductShowcase = () => {
   const features = [
     {
       icon: Shield,
-      title: 'جودة عالمية',
-      description: 'شهادات ISO وHACCP وHalal وFDA',
+      title: language === 'ar' ? 'جودة عالمية' : 'World-Class Quality',
+      description: language === 'ar' ? 'شهادات ISO وHACCP وHalal وFDA' : 'ISO, HACCP, Halal, and FDA Certified',
       color: 'text-emerald-600',
       bg: 'bg-emerald-50'
     },
     {
       icon: Package,
-      title: 'تعبئة عصرية',
-      description: 'تقنية Aseptic للحفاظ على الجودة',
+      title: language === 'ar' ? 'تعبئة عصرية' : 'Modern Packaging',
+      description: language === 'ar' ? 'تقنية Aseptic للحفاظ على الجودة' : 'Aseptic Technology to Preserve Quality',
       color: 'text-blue-600',
       bg: 'bg-blue-50'
     },
     {
       icon: Truck,
-      title: 'توريد سريع',
-      description: 'خدمة توصيل لجميع أنحاء العالم',
+      title: language === 'ar' ? 'توريد سريع' : 'Fast Delivery',
+      description: language === 'ar' ? 'خدمة توصيل لجميع أنحاء العالم' : 'Worldwide Delivery Service',
       color: 'text-orange-600',
       bg: 'bg-orange-50'
     },
     {
       icon: Award,
-      title: 'خبرة 20+ عام',
-      description: 'رائدون في صناعة الجميد الأردني',
+      title: language === 'ar' ? 'خبرة 20+ عام' : '20+ Years Experience',
+      description: language === 'ar' ? 'رائدون في صناعة الجميد الأردني' : 'Leaders in Jordanian Jameed Manufacturing',
       color: 'text-purple-600',
       bg: 'bg-purple-50'
     }
   ];
 
   return (
-    <section className="py-12 sm:py-16 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden" id="products">
+    <section className="py-12 sm:py-16 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden" id="products" dir={dir}>
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 sm:-top-40 -right-20 sm:-right-40 w-40 sm:w-80 h-40 sm:h-80 bg-primary/5 rounded-full blur-3xl" />
@@ -109,18 +112,22 @@ const ProductShowcase = () => {
           <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-glass backdrop-blur-sm 
                         border border-primary/20 mb-4 sm:mb-6 animate-fade-in-up">
             <Sparkles className="h-4 sm:h-5 w-4 sm:w-5 text-primary animate-pulse" />
-            <span className="text-xs sm:text-sm font-semibold text-primary">منتجاتنا المميزة</span>
+            <span className="text-xs sm:text-sm font-semibold text-primary">{t('home.products.badge')}</span>
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6 animate-fade-in-up 
                         bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
-            منتجات الجميد الأصيل
+            {t('home.products.title')}
           </h2>
           
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-in-right px-4 sm:px-0">
-            نفخر بتقديم أجود أنواع الجميد الأردني المصنوع بأعلى معايير الجودة العالمية
+            {language === 'ar' 
+              ? 'نفخر بتقديم أجود أنواع الجميد الأردني المصنوع بأعلى معايير الجودة العالمية' 
+              : 'We are proud to offer the finest types of Jordanian Jameed made with the highest international quality standards'}
             <br className="hidden sm:block" />
-            <span className="text-primary font-semibold">طعم أصيل، جودة استثنائية</span>
+            <span className="text-primary font-semibold">
+              {language === 'ar' ? 'طعم أصيل، جودة استثنائية' : 'Authentic Taste, Exceptional Quality'}
+            </span>
           </p>
         </div>
 
@@ -138,7 +145,7 @@ const ProductShowcase = () => {
               <div className="absolute top-6 right-6 z-20">
                 <Badge className="bg-gradient-primary text-primary-foreground border border-primary-foreground/20 
                                shadow-glow animate-pulse">
-                  منتج مميز
+                  {t('common.featured')}
                 </Badge>
               </div>
 
@@ -168,7 +175,7 @@ const ProductShowcase = () => {
                 <div className="mb-6 sm:mb-8">
                   <h4 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2 mb-3">
                     <Package className="h-4 sm:h-5 w-4 sm:w-5 text-primary" />
-                    المكونات
+                    {t('products.ingredients')}
                   </h4>
                   <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                     {product.ingredients}
@@ -179,7 +186,7 @@ const ProductShowcase = () => {
                 <div className="mb-6 sm:mb-8">
                   <h4 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2 mb-3">
                     <Shield className="h-4 sm:h-5 w-4 sm:w-5 text-primary" />
-                    مميزات المنتج
+                    {language === 'ar' ? 'مميزات المنتج' : 'Product Features'}
                   </h4>
                   <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                     {product.features}
@@ -190,7 +197,7 @@ const ProductShowcase = () => {
                 <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                   <h4 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
                     <BarChart3 className="h-4 sm:h-5 w-4 sm:w-5 text-primary" />
-                    المواصفات التفصيلية
+                    {language === 'ar' ? 'المواصفات التفصيلية' : 'Detailed Specifications'}
                   </h4>
                   
                   <div className="overflow-x-auto">
@@ -198,8 +205,12 @@ const ProductShowcase = () => {
                       <thead>
                         <tr className="bg-gradient-glass">
                           <th className="p-3 text-right text-xs sm:text-sm font-semibold border border-border/20"></th>
-                          <th className="p-3 text-center text-xs sm:text-sm font-semibold border border-border/20">الحجم 1</th>
-                          <th className="p-3 text-center text-xs sm:text-sm font-semibold border border-border/20">الحجم 2</th>
+                          <th className="p-3 text-center text-xs sm:text-sm font-semibold border border-border/20">
+                            {language === 'ar' ? 'الحجم 1' : 'Size 1'}
+                          </th>
+                          <th className="p-3 text-center text-xs sm:text-sm font-semibold border border-border/20">
+                            {language === 'ar' ? 'الحجم 2' : 'Size 2'}
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -237,7 +248,7 @@ const ProductShowcase = () => {
                 <div className="mb-8">
                   <h4 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
                     <Award className="h-5 w-5 text-primary" />
-                    الشهادات والمعايير
+                    {language === 'ar' ? 'الشهادات والمعايير' : 'Certificates & Standards'}
                   </h4>
                   <div className="flex flex-wrap gap-3">
                     {product.certificates.map((cert, idx) => (
@@ -266,7 +277,7 @@ const ProductShowcase = () => {
                   >
                     <span>
                       <Eye className="ml-2 rtl:ml-0 rtl:mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                      عرض التفاصيل
+                      {language === 'ar' ? 'عرض التفاصيل' : 'View Details'}
                     </span>
                   </Button>
                   <Button 
@@ -282,7 +293,7 @@ const ProductShowcase = () => {
                     data-testid="button-request-quote"
                   >
                     <Package className="ml-2 rtl:ml-0 rtl:mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                    اطلب عرض سعر
+                    {language === 'ar' ? 'اطلب عرض سعر' : 'Request Quote'}
                   </Button>
                 </div>
               </CardContent>
@@ -329,9 +340,13 @@ const ProductShowcase = () => {
                             bg-[length:30px_30px] animate-shimmer" />
               
               <div className="relative z-10">
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">جاهز لتجربة الطعم الأصيل؟</h3>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
+                  {language === 'ar' ? 'جاهز لتجربة الطعم الأصيل؟' : 'Ready to Experience the Authentic Taste?'}
+                </h3>
                 <p className="text-base sm:text-lg lg:text-xl text-primary-foreground/90 mb-6 sm:mb-8 max-w-2xl mx-auto">
-                  اطلب منتجاتنا الآن واستمتع بأجود أنواع الجميد الأردني الأصيل
+                  {language === 'ar' 
+                    ? 'اطلب منتجاتنا الآن واستمتع بأجود أنواع الجميد الأردني الأصيل' 
+                    : 'Order our products now and enjoy the finest authentic Jordanian Jameed'}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <Link to="/products">
@@ -341,7 +356,7 @@ const ProductShowcase = () => {
                       className="text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/20"
                     >
                       <Eye className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
-                      عرض جميع المنتجات
+                      {language === 'ar' ? 'عرض جميع المنتجات' : 'View All Products'}
                       <ChevronRight className="mr-2 rtl:mr-0 rtl:ml-2 h-5 w-5" />
                     </Button>
                   </Link>
@@ -356,7 +371,7 @@ const ProductShowcase = () => {
                     data-testid="button-request-quote-full"
                   >
                     <Package className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
-                    اطلب عرض سعر شامل
+                    {language === 'ar' ? 'اطلب عرض سعر شامل' : 'Request Comprehensive Quote'}
                   </Button>
                 </div>
               </div>

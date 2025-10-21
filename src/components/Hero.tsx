@@ -4,13 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import factoryImage from "@/assets/factory-exterior.jpg";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const { language, t, dir } = useLanguage();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-hero flex items-center justify-center">
+    <section className="relative min-h-screen overflow-hidden bg-gradient-hero flex items-center justify-center" dir={dir}>
       {/* Video Background */}
       <div className="absolute inset-0">
         {/* Background Video */}
@@ -63,23 +65,23 @@ const Hero = () => {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 backdrop-blur-sm mb-8 animate-fade-in-up">
               <Sparkles className="h-4 w-4 text-primary-foreground" />
-              <span className="text-sm text-primary-foreground/90">مصنع رائد منذ أكثر من 20 عاماً</span>
+              <span className="text-sm text-primary-foreground/90">{t('home.hero.badge')}</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground mb-4 sm:mb-6 animate-fade-in-up leading-tight">
               <span className="block bg-gradient-to-r from-primary-foreground to-primary-foreground/80 bg-clip-text text-transparent">
-                من خيرات الطبيعة
+                {t('home.hero.title1')}
               </span>
               <span className="block bg-gradient-to-r from-primary-light to-primary-foreground bg-clip-text text-transparent animate-glow">
-                الأردنية
+                {t('home.hero.title2')}
               </span>
               <span className="block text-primary-foreground/90 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-3">
-                نمنحكم جميد أصيل بطعم لا يُنسى
+                {t('home.hero.subtitle')}
               </span>
             </h1>
 
             <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto leading-relaxed animate-slide-in-right px-4 sm:px-0">
-              شركة الفرسان الرباعية - رائدة في صناعة المنتجات الأردنية الأصيلة، بجودة عالمية ونكهة تراثية أصيلة.
+              {t('home.hero.description')}
             </p>
           </div>
 
@@ -96,8 +98,8 @@ const Hero = () => {
               {/* Shimmer Effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/20 to-transparent 
                             -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
-              <Play className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
-              شاهد الفيديو التعريفي
+              <Play className={`${dir === 'rtl' ? 'ml-2' : 'mr-2'} h-5 w-5 transition-transform group-hover:scale-110`} />
+              {t('home.hero.watchVideo')}
             </Button>
             
             <Link to="/products">
@@ -110,8 +112,8 @@ const Hero = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/10 to-transparent 
                               -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
-                <Package className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
-                عرض المنتجات
+                <Package className={`${dir === 'rtl' ? 'ml-2' : 'mr-2'} h-5 w-5 transition-transform group-hover:scale-110`} />
+                {t('home.hero.viewProducts')}
               </Button>
             </Link>
             
@@ -125,7 +127,7 @@ const Hero = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/10 to-transparent 
                             -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
-              اطلب عرض سعر الآن
+              {t('home.hero.requestQuote')}
             </Button>
           </div>
 
@@ -141,7 +143,7 @@ const Hero = () => {
                aboutSection.scrollIntoView({ behavior: 'smooth' });
              }
            }}>
-          اكتشف المزيد
+          {language === 'ar' ? 'اكتشف المزيد' : 'Discover More'}
         </p>
       </div>
       
@@ -151,7 +153,7 @@ const Hero = () => {
       {/* Video Dialog */}
       <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
         <DialogContent className="max-w-5xl w-[95vw] p-0 bg-background/95 backdrop-blur-xl border-2 border-primary/20 overflow-hidden">
-          <DialogTitle className="sr-only">الفيديو التعريفي - شركة الفرسان الرباعية</DialogTitle>
+          <DialogTitle className="sr-only">{language === 'ar' ? 'الفيديو التعريفي - شركة الفرسان الرباعية' : 'Intro Video - Al Fursan Quadruple'}</DialogTitle>
           <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
             <iframe
               className="absolute inset-0 w-full h-full rounded-lg"

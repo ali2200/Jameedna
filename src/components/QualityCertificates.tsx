@@ -1,48 +1,52 @@
 import { Award, Shield, CheckCircle, Globe, FileCheck, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const factoryWorkersImage = "/factory-workers.png";
 
 const QualityCertificates = () => {
+  const { language, t, dir } = useLanguage();
+  
   const certificates = [
     {
       name: "ISO 22000",
-      description: "إدارة سلامة الغذاء",
+      description: language === 'ar' ? "إدارة سلامة الغذاء" : "Food Safety Management",
       icon: Shield,
       color: "text-primary",
       bgColor: "bg-primary/10"
     },
     {
       name: "ISO 9001",
-      description: "إدارة الجودة",
+      description: language === 'ar' ? "إدارة الجودة" : "Quality Management",
       icon: Award,
       color: "text-jameed-red",
       bgColor: "bg-jameed-red/10"
     },
     {
       name: "HACCP",
-      description: "تحليل المخاطر ونقاط التحكم الحرجة",
+      description: language === 'ar' ? "تحليل المخاطر ونقاط التحكم الحرجة" : "Hazard Analysis and Critical Control Points",
       icon: CheckCircle,
       color: "text-badawya-gold",
       bgColor: "bg-badawya-gold/10"
     },
     {
       name: "HALAL FOOD",
-      description: "شهادة الحلال المعتمدة",
+      description: language === 'ar' ? "شهادة الحلال المعتمدة" : "Certified Halal Certificate",
       icon: Star,
       color: "text-primary-light",
       bgColor: "bg-primary-light/10"
     },
     {
       name: "FDA",
-      description: "إدارة الغذاء والدواء الأمريكية",
+      description: language === 'ar' ? "إدارة الغذاء والدواء الأمريكية" : "US Food and Drug Administration",
       icon: FileCheck,
       color: "text-jameed-burgundy",
       bgColor: "bg-jameed-burgundy/10"
     },
     {
       name: "EUR.1",
-      description: "شهادة المنشأ الأوروبية",
+      description: language === 'ar' ? "شهادة المنشأ الأوروبية" : "European Certificate of Origin",
       icon: Globe,
       color: "text-badawya-sand",
       bgColor: "bg-badawya-sand/10"
@@ -50,17 +54,18 @@ const QualityCertificates = () => {
   ];
 
   return (
-    <section className="py-24 bg-background" id="quality">
+    <section className="py-24 bg-background" id="quality" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">الجودة والشهادات</Badge>
+          <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
+            {t('home.certificates.badge')}
+          </Badge>
           <h2 className="text-4xl font-bold text-foreground mb-4">
-            التزام بأعلى معايير الجودة العالمية
+            {t('home.certificates.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            نلتزم بتطبيق أنظمة الجودة العالمية لضمان سلامة وأمان منتجاتنا، 
-            مع الحصول على أهم الشهادات المعترف بها دولياً
+            {t('home.certificates.description')}
           </p>
         </div>
 
@@ -122,17 +127,21 @@ const QualityCertificates = () => {
               <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
                 <img 
                   src="/assets/images/certificate-6.png"
-                  alt="Made in Jordan Certificate"
+                  alt={language === 'ar' ? 'صنع في الأردن' : 'Made in Jordan Certificate'}
                   className="w-full h-full object-contain"
                 />
               </div>
-              <p className="font-bold text-foreground text-sm">صنع في الأردن</p>
+              <p className="font-bold text-foreground text-sm">
+                {language === 'ar' ? 'صنع في الأردن' : 'Made in Jordan'}
+              </p>
             </div>
           </div>
           
           {/* Second Row - Additional FDA Logos */}
           <div className="border-t border-gray-200 pt-8">
-            <h3 className="text-center text-lg font-semibold text-foreground mb-6">شهادات FDA الإضافية</h3>
+            <h3 className="text-center text-lg font-semibold text-foreground mb-6">
+              {language === 'ar' ? 'شهادات FDA الإضافية' : 'Additional FDA Certificates'}
+            </h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
               <div className="text-center">
                 <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
@@ -206,7 +215,7 @@ const QualityCertificates = () => {
               <div className="relative h-64 lg:h-auto">
                 <img 
                   src={factoryWorkersImage} 
-                  alt="عمال مصنع الفرسان الرباعية"
+                  alt={language === 'ar' ? 'عمال مصنع الفرسان الرباعية' : 'Al Fursan Factory Workers'}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-jameed-red/80 to-transparent"></div>
@@ -215,22 +224,32 @@ const QualityCertificates = () => {
               {/* Content */}
               <CardContent className="p-12 bg-gradient-jameed text-white flex items-center">
                 <div className="w-full">
-                  <h3 className="text-3xl font-bold mb-4">طاقة إنتاجية عالية</h3>
+                  <h3 className="text-3xl font-bold mb-4">
+                    {language === 'ar' ? 'طاقة إنتاجية عالية' : 'High Production Capacity'}
+                  </h3>
                   <p className="text-xl text-white/90 mb-8">
-                    نلبي احتياجات السوق المحلي والدولي بكفاءة عالية
+                    {language === 'ar' 
+                      ? 'نلبي احتياجات السوق المحلي والدولي بكفاءة عالية' 
+                      : 'Meeting local and international market needs with high efficiency'}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="text-center">
                       <div className="text-3xl font-bold mb-2">24/7</div>
-                      <div className="text-white/80 text-sm">خطوط إنتاج متواصلة</div>
+                      <div className="text-white/80 text-sm">
+                        {language === 'ar' ? 'خطوط إنتاج متواصلة' : 'Continuous Production Lines'}
+                      </div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-bold mb-2">1000+</div>
-                      <div className="text-white/80 text-sm">وحدة يومياً</div>
+                      <div className="text-white/80 text-sm">
+                        {language === 'ar' ? 'وحدة يومياً' : 'Units Daily'}
+                      </div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-bold mb-2">18</div>
-                      <div className="text-white/80 text-sm">شهر مدة صلاحية</div>
+                      <div className="text-white/80 text-sm">
+                        {language === 'ar' ? 'شهر مدة صلاحية' : 'Months Shelf Life'}
+                      </div>
                     </div>
                   </div>
                 </div>
