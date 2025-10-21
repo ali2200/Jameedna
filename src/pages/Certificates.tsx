@@ -1,90 +1,17 @@
 import { useEffect } from "react";
-import { Award, Shield, CheckCircle, Globe, FileCheck, Star, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import productionLineImage from "@/assets/production-line.jpg";
+import productionExcellenceImage from "@/assets/production-excellence.png";
 
 const Certificates = () => {
   useEffect(() => {
     document.title = "الشهادات والجودة - الفرسان الرباعية | Quality & Certificates";
   }, []);
 
-  const certificates = [
-    {
-      name: "ISO 22000",
-      description: "نظام إدارة سلامة الغذاء",
-      details: "معيار دولي يحدد متطلبات نظام إدارة سلامة الغذاء في جميع أنحاء السلسلة الغذائية",
-      icon: Shield,
-      color: "text-primary",
-      bgColor: "bg-primary/10"
-    },
-    {
-      name: "ISO 9001",
-      description: "نظام إدارة الجودة",
-      details: "معيار دولي لأنظمة إدارة الجودة يساعد في تحسين الأداء وتلبية توقعات العملاء",
-      icon: Award,
-      color: "text-jameed-red",
-      bgColor: "bg-jameed-red/10"
-    },
-    {
-      name: "HACCP",
-      description: "تحليل المخاطر ونقاط التحكم الحرجة",
-      details: "نظام وقائي يحدد المخاطر الفيزيائية والكيميائية والبيولوجية في عملية الإنتاج",
-      icon: CheckCircle,
-      color: "text-badawya-gold",
-      bgColor: "bg-badawya-gold/10"
-    },
-    {
-      name: "HALAL FOOD",
-      description: "شهادة الحلال المعتمدة",
-      details: "شهادة تؤكد أن جميع منتجاتنا تتوافق مع أحكام الشريعة الإسلامية",
-      icon: Star,
-      color: "text-primary-light",
-      bgColor: "bg-primary-light/10"
-    },
-    {
-      name: "FDA Approved",
-      description: "موافقة إدارة الغذاء والدواء الأمريكية",
-      details: "اعتماد من هيئة الغذاء والدواء الأمريكية يضمن سلامة وجودة منتجاتنا",
-      icon: FileCheck,
-      color: "text-jameed-burgundy",
-      bgColor: "bg-jameed-burgundy/10"
-    },
-    {
-      name: "TÜV AUSTRIA",
-      description: "شهادة الجودة الأوروبية",
-      details: "اعتماد من هيئة الاختبار والمعايرة النمساوية الرائدة عالمياً",
-      icon: Globe,
-      color: "text-badawya-sand",
-      bgColor: "bg-badawya-sand/10"
-    }
-  ];
-
-  const qualityFeatures = [
-    {
-      title: "مختبرات متطورة",
-      description: "مختبرات مجهزة بأحدث التقنيات لفحص جودة المنتجات",
-      percentage: "100"
-    },
-    {
-      title: "رقابة مستمرة",
-      description: "مراقبة دقيقة لجميع مراحل الإنتاج على مدار 24 ساعة",
-      percentage: "100"
-    },
-    {
-      title: "معايير عالمية",
-      description: "تطبيق أعلى المعايير الدولية في الإنتاج والتعبئة",
-      percentage: "100"
-    },
-    {
-      title: "فريق خبراء",
-      description: "فريق من المختصين ذوي الخبرة الطويلة في ضمان الجودة",
-      percentage: "100"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-background" dir="rtl">
@@ -260,95 +187,6 @@ const Certificates = () => {
           </div>
         </section>
 
-        {/* Detailed Certificates */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                تفاصيل شهاداتنا
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                كل شهادة تعكس التزامنا بالتميز والجودة في كل جانب من جوانب عملنا
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {certificates.map((cert, index) => (
-                <Card 
-                  key={cert.name}
-                  className="group hover:shadow-glow transition-all duration-500 animate-fade-in-up"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <CardHeader className="text-center">
-                    <div className={`w-20 h-20 ${cert.bgColor} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <cert.icon className={`h-10 w-10 ${cert.color}`} />
-                    </div>
-                    <CardTitle className="text-xl font-bold">{cert.name}</CardTitle>
-                    <p className="text-primary font-medium">{cert.description}</p>
-                  </CardHeader>
-                  <CardContent className="text-center">
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {cert.details}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Quality Process */}
-        <section className="py-16 bg-muted/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                عمليات ضمان الجودة
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                نطبق أفضل الممارسات في كل مرحلة من مراحل الإنتاج
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {qualityFeatures.map((feature, index) => (
-                <Card 
-                  key={feature.title}
-                  className="hover:shadow-card transition-all duration-300 animate-slide-up"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <CardContent className="p-8">
-                    <div className="flex items-start space-x-4 rtl:space-x-reverse">
-                      <div className="flex-shrink-0">
-                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                          <CheckCircle className="h-8 w-8 text-primary" />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-foreground mb-3">
-                          {feature.title}
-                        </h3>
-                        <p className="text-muted-foreground mb-6 leading-relaxed">
-                          {feature.description}
-                        </p>
-                        <div className="w-full bg-border rounded-full h-3">
-                          <div 
-                            className="bg-gradient-primary h-3 rounded-full transition-all duration-1000"
-                            style={{ width: `${feature.percentage}%` }}
-                          ></div>
-                        </div>
-                        <div className="flex justify-between items-center mt-3">
-                          <span className="text-sm text-muted-foreground">مستوى التطبيق</span>
-                          <span className="text-sm font-bold text-primary">{feature.percentage}%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Production Excellence */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -356,7 +194,7 @@ const Certificates = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative h-64 lg:h-auto">
                   <img 
-                    src={productionLineImage} 
+                    src={productionExcellenceImage} 
                     alt="خطوط الإنتاج في مصنع الفرسان الرباعية"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
