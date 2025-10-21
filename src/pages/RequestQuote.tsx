@@ -11,28 +11,25 @@ import { useToast } from "@/hooks/use-toast";
 import { ChevronRight, ChevronLeft, Upload, FileText, CheckCircle, Phone, Mail, HelpCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface FormData {
-  // Company Information
   companyName: string;
   country: string;
   city: string;
   email: string;
   phone: string;
-  
-  // Order Details
   product: string;
   quantity: string;
   packaging: string;
   deliveryDate: string;
-  
-  // Additional Details
   message: string;
   attachments: File[];
 }
 
 const RequestQuote = () => {
   const { toast } = useToast();
+  const { language, t, dir } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     companyName: '',
@@ -50,48 +47,84 @@ const RequestQuote = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+    document.title = language === 'ar'
+      ? "طلب عرض سعر - الفرسان الرباعية | Request Quote"
+      : "Request Quote - Al Fursan Quadruple | Get a Price Estimate";
+      
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 
+        language === 'ar'
+          ? 'املأ النموذج لطلب عرض سعر لمنتجات الجميد الأردني الأصيل - سنتواصل معك خلال 48 ساعة عمل'
+          : 'Fill the form to request a quote for authentic Jordanian Jameed products - We will contact you within 48 business hours'
+      );
+    }
+  }, [language]);
 
   const totalSteps = 4;
   const progress = (currentStep / totalSteps) * 100;
 
   const steps = [
-    { id: 1, title: 'بيانات الشركة', titleEn: 'Company Information' },
-    { id: 2, title: 'تفاصيل الطلب', titleEn: 'Order Details' },
-    { id: 3, title: 'المرفقات', titleEn: 'Attachments' },
-    { id: 4, title: 'المراجعة والتأكيد', titleEn: 'Review & Submit' }
+    { 
+      id: 1, 
+      title: language === 'ar' ? 'بيانات الشركة' : 'Company Information'
+    },
+    { 
+      id: 2, 
+      title: language === 'ar' ? 'تفاصيل الطلب' : 'Order Details'
+    },
+    { 
+      id: 3, 
+      title: language === 'ar' ? 'المرفقات' : 'Attachments'
+    },
+    { 
+      id: 4, 
+      title: language === 'ar' ? 'المراجعة والتأكيد' : 'Review & Submit'
+    }
   ];
 
   const products = [
-    { value: 'jameedna-zaman', label: 'جميدنا زمان - Jameedna Zaman' },
-    { value: 'jameed-badawya', label: 'جميد بدوية - Jameed Badawya' },
-    { value: 'other', label: 'أخرى - Other' }
+    { 
+      value: 'jameedna-zaman', 
+      label: language === 'ar' ? 'جميدنا زمان - Jameedna Zaman' : 'Jameedna Zaman'
+    },
+    { 
+      value: 'jameed-badawya', 
+      label: language === 'ar' ? 'جميد بدوية - Jameed Badawya' : 'Jameed Badawya'
+    },
+    { 
+      value: 'other', 
+      label: language === 'ar' ? 'أخرى - Other' : 'Other'
+    }
   ];
 
   const packagingTypes = [
-    { value: 'carton', label: 'كرتون - Carton' },
-    { value: 'aseptic', label: 'أسيبتك - Aseptic' },
-    { value: 'custom', label: 'تعبئة مخصصة - Custom Packaging' }
+    { 
+      value: 'carton', 
+      label: language === 'ar' ? 'كرتون - Carton' : 'Carton'
+    },
+    { 
+      value: 'aseptic', 
+      label: language === 'ar' ? 'أسيبتك - Aseptic' : 'Aseptic'
+    },
+    { 
+      value: 'custom', 
+      label: language === 'ar' ? 'تعبئة مخصصة - Custom Packaging' : 'Custom Packaging'
+    }
   ];
 
   const faqItems = [
     {
-      question: 'هل يوجد حد أدنى للطلب؟',
-      questionEn: 'Is there a minimum order quantity?',
-      answer: 'نعم، الحد الأدنى للطلب هو 1000 كيلو',
-      answerEn: 'Yes, minimum order quantity is 1000 kg'
+      question: language === 'ar' ? 'هل يوجد حد أدنى للطلب؟' : 'Is there a minimum order quantity?',
+      answer: language === 'ar' ? 'نعم، الحد الأدنى للطلب هو 1000 كيلو' : 'Yes, minimum order quantity is 1000 kg'
     },
     {
-      question: 'كم يستغرق توصيل الطلب؟',
-      questionEn: 'How long does delivery take?',
-      answer: '15-30 يوم عمل حسب الكمية والوجهة',
-      answerEn: '15-30 business days depending on quantity and destination'
+      question: language === 'ar' ? 'كم يستغرق توصيل الطلب؟' : 'How long does delivery take?',
+      answer: language === 'ar' ? '15-30 يوم عمل حسب الكمية والوجهة' : '15-30 business days depending on quantity and destination'
     },
     {
-      question: 'هل تتوفر عينات مجانية؟',
-      questionEn: 'Are free samples available?',
-      answer: 'نعم، نوفر عينات مجانية للكميات التجارية',
-      answerEn: 'Yes, we provide free samples for commercial quantities'
+      question: language === 'ar' ? 'هل تتوفر عينات مجانية؟' : 'Are free samples available?',
+      answer: language === 'ar' ? 'نعم، نوفر عينات مجانية للكميات التجارية' : 'Yes, we provide free samples for commercial quantities'
     }
   ];
 
@@ -106,9 +139,9 @@ const RequestQuote = () => {
       case 2:
         return !!(formData.product && formData.quantity && formData.packaging);
       case 3:
-        return true; // Attachments are optional
+        return true;
       case 4:
-        return true; // Review step
+        return true;
       default:
         return false;
     }
@@ -121,8 +154,8 @@ const RequestQuote = () => {
       }
     } else {
       toast({
-        title: "خطأ في البيانات",
-        description: "الرجاء ملء جميع الحقول المطلوبة",
+        title: language === 'ar' ? 'خطأ في البيانات' : 'Data Error',
+        description: language === 'ar' ? 'الرجاء ملء جميع الحقول المطلوبة' : 'Please fill all required fields',
         variant: "destructive"
       });
     }
@@ -147,11 +180,10 @@ const RequestQuote = () => {
   const handleSubmit = () => {
     if (validateStep(1) && validateStep(2)) {
       toast({
-        title: "تم إرسال طلبكم بنجاح!",
-        description: "سيتم التواصل معكم خلال 48 ساعة عمل",
+        title: language === 'ar' ? 'تم إرسال طلبكم بنجاح!' : 'Your request has been submitted successfully!',
+        description: language === 'ar' ? 'سيتم التواصل معكم خلال 48 ساعة عمل' : 'We will contact you within 48 business hours',
       });
       
-      // Reset form
       setFormData({
         companyName: '',
         country: '',
@@ -168,8 +200,8 @@ const RequestQuote = () => {
       setCurrentStep(1);
     } else {
       toast({
-        title: "خطأ في البيانات",
-        description: "الرجاء مراجعة البيانات المدخلة",
+        title: language === 'ar' ? 'خطأ في البيانات' : 'Data Error',
+        description: language === 'ar' ? 'الرجاء مراجعة البيانات المدخلة' : 'Please review the entered data',
         variant: "destructive"
       });
     }
@@ -182,18 +214,21 @@ const RequestQuote = () => {
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="companyName">اسم الشركة / Company Name *</Label>
+                <Label htmlFor="companyName">
+                  {language === 'ar' ? 'اسم الشركة' : 'Company Name'} / {language === 'en' ? 'Company Name' : 'Company Name'} *
+                </Label>
                 <Input
                   id="companyName"
                   value={formData.companyName}
                   onChange={(e) => updateFormData('companyName', e.target.value)}
-                  placeholder="أدخل اسم الشركة"
-                  className="text-right"
+                  placeholder={language === 'ar' ? 'أدخل اسم الشركة' : 'Enter company name'}
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="email">البريد الإلكتروني / Email *</Label>
+                <Label htmlFor="email">
+                  {language === 'ar' ? 'البريد الإلكتروني' : 'Email'} / Email *
+                </Label>
                 <Input
                   id="email"
                   type="email"
@@ -206,30 +241,34 @@ const RequestQuote = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="country">الدولة / Country *</Label>
+                <Label htmlFor="country">
+                  {language === 'ar' ? 'الدولة' : 'Country'} / Country *
+                </Label>
                 <Input
                   id="country"
                   value={formData.country}
                   onChange={(e) => updateFormData('country', e.target.value)}
-                  placeholder="أدخل اسم الدولة"
-                  className="text-right"
+                  placeholder={language === 'ar' ? 'أدخل اسم الدولة' : 'Enter country name'}
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="city">المدينة / City *</Label>
+                <Label htmlFor="city">
+                  {language === 'ar' ? 'المدينة' : 'City'} / City *
+                </Label>
                 <Input
                   id="city"
                   value={formData.city}
                   onChange={(e) => updateFormData('city', e.target.value)}
-                  placeholder="أدخل اسم المدينة"
-                  className="text-right"
+                  placeholder={language === 'ar' ? 'أدخل اسم المدينة' : 'Enter city name'}
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="phone">رقم الهاتف / Phone Number *</Label>
+              <Label htmlFor="phone">
+                {language === 'ar' ? 'رقم الهاتف' : 'Phone Number'} / Phone Number *
+              </Label>
               <Input
                 id="phone"
                 value={formData.phone}
@@ -244,10 +283,12 @@ const RequestQuote = () => {
         return (
           <div className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="product">المنتج / Product *</Label>
+              <Label htmlFor="product">
+                {language === 'ar' ? 'المنتج' : 'Product'} / Product *
+              </Label>
               <Select value={formData.product} onValueChange={(value) => updateFormData('product', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="اختر المنتج" />
+                  <SelectValue placeholder={language === 'ar' ? 'اختر المنتج' : 'Select product'} />
                 </SelectTrigger>
                 <SelectContent>
                   {products.map((product) => (
@@ -261,21 +302,24 @@ const RequestQuote = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="quantity">الكمية / Quantity *</Label>
+                <Label htmlFor="quantity">
+                  {language === 'ar' ? 'الكمية' : 'Quantity'} / Quantity *
+                </Label>
                 <Input
                   id="quantity"
                   value={formData.quantity}
                   onChange={(e) => updateFormData('quantity', e.target.value)}
-                  placeholder="مثال: 5000 كيلو أو 100 كرتون"
-                  className="text-right"
+                  placeholder={language === 'ar' ? 'مثال: 5000 كيلو أو 100 كرتون' : 'Example: 5000 kg or 100 cartons'}
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="packaging">نوع التغليف / Packaging Type *</Label>
+                <Label htmlFor="packaging">
+                  {language === 'ar' ? 'نوع التغليف' : 'Packaging Type'} / Packaging Type *
+                </Label>
                 <Select value={formData.packaging} onValueChange={(value) => updateFormData('packaging', value)}>
                   <SelectTrigger>
-                    <SelectValue placeholder="اختر نوع التغليف" />
+                    <SelectValue placeholder={language === 'ar' ? 'اختر نوع التغليف' : 'Select packaging type'} />
                   </SelectTrigger>
                   <SelectContent>
                     {packagingTypes.map((type) => (
@@ -289,7 +333,9 @@ const RequestQuote = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="deliveryDate">موعد التوريد المتوقع / Expected Delivery Date</Label>
+              <Label htmlFor="deliveryDate">
+                {language === 'ar' ? 'موعد التوريد المتوقع' : 'Expected Delivery Date'} / Expected Delivery Date
+              </Label>
               <Input
                 id="deliveryDate"
                 type="date"
@@ -299,13 +345,14 @@ const RequestQuote = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="message">ملاحظات إضافية / Additional Notes</Label>
+              <Label htmlFor="message">
+                {language === 'ar' ? 'ملاحظات إضافية' : 'Additional Notes'} / Additional Notes
+              </Label>
               <Textarea
                 id="message"
                 value={formData.message}
                 onChange={(e) => updateFormData('message', e.target.value)}
-                placeholder="أي معلومات إضافية أو متطلبات خاصة"
-                className="text-right"
+                placeholder={language === 'ar' ? 'أي معلومات إضافية أو متطلبات خاصة' : 'Any additional information or special requirements'}
                 rows={4}
               />
             </div>
@@ -319,9 +366,13 @@ const RequestQuote = () => {
               <div className="border-2 border-dashed border-border rounded-lg p-8 hover:border-primary/50 transition-colors duration-300">
                 <Upload className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                 <div className="space-y-2">
-                  <p className="text-lg font-medium">رفع المرفقات</p>
+                  <p className="text-lg font-medium">
+                    {language === 'ar' ? 'رفع المرفقات' : 'Upload Attachments'}
+                  </p>
                   <p className="text-muted-foreground">
-                    يمكنك رفع أمر الشراء أو أي مستندات إضافية (اختياري)
+                    {language === 'ar' 
+                      ? 'يمكنك رفع أمر الشراء أو أي مستندات إضافية (اختياري)'
+                      : 'You can upload purchase order or any additional documents (optional)'}
                   </p>
                   <input
                     type="file"
@@ -333,7 +384,7 @@ const RequestQuote = () => {
                   />
                   <Label htmlFor="fileUpload" className="cursor-pointer">
                     <Button variant="outline" className="mt-4" asChild>
-                      <span>اختر الملفات</span>
+                      <span>{language === 'ar' ? 'اختر الملفات' : 'Choose Files'}</span>
                     </Button>
                   </Label>
                 </div>
@@ -342,7 +393,9 @@ const RequestQuote = () => {
 
             {formData.attachments.length > 0 && (
               <div className="space-y-3">
-                <h4 className="font-medium">الملفات المرفوعة:</h4>
+                <h4 className="font-medium">
+                  {language === 'ar' ? 'الملفات المرفوعة:' : 'Uploaded Files:'}
+                </h4>
                 {formData.attachments.map((file, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-muted rounded-lg">
                     <div className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -351,7 +404,7 @@ const RequestQuote = () => {
                       <Badge variant="secondary">{(file.size / 1024 / 1024).toFixed(2)} MB</Badge>
                     </div>
                     <Button variant="ghost" size="sm" onClick={() => removeFile(index)}>
-                      إزالة
+                      {language === 'ar' ? 'إزالة' : 'Remove'}
                     </Button>
                   </div>
                 ))}
@@ -365,37 +418,43 @@ const RequestQuote = () => {
           <div className="space-y-6">
             <div className="bg-muted/50 rounded-lg p-6">
               <h3 className="text-lg font-semibold mb-4 flex items-center">
-                <CheckCircle className="h-5 w-5 text-green-500 ml-2 rtl:ml-0 rtl:mr-2" />
-                مراجعة البيانات
+                <CheckCircle className={`h-5 w-5 text-green-500 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                {language === 'ar' ? 'مراجعة البيانات' : 'Review Data'}
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
-                  <h4 className="font-medium text-primary">بيانات الشركة</h4>
+                  <h4 className="font-medium text-primary">
+                    {language === 'ar' ? 'بيانات الشركة' : 'Company Information'}
+                  </h4>
                   <div className="space-y-2 text-sm">
-                    <p><span className="font-medium">الشركة:</span> {formData.companyName}</p>
-                    <p><span className="font-medium">الدولة:</span> {formData.country}</p>
-                    <p><span className="font-medium">المدينة:</span> {formData.city}</p>
-                    <p><span className="font-medium">البريد:</span> {formData.email}</p>
-                    <p><span className="font-medium">الهاتف:</span> {formData.phone}</p>
+                    <p><span className="font-medium">{language === 'ar' ? 'الشركة:' : 'Company:'}</span> {formData.companyName}</p>
+                    <p><span className="font-medium">{language === 'ar' ? 'الدولة:' : 'Country:'}</span> {formData.country}</p>
+                    <p><span className="font-medium">{language === 'ar' ? 'المدينة:' : 'City:'}</span> {formData.city}</p>
+                    <p><span className="font-medium">{language === 'ar' ? 'البريد:' : 'Email:'}</span> {formData.email}</p>
+                    <p><span className="font-medium">{language === 'ar' ? 'الهاتف:' : 'Phone:'}</span> {formData.phone}</p>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <h4 className="font-medium text-primary">تفاصيل الطلب</h4>
+                  <h4 className="font-medium text-primary">
+                    {language === 'ar' ? 'تفاصيل الطلب' : 'Order Details'}
+                  </h4>
                   <div className="space-y-2 text-sm">
-                    <p><span className="font-medium">المنتج:</span> {products.find(p => p.value === formData.product)?.label}</p>
-                    <p><span className="font-medium">الكمية:</span> {formData.quantity}</p>
-                    <p><span className="font-medium">التغليف:</span> {packagingTypes.find(p => p.value === formData.packaging)?.label}</p>
-                    {formData.deliveryDate && <p><span className="font-medium">موعد التوريد:</span> {formData.deliveryDate}</p>}
-                    {formData.message && <p><span className="font-medium">ملاحظات:</span> {formData.message}</p>}
+                    <p><span className="font-medium">{language === 'ar' ? 'المنتج:' : 'Product:'}</span> {products.find(p => p.value === formData.product)?.label}</p>
+                    <p><span className="font-medium">{language === 'ar' ? 'الكمية:' : 'Quantity:'}</span> {formData.quantity}</p>
+                    <p><span className="font-medium">{language === 'ar' ? 'التغليف:' : 'Packaging:'}</span> {packagingTypes.find(p => p.value === formData.packaging)?.label}</p>
+                    {formData.deliveryDate && <p><span className="font-medium">{language === 'ar' ? 'موعد التوريد:' : 'Delivery Date:'}</span> {formData.deliveryDate}</p>}
+                    {formData.message && <p><span className="font-medium">{language === 'ar' ? 'ملاحظات:' : 'Notes:'}</span> {formData.message}</p>}
                   </div>
                 </div>
               </div>
 
               {formData.attachments.length > 0 && (
                 <div className="mt-4 pt-4 border-t">
-                  <h4 className="font-medium text-primary mb-2">المرفقات ({formData.attachments.length})</h4>
+                  <h4 className="font-medium text-primary mb-2">
+                    {language === 'ar' ? `المرفقات (${formData.attachments.length})` : `Attachments (${formData.attachments.length})`}
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {formData.attachments.map((file, index) => (
                       <Badge key={index} variant="outline">{file.name}</Badge>
@@ -408,11 +467,15 @@ const RequestQuote = () => {
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
               <div className="flex items-center space-x-3 rtl:space-x-reverse mb-2">
                 <Phone className="h-5 w-5 text-primary" />
-                <span className="font-medium">سيتم التواصل معكم خلال 48 ساعة عمل</span>
+                <span className="font-medium">
+                  {language === 'ar' ? 'سيتم التواصل معكم خلال 48 ساعة عمل' : 'We will contact you within 48 business hours'}
+                </span>
               </div>
               <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <Mail className="h-5 w-5 text-primary" />
-                <span className="text-sm text-muted-foreground">ستصلكم رسالة تأكيد على البريد الإلكتروني</span>
+                <span className="text-sm text-muted-foreground">
+                  {language === 'ar' ? 'ستصلكم رسالة تأكيد على البريد الإلكتروني' : 'You will receive a confirmation email'}
+                </span>
               </div>
             </div>
           </div>
@@ -424,7 +487,7 @@ const RequestQuote = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" dir={dir}>
       <Header />
       
       <main className="pt-24 pb-16">
@@ -432,13 +495,17 @@ const RequestQuote = () => {
           {/* Header Section */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-foreground mb-4">
-              طلب عرض سعر
+              {t('nav.requestQuote')}
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              من فضلك املأ النموذج التالي لطلب عرض سعر أو إرسال استفسار حول منتجاتنا
+              {language === 'ar' 
+                ? 'من فضلك املأ النموذج التالي لطلب عرض سعر أو إرسال استفسار حول منتجاتنا'
+                : 'Please fill out the following form to request a quotation or send an inquiry about our products'}
             </p>
             <p className="text-base text-muted-foreground mt-2">
-              Please fill out the following form to request a quotation or send an inquiry about our products
+              {language === 'en' 
+                ? 'Please fill out the following form to request a quotation or send an inquiry about our products'
+                : 'من فضلك املأ النموذج التالي لطلب عرض سعر أو إرسال استفسار حول منتجاتنا'}
             </p>
           </div>
 
@@ -480,18 +547,18 @@ const RequestQuote = () => {
                     disabled={currentStep === 1}
                     className="flex items-center"
                   >
-                    <ChevronLeft className="h-4 w-4 ml-2 rtl:ml-0 rtl:mr-2" />
-                    السابق
+                    <ChevronLeft className={`h-4 w-4 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                    {language === 'ar' ? 'السابق' : 'Previous'}
                   </Button>
 
                   {currentStep < totalSteps ? (
                     <Button onClick={nextStep} className="flex items-center">
-                      التالي
-                      <ChevronRight className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                      {language === 'ar' ? 'التالي' : 'Next'}
+                      <ChevronRight className={`h-4 w-4 ${dir === 'rtl' ? 'ml-2' : 'mr-2'}`} />
                     </Button>
                   ) : (
                     <Button onClick={handleSubmit} className="bg-green-600 hover:bg-green-700">
-                      إرسال الطلب
+                      {language === 'ar' ? 'إرسال الطلب' : 'Submit Request'}
                     </Button>
                   )}
                 </div>
@@ -500,7 +567,9 @@ const RequestQuote = () => {
 
             {/* FAQ Section */}
             <div className="mt-16">
-              <h2 className="text-2xl font-bold text-center mb-8">الأسئلة الشائعة</h2>
+              <h2 className="text-2xl font-bold text-center mb-8">
+                {language === 'ar' ? 'الأسئلة الشائعة' : 'Frequently Asked Questions'}
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {faqItems.map((item, index) => (
                   <Card key={index} className="hover:shadow-card transition-shadow duration-300">

@@ -1,29 +1,32 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Package, ChevronRight, Award, Shield, ArrowLeft, Truck, CheckCircle, BarChart3 } from "lucide-react";
+import { Package, ChevronRight, Award, Shield, ArrowLeft, Truck, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const JameednaZaman = () => {
   const navigate = useNavigate();
+  const { language, t, dir } = useLanguage();
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.title = "جميدنا زمان - الفرسان الرباعية | Jameedna Zaman";
+    document.title = language === 'ar' 
+      ? "جميدنا زمان - الفرسان الرباعية | Jameedna Zaman"
+      : "Jameedna Zaman - Al Fursan Quadruple | Traditional Jordanian Jameed";
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', 
-        'جميدنا زمان - جميد أردني أصيل 100% جميد نقي، مصنوع من حليب الغنم الطازج المبستر، معبأ بتقنية Aseptic للحفاظ على الطعم التقليدي الأصيل'
+        language === 'ar'
+          ? t('products.jameednaZaman.description')
+          : 'Authentic Jordanian Jameed made from fresh pasteurized sheep milk, packaged in a modern way that preserves the traditional authentic taste'
       );
     }
-  }, []);
-
-  const ingredients = '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.';
-  const productFeatures = 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.';
+  }, [language, t]);
 
   const specifications = [
     {
@@ -44,28 +47,28 @@ const JameednaZaman = () => {
     }
   ];
 
-  const certificates = ['ISO 22000', 'HACCP', 'FDA', 'وزارة الصحة'];
+  const certificates = ['ISO 22000', 'HACCP', 'FDA', language === 'ar' ? 'وزارة الصحة' : 'Ministry of Health'];
 
   const features = [
     {
       icon: Shield,
-      title: 'جودة مضمونة',
-      description: 'مصنوع من حليب الغنم الطازج 100% مع أعلى معايير النظافة'
+      title: t('products.feature.quality.title'),
+      description: t('products.feature.quality.desc')
     },
     {
       icon: Package,
-      title: 'تعبئة عصرية',
-      description: 'تقنية Aseptic المتطورة للحفاظ على الطعم والقيمة الغذائية'
+      title: t('products.feature.packaging.title'),
+      description: t('products.feature.packaging.desc')
     },
     {
       icon: CheckCircle,
-      title: 'طبيعي 100%',
-      description: 'خالي من المواد الحافظة والألوان الصناعية'
+      title: t('products.feature.natural.title'),
+      description: t('products.feature.natural.desc')
     },
     {
       icon: Award,
-      title: 'وصفة تقليدية',
-      description: 'طريقة تحضير تراثية أردنية أصيلة توارثناها عبر الأجيال'
+      title: t('products.feature.traditional.title'),
+      description: t('products.feature.traditional.desc')
     }
   ];
 
@@ -75,7 +78,7 @@ const JameednaZaman = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background" dir={dir}>
       <Header />
       
       <main className="pt-20">
@@ -83,11 +86,11 @@ const JameednaZaman = () => {
         <section className="py-6 bg-muted/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Link to="/" className="hover:text-primary transition-colors">الرئيسية</Link>
-              <ChevronRight className="h-4 w-4 rotate-180" />
-              <Link to="/products" className="hover:text-primary transition-colors">المنتجات</Link>
-              <ChevronRight className="h-4 w-4 rotate-180" />
-              <span className="text-foreground font-medium">جميدنا زمان</span>
+              <Link to="/" className="hover:text-primary transition-colors">{t('common.home')}</Link>
+              <ChevronRight className={`h-4 w-4 ${dir === 'rtl' ? 'rotate-180' : ''}`} />
+              <Link to="/products" className="hover:text-primary transition-colors">{t('common.products')}</Link>
+              <ChevronRight className={`h-4 w-4 ${dir === 'rtl' ? 'rotate-180' : ''}`} />
+              <span className="text-foreground font-medium">{t('products.jameednaZaman.name')}</span>
             </div>
           </div>
         </section>
@@ -101,20 +104,19 @@ const JameednaZaman = () => {
               {/* Text Content */}
               <div>
                 <Badge className="mb-6 bg-primary-foreground/10 text-primary-foreground">
-                  منتج مميز
+                  {t('common.featured')}
                 </Badge>
                 
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                  جميدنا زمان
+                  {t('products.jameednaZaman.name')}
                 </h1>
                 
                 <h2 className="text-2xl md:text-3xl text-primary-foreground/90 mb-8">
-                  Jameedna Zaman
+                  {t('products.jameednaZaman.nameEn')}
                 </h2>
                 
                 <p className="text-xl text-primary-foreground/90 leading-relaxed mb-8">
-                  جميد أردني أصيل مصنوع من حليب الغنم الطازج المبستر، 
-                  معبأ بطريقة عصرية تحافظ على الطعم التقليدي الأصيل
+                  {t('products.jameednaZaman.description')}
                 </p>
 
                 <div className="flex gap-4 flex-wrap">
@@ -124,8 +126,8 @@ const JameednaZaman = () => {
                     onClick={handleQuoteClick}
                     data-testid="button-request-quote"
                   >
-                    اطلب عرض سعر
-                    <ChevronRight className="mr-2 rtl:mr-0 rtl:ml-2 h-5 w-5" />
+                    {t('nav.requestQuote')}
+                    <ChevronRight className={`h-5 w-5 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
                   </Button>
                   
                   <Link to="/products">
@@ -135,8 +137,8 @@ const JameednaZaman = () => {
                       className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
                       data-testid="button-back-products"
                     >
-                      <ArrowLeft className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
-                      العودة للمنتجات
+                      <ArrowLeft className={`h-5 w-5 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                      {t('products.backToProducts')}
                     </Button>
                   </Link>
                 </div>
@@ -147,7 +149,7 @@ const JameednaZaman = () => {
                 <div className="relative bg-white rounded-3xl p-8 shadow-2xl">
                   <img 
                     src="/jameedna-zaman-package.png" 
-                    alt="جميدنا زمان"
+                    alt={t('products.jameednaZaman.name')}
                     className="w-full max-w-md mx-auto drop-shadow-xl transition-transform duration-500 hover:scale-105"
                     data-testid="img-product-jameedna-zaman"
                   />
@@ -166,10 +168,10 @@ const JameednaZaman = () => {
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-foreground flex items-center gap-3 mb-4">
                     <Package className="h-6 w-6 text-primary" />
-                    المكونات
+                    {t('products.ingredients')}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed text-lg">
-                    {ingredients}
+                    {t('products.jameednaZaman.ingredients')}
                   </p>
                 </CardContent>
               </Card>
@@ -179,10 +181,10 @@ const JameednaZaman = () => {
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-foreground flex items-center gap-3 mb-4">
                     <Shield className="h-6 w-6 text-primary" />
-                    مميزات المنتج
+                    {t('products.features')}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed text-lg">
-                    {productFeatures}
+                    {t('products.jameednaZaman.features')}
                   </p>
                 </CardContent>
               </Card>
@@ -195,10 +197,10 @@ const JameednaZaman = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                المواصفات التفصيلية
+                {t('products.specifications')}
               </h2>
               <p className="text-xl text-muted-foreground">
-                الأحجام المتوفرة مع التفاصيل الكاملة
+                {language === 'ar' ? 'الأحجام المتوفرة مع التفاصيل الكاملة' : 'Available sizes with complete details'}
               </p>
             </div>
 
@@ -206,9 +208,15 @@ const JameednaZaman = () => {
               <table className="w-full border-collapse bg-white rounded-2xl overflow-hidden shadow-lg">
                 <thead>
                   <tr className="bg-gradient-to-r from-primary to-primary/80 text-white">
-                    <th className="px-6 py-4 text-right text-sm font-bold">المواصفة</th>
-                    <th className="px-6 py-4 text-center text-sm font-bold">الحجم الكبير</th>
-                    <th className="px-6 py-4 text-center text-sm font-bold">الحجم الصغير</th>
+                    <th className={`px-6 py-4 text-sm font-bold ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
+                      {language === 'ar' ? 'المواصفة' : 'Specification'}
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-bold">
+                      {language === 'ar' ? 'الحجم الكبير' : 'Large Size'}
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-bold">
+                      {language === 'ar' ? 'الحجم الصغير' : 'Small Size'}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -248,7 +256,7 @@ const JameednaZaman = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                لماذا تختار جميدنا زمان؟
+                {language === 'ar' ? 'لماذا تختار جميدنا زمان؟' : 'Why Choose Jameedna Zaman?'}
               </h2>
             </div>
 
@@ -277,10 +285,12 @@ const JameednaZaman = () => {
         <section className="py-20 bg-muted/30">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              الشهادات والمعايير
+              {t('products.certificates')}
             </h2>
             <p className="text-xl text-muted-foreground mb-12">
-              معتمد من أهم الجهات العالمية للجودة والسلامة الغذائية
+              {language === 'ar' 
+                ? 'معتمد من أهم الجهات العالمية للجودة والسلامة الغذائية' 
+                : 'Certified by the most important international quality and food safety authorities'}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -294,7 +304,7 @@ const JameednaZaman = () => {
                   style={{ animationDelay: `${index * 100}ms` }}
                   data-testid={`badge-certificate-${index}`}
                 >
-                  <Shield className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                  <Shield className={`h-4 w-4 ${dir === 'rtl' ? 'ml-2' : 'mr-2'}`} />
                   {cert}
                 </Badge>
               ))}
@@ -306,10 +316,12 @@ const JameednaZaman = () => {
         <section className="py-20 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              جاهز لتذوق الأصالة؟
+              {language === 'ar' ? 'جاهز لتذوق الأصالة؟' : 'Ready to Taste Authenticity?'}
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              اطلب جميدنا زمان الآن واستمتع بالطعم الأردني الأصيل
+              {language === 'ar' 
+                ? 'اطلب جميدنا زمان الآن واستمتع بالطعم الأردني الأصيل' 
+                : 'Order Jameedna Zaman now and enjoy the authentic Jordanian taste'}
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Button 
@@ -318,8 +330,8 @@ const JameednaZaman = () => {
                 onClick={handleQuoteClick}
                 data-testid="button-cta-quote"
               >
-                <Package className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
-                اطلب عرض سعر
+                <Package className={`h-5 w-5 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                {t('nav.requestQuote')}
               </Button>
               
               <Button 
@@ -328,8 +340,8 @@ const JameednaZaman = () => {
                 className="border-white text-white hover:bg-white/10 px-8 transition-all duration-300"
                 data-testid="button-delivery-inquiry"
               >
-                <Truck className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
-                استفسر عن التوصيل
+                <Truck className={`h-5 w-5 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                {language === 'ar' ? 'استفسر عن التوصيل' : 'Inquire About Delivery'}
               </Button>
             </div>
           </div>

@@ -9,9 +9,11 @@ import { Label } from "@/components/ui/label";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
   const { toast } = useToast();
+  const { language, t, dir } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,8 +24,19 @@ const Contact = () => {
   });
 
   useEffect(() => {
-    document.title = "اتصل بنا - الفرسان الرباعية | Contact Us";
-  }, []);
+    document.title = language === 'ar'
+      ? "اتصل بنا - الفرسان الرباعية | Contact Us"
+      : "Contact Us - Al Fursan Quadruple | Get in Touch";
+      
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 
+        language === 'ar'
+          ? 'تواصل معنا للاستفسارات وطلبات عروض الأسعار - فريقنا جاهز لخدمتكم طوال أيام العمل'
+          : 'Contact us for inquiries and quote requests - Our team is ready to serve you throughout business days'
+      );
+    }
+  }, [language]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -36,23 +49,20 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       toast({
-        title: "خطأ",
-        description: "يرجى ملء جميع الحقول المطلوبة",
+        title: t('common.error'),
+        description: language === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill all required fields',
         variant: "destructive"
       });
       return;
     }
 
-    // Simulate form submission
     toast({
-      title: "تم الإرسال بنجاح",
-      description: "سنتواصل معكم في أقرب وقت ممكن",
+      title: t('common.success'),
+      description: language === 'ar' ? 'سنتواصل معكم في أقرب وقت ممكن' : 'We will contact you as soon as possible',
     });
 
-    // Reset form
     setFormData({
       name: '',
       email: '',
@@ -66,42 +76,41 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: "العنوان",
-      info: "المفرق - الزعتري - شارع بغداد القديم",
-      details: "P.O.Box 841 Al-Mafraq 25110 Jordan"
+      title: t('contact.address'),
+      info: language === 'ar' ? 'المفرق - الزعتري - شارع بغداد القديم' : 'Al-Mafraq - Al-Zaatari - Old Baghdad Street',
+      details: 'P.O.Box 841 Al-Mafraq 25110 Jordan'
     },
     {
       icon: Phone,
-      title: "الهاتف",
-      info: "+962 2 626 4582 | +201147877414",
-      details: "Fax: +962 2 626 4474"
+      title: t('contact.phone'),
+      info: '+962 2 626 4582 | +201147877414',
+      details: 'Fax: +962 2 626 4474'
     },
     {
       icon: Mail,
-      title: "البريد الإلكتروني",
-      info: "info@alfursanjo.com",
-      details: "www.altursanjo.com"
+      title: t('contact.email'),
+      info: 'info@alfursanjo.com',
+      details: 'www.altursanjo.com'
     },
     {
       icon: Clock,
-      title: "ساعات العمل",
-      info: "الأحد - الخميس",
-      details: "8:00 ص - 6:00 م"
+      title: t('contact.workingHours'),
+      info: language === 'ar' ? 'الأحد - الخميس' : 'Sunday - Thursday',
+      details: language === 'ar' ? '8:00 ص - 6:00 م' : '8:00 AM - 6:00 PM'
     }
   ];
 
   const downloadCompanyProfile = () => {
-    // فتح الملف في صفحة جديدة وتحميله
     window.open('/alfursan-company-profile.pdf', '_blank');
     
     toast({
-      title: "جاري التحميل",
-      description: "تم فتح ملف الشركة في صفحة جديدة",
+      title: language === 'ar' ? 'جاري التحميل' : 'Downloading',
+      description: language === 'ar' ? 'تم فتح ملف الشركة في صفحة جديدة' : 'Company profile opened in a new page',
     });
   };
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background" dir={dir}>
       <Header />
       
       <main className="pt-20">
@@ -110,13 +119,13 @@ const Contact = () => {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <Badge className="mb-6 bg-primary-foreground/10 text-primary-foreground">
-              تواصل معنا
+              {t('contact.hero.badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              نحن هنا لخدمتكم
+              {t('contact.hero.title')}
             </h1>
             <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-              لأي استفسار أو طلب عرض سعر، لا تترددوا في التواصل معنا. فريقنا جاهز لمساعدتكم
+              {t('contact.hero.description')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -124,8 +133,8 @@ const Contact = () => {
                 onClick={downloadCompanyProfile}
                 className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 px-8 py-3 text-lg"
               >
-                <Download className="ml-2 h-5 w-5" />
-                تحميل ملف الشركة
+                <Download className={`h-5 w-5 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                {t('nav.downloadProfile')}
               </Button>
               <Button 
                 variant="outline"
@@ -135,7 +144,7 @@ const Contact = () => {
                   contactSection?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                إرسال رسالة
+                {t('contact.sendMessage')}
               </Button>
             </div>
           </div>
@@ -146,10 +155,10 @@ const Contact = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold text-foreground mb-4">
-                معلومات التواصل
+                {t('contact.info.title')}
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                تواصلوا معنا عبر أي من الوسائل التالية
+                {language === 'ar' ? 'تواصلوا معنا عبر أي من الوسائل التالية' : 'Contact us through any of the following channels'}
               </p>
             </div>
 
@@ -180,27 +189,27 @@ const Contact = () => {
               <div id="contact-form">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-2xl">إرسال رسالة</CardTitle>
+                    <CardTitle className="text-2xl">{t('contact.form.title')}</CardTitle>
                     <p className="text-muted-foreground">
-                      املأ النموذج وسنتواصل معكم في أقرب وقت
+                      {language === 'ar' ? 'املأ النموذج وسنتواصل معكم في أقرب وقت' : 'Fill the form and we will contact you soon'}
                     </p>
                   </CardHeader>
                   <CardContent>
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <Label htmlFor="name">الاسم الكامل *</Label>
+                          <Label htmlFor="name">{t('contact.form.name')} *</Label>
                           <Input
                             id="name"
                             name="name"
                             value={formData.name}
                             onChange={handleInputChange}
-                            placeholder="اكتب اسمك الكامل"
+                            placeholder={language === 'ar' ? 'اكتب اسمك الكامل' : 'Enter your full name'}
                             required
                           />
                         </div>
                         <div>
-                          <Label htmlFor="email">البريد الإلكتروني *</Label>
+                          <Label htmlFor="email">{t('contact.form.email')} *</Label>
                           <Input
                             id="email"
                             name="email"
@@ -215,7 +224,7 @@ const Contact = () => {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <Label htmlFor="phone">رقم الهاتف</Label>
+                          <Label htmlFor="phone">{t('contact.form.phone')}</Label>
                           <Input
                             id="phone"
                             name="phone"
@@ -225,36 +234,36 @@ const Contact = () => {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="company">اسم الشركة</Label>
+                          <Label htmlFor="company">{t('contact.form.company')}</Label>
                           <Input
                             id="company"
                             name="company"
                             value={formData.company}
                             onChange={handleInputChange}
-                            placeholder="اسم شركتك"
+                            placeholder={language === 'ar' ? 'اسم شركتك' : 'Your company name'}
                           />
                         </div>
                       </div>
 
                       <div>
-                        <Label htmlFor="subject">الموضوع</Label>
+                        <Label htmlFor="subject">{t('contact.form.subject')}</Label>
                         <Input
                           id="subject"
                           name="subject"
                           value={formData.subject}
                           onChange={handleInputChange}
-                          placeholder="موضوع الرسالة"
+                          placeholder={language === 'ar' ? 'موضوع الرسالة' : 'Message subject'}
                         />
                       </div>
 
                       <div>
-                        <Label htmlFor="message">الرسالة *</Label>
+                        <Label htmlFor="message">{t('contact.form.message')} *</Label>
                         <Textarea
                           id="message"
                           name="message"
                           value={formData.message}
                           onChange={handleInputChange}
-                          placeholder="اكتب رسالتك هنا..."
+                          placeholder={language === 'ar' ? 'اكتب رسالتك هنا...' : 'Write your message here...'}
                           className="min-h-32"
                           required
                         />
@@ -264,8 +273,8 @@ const Contact = () => {
                         type="submit" 
                         className="w-full bg-gradient-primary hover:scale-105 transition-transform duration-300"
                       >
-                        <Send className="ml-2 h-4 w-4" />
-                        إرسال الرسالة
+                        <Send className={`h-4 w-4 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                        {language === 'ar' ? 'إرسال الرسالة' : 'Send Message'}
                       </Button>
                     </form>
                   </CardContent>
@@ -277,17 +286,17 @@ const Contact = () => {
                 {/* Map Placeholder */}
                 <Card>
                   <CardHeader>
-                    <CardTitle>موقعنا</CardTitle>
+                    <CardTitle>{language === 'ar' ? 'موقعنا' : 'Our Location'}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
                       <div className="text-center">
                         <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
                         <p className="text-muted-foreground">
-                          خريطة الموقع ستظهر هنا
+                          {language === 'ar' ? 'خريطة الموقع ستظهر هنا' : 'Map location will appear here'}
                         </p>
                         <p className="text-sm text-muted-foreground mt-2">
-                          المفرق، المنطقة الصناعية، الأردن
+                          {language === 'ar' ? 'المفرق، المنطقة الصناعية، الأردن' : 'Al-Mafraq, Industrial Area, Jordan'}
                         </p>
                       </div>
                     </div>
@@ -297,20 +306,26 @@ const Contact = () => {
                 {/* Additional Services */}
                 <Card>
                   <CardHeader>
-                    <CardTitle>خدمات إضافية</CardTitle>
+                    <CardTitle>{language === 'ar' ? 'خدمات إضافية' : 'Additional Services'}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                      <Badge variant="outline">استشارات مجانية</Badge>
-                      <span className="text-sm text-muted-foreground">للطلبات الكبيرة</span>
+                      <Badge variant="outline">{language === 'ar' ? 'استشارات مجانية' : 'Free Consultation'}</Badge>
+                      <span className="text-sm text-muted-foreground">
+                        {language === 'ar' ? 'للطلبات الكبيرة' : 'For large orders'}
+                      </span>
                     </div>
                     <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                      <Badge variant="outline">عينات مجانية</Badge>
-                      <span className="text-sm text-muted-foreground">لتجربة المنتج</span>
+                      <Badge variant="outline">{language === 'ar' ? 'عينات مجانية' : 'Free Samples'}</Badge>
+                      <span className="text-sm text-muted-foreground">
+                        {language === 'ar' ? 'لتجربة المنتج' : 'To try our products'}
+                      </span>
                     </div>
                     <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                      <Badge variant="outline">دعم فني</Badge>
-                      <span className="text-sm text-muted-foreground">على مدار الساعة</span>
+                      <Badge variant="outline">{language === 'ar' ? 'دعم فني' : 'Technical Support'}</Badge>
+                      <span className="text-sm text-muted-foreground">
+                        {language === 'ar' ? 'على مدار الساعة' : '24/7 Available'}
+                      </span>
                     </div>
                   </CardContent>
                 </Card>

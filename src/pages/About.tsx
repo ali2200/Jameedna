@@ -6,23 +6,31 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Factory, FlaskConical } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 import factoryWorkerImage from "@/assets/image_1761005884070.png";
 import productionLineImage from "@/assets/image_1761005902339.png";
 import laboratoryImage from "@/assets/image_1761005921388.png";
 
 const About = () => {
+  const { language, t, dir } = useLanguage();
+
   useEffect(() => {
-    document.title = "من نحن - الفرسان الرباعية | About Al Fursan Quadruple";
+    document.title = language === 'ar' 
+      ? "من نحن - الفرسان الرباعية | About Al Fursan Quadruple"
+      : "About - Al Fursan Quadruple | Traditional Jordanian Jameed";
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'تعرف على الفرسان الرباعية - أكثر من 20 عامًا من الخبرة في صناعة الجميد الأردني الأصيل، رؤيتنا ورسالتنا وقيمنا');
+      metaDescription.setAttribute('content', language === 'ar'
+        ? 'تعرف على الفرسان الرباعية - أكثر من 20 عامًا من الخبرة في صناعة الجميد الأردني الأصيل، رؤيتنا ورسالتنا وقيمنا'
+        : 'Learn about Al Fursan Quadruple - Over 20 years of experience in producing authentic Jordanian Jameed, our vision, mission and values'
+      );
     }
-  }, []);
+  }, [language]);
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background" dir={dir}>
       <Header />
       
       <main className="pt-20">
@@ -32,13 +40,13 @@ const About = () => {
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <Badge className="mb-4 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 px-6 py-2" data-testid="badge-about">
-              من نحن
+              {t('about.hero.badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in-up" data-testid="heading-about">
-              الفرسان الرباعية للإدارة والاستثمار
+              {language === 'ar' ? 'الفرسان الرباعية للإدارة والاستثمار' : 'Al Fursan Quadruple for Management & Investment'}
             </h1>
             <p className="text-lg md:text-xl text-primary-foreground/90 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }} data-testid="text-tagline">
-              رائدون في صناعة المنتجات الأردنية الأصيلة منذ أكثر من 20 عامًا
+              {t('about.hero.subtitle')}
             </p>
           </div>
         </section>
@@ -50,23 +58,31 @@ const About = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-4 animate-fade-in-up">
                 <Badge className="bg-primary/10 text-primary hover:bg-primary/20 px-4 py-1" data-testid="badge-story">
-                  قصتنا
+                  {t('about.story.title')}
                 </Badge>
                 <h2 className="text-3xl md:text-4xl font-bold text-primary leading-tight" data-testid="heading-story">
-                  التزام راسخ بالجودة المثالية
+                  {language === 'ar' ? 'التزام راسخ بالجودة المثالية' : 'Firm Commitment to Perfect Quality'}
                 </h2>
                 <div className="space-y-4 text-base text-muted-foreground leading-relaxed">
                   <p className="text-lg font-medium text-primary" data-testid="text-story-intro">
-                    في الفرسان الرباعية، نؤمن بالاستفادة من وفرة وغنى الأردن، حيث يتم التعامل مع منتجاتنا الغذائية بأقصى درجات العناية والاهتمام للحفاظ على نضارتها وخصائصها الأصيلة.
+                    {language === 'ar' 
+                      ? 'في الفرسان الرباعية، نؤمن بالاستفادة من وفرة وغنى الأردن، حيث يتم التعامل مع منتجاتنا الغذائية بأقصى درجات العناية والاهتمام للحفاظ على نضارتها وخصائصها الأصيلة.'
+                      : 'At Al Fursan Quadruple, we believe in leveraging the abundance and richness of Jordan, where our food products are handled with the utmost care and attention to preserve their freshness and authentic characteristics.'}
                   </p>
                   <p data-testid="text-story-1">
-                    نحن شركة تمتلك خبرة تزيد عن عشرين عامًا في صناعة الأغذية. بدأنا كعمل عائلي، حيث نشأت الإدارة العليا في هذا المجال وطبقت معرفتها لتحقيق منتجات عالية الجودة.
+                    {language === 'ar'
+                      ? 'نحن شركة تمتلك خبرة تزيد عن عشرين عامًا في صناعة الأغذية. بدأنا كعمل عائلي، حيث نشأت الإدارة العليا في هذا المجال وطبقت معرفتها لتحقيق منتجات عالية الجودة.'
+                      : 'We are a company with over twenty years of experience in the food industry. We started as a family business, where senior management grew up in this field and applied their knowledge to achieve high-quality products.'}
                   </p>
                   <p data-testid="text-story-2">
-                    كعلامة تجارية رائدة وناجحة في الأردن، مع تاريخ عريق في السوق وقاعدة عملاء واسعة، استطاع فريق الفرسان بناء حضور وسمعة قوية محليًا ودوليًا.
+                    {language === 'ar'
+                      ? 'كعلامة تجارية رائدة وناجحة في الأردن، مع تاريخ عريق في السوق وقاعدة عملاء واسعة، استطاع فريق الفرسان بناء حضور وسمعة قوية محليًا ودوليًا.'
+                      : 'As a leading and successful brand in Jordan, with a rich market history and broad customer base, the Al Fursan team has built a strong presence and reputation locally and internationally.'}
                   </p>
                   <p data-testid="text-story-3">
-                    نحرص على معالجة المواد الخام لإنتاج منتجات غذائية عالية الجودة بأقصى درجات الاهتمام والنزاهة فيما يتعلق بالنظافة والحفاظ على جودتها الطبيعية وطعمها الأصيل.
+                    {language === 'ar'
+                      ? 'نحرص على معالجة المواد الخام لإنتاج منتجات غذائية عالية الجودة بأقصى درجات الاهتمام والنزاهة فيما يتعلق بالنظافة والحفاظ على جودتها الطبيعية وطعمها الأصيل.'
+                      : 'We ensure processing raw materials to produce high-quality food products with the utmost attention and integrity regarding cleanliness and preserving their natural quality and authentic taste.'}
                   </p>
                 </div>
               </div>
@@ -76,7 +92,7 @@ const About = () => {
                 <div className="relative rounded-3xl overflow-hidden shadow-glow">
                   <img 
                     src={factoryWorkerImage}
-                    alt="عامل في مصنع الفرسان الرباعية"
+                    alt={language === 'ar' ? 'عامل في مصنع الفرسان الرباعية' : 'Worker at Al Fursan Quadruple factory'}
                     className="w-full h-auto object-cover"
                     data-testid="img-factory-worker"
                   />
@@ -92,13 +108,15 @@ const About = () => {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 animate-fade-in-up">
               <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20 px-4 py-1" data-testid="badge-vision-mission">
-                رؤيتنا ورسالتنا
+                {language === 'ar' ? 'رؤيتنا ورسالتنا' : 'Our Vision & Mission'}
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3" data-testid="heading-vision-mission">
-                نحو مستقبل أفضل
+                {language === 'ar' ? 'نحو مستقبل أفضل' : 'Towards a Better Future'}
               </h2>
               <p className="text-base text-muted-foreground max-w-3xl mx-auto">
-                نسعى لتحقيق رؤية طموحة من خلال رسالة واضحة ومبادئ راسخة
+                {language === 'ar' 
+                  ? 'نسعى لتحقيق رؤية طموحة من خلال رسالة واضحة ومبادئ راسخة'
+                  : 'We strive to achieve an ambitious vision through a clear mission and firm principles'}
               </p>
             </div>
 
@@ -114,10 +132,12 @@ const About = () => {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-2xl font-bold text-foreground mb-4" data-testid="heading-vision">
-                        رؤيتنا
+                        {t('about.vision.title')}
                       </h3>
                       <p className="text-muted-foreground leading-relaxed text-base" data-testid="text-vision">
-                        أن نكون الخيار الأول للمنتجات الغذائية الأردنية الأصيلة عالميًا، من خلال الحفاظ على التراث والأصالة مع تطبيق أعلى معايير الجودة العالمية. نسعى للاستفادة من غنى الأردن وخيراته، ومعالجة منتجاتنا بعناية فائقة للحفاظ على نضارتها وخصائصها الطبيعية الأصيلة.
+                        {language === 'ar'
+                          ? 'أن نكون الخيار الأول للمنتجات الغذائية الأردنية الأصيلة عالميًا، من خلال الحفاظ على التراث والأصالة مع تطبيق أعلى معايير الجودة العالمية. نسعى للاستفادة من غنى الأردن وخيراته، ومعالجة منتجاتنا بعناية فائقة للحفاظ على نضارتها وخصائصها الطبيعية الأصيلة.'
+                          : 'To be the first choice for authentic Jordanian food products globally, by preserving heritage and authenticity while applying the highest international quality standards. We strive to leverage Jordan\'s richness and bounties, and process our products with utmost care to preserve their freshness and authentic natural characteristics.'}
                       </p>
                     </div>
                   </div>
@@ -135,10 +155,12 @@ const About = () => {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-2xl font-bold text-foreground mb-4" data-testid="heading-mission">
-                        رسالتنا
+                        {t('about.mission.title')}
                       </h3>
                       <p className="text-muted-foreground leading-relaxed text-base" data-testid="text-mission">
-                        نلتزم بإنتاج منتجات عالية الجودة من خلال استخدام التكنولوجيا المتقدمة والالتزام الصارم بمعايير السلامة. عملياتنا مبنية على الكفاءة والاستدامة، مدفوعة بالتزام وخبرة فريقنا بأكمله. نستثمر باستمرار في موظفينا والتكنولوجيا المتطورة والمعدات الحديثة لضمان جودة لا هوادة فيها وخدمة عملاء استثنائية.
+                        {language === 'ar'
+                          ? 'نلتزم بإنتاج منتجات عالية الجودة من خلال استخدام التكنولوجيا المتقدمة والالتزام الصارم بمعايير السلامة. عملياتنا مبنية على الكفاءة والاستدامة، مدفوعة بالتزام وخبرة فريقنا بأكمله. نستثمر باستمرار في موظفينا والتكنولوجيا المتطورة والمعدات الحديثة لضمان جودة لا هوادة فيها وخدمة عملاء استثنائية.'
+                          : 'We commit to producing high-quality products through advanced technology and strict adherence to safety standards. Our operations are built on efficiency and sustainability, driven by the commitment and expertise of our entire team. We continuously invest in our employees, advanced technology, and modern equipment to ensure uncompromising quality and exceptional customer service.'}
                       </p>
                     </div>
                   </div>
@@ -153,8 +175,8 @@ const About = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold mb-2" data-testid="heading-values">
-                <span className="text-muted-foreground">قيمنا</span>{" "}
-                <span className="text-primary">الأساسية</span>
+                <span className="text-muted-foreground">{language === 'ar' ? 'قيمنا' : 'Our'}</span>{" "}
+                <span className="text-primary">{language === 'ar' ? 'الأساسية' : 'Core Values'}</span>
               </h2>
               <div className="w-32 h-1 bg-primary mx-auto mt-4"></div>
             </div>
@@ -165,9 +187,9 @@ const About = () => {
                 <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
                   <FontAwesomeIcon icon={faHandshake} className="h-12 w-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">الالتزام</h3>
+                <h3 className="text-xl font-bold mb-4">{language === 'ar' ? 'الالتزام' : 'Commitment'}</h3>
                 <p className="text-sm text-primary-foreground/90 leading-relaxed">
-                  نلتزم بفعل الصواب في جميع الأوقات
+                  {language === 'ar' ? 'نلتزم بفعل الصواب في جميع الأوقات' : 'We commit to doing what is right at all times'}
                 </p>
               </div>
 
@@ -176,9 +198,9 @@ const About = () => {
                 <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
                   <FontAwesomeIcon icon={faComments} className="h-12 w-12 text-muted-foreground" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">التواصل</h3>
+                <h3 className="text-xl font-bold mb-4">{language === 'ar' ? 'التواصل' : 'Communication'}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  نؤمن بالتواصل الواضح والفعال والتغذية الراجعة كأساس للنجاح
+                  {language === 'ar' ? 'نؤمن بالتواصل الواضح والفعال والتغذية الراجعة كأساس للنجاح' : 'We believe in clear and effective communication as a foundation for success'}
                 </p>
               </div>
 
@@ -187,9 +209,9 @@ const About = () => {
                 <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
                   <FontAwesomeIcon icon={faBalanceScale} className="h-12 w-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">النزاهة</h3>
+                <h3 className="text-xl font-bold mb-4">{language === 'ar' ? 'النزاهة' : 'Integrity'}</h3>
                 <p className="text-sm text-primary-foreground/90 leading-relaxed">
-                  نمارس أعمالنا بمعايير أخلاقية عالية وشفافية تامة
+                  {language === 'ar' ? 'نمارس أعمالنا بمعايير أخلاقية عالية وشفافية تامة' : 'We conduct business with high ethical standards and complete transparency'}
                 </p>
               </div>
 
@@ -198,9 +220,9 @@ const About = () => {
                 <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
                   <FontAwesomeIcon icon={faUserCheck} className="h-12 w-12 text-muted-foreground" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">المسؤولية</h3>
+                <h3 className="text-xl font-bold mb-4">{language === 'ar' ? 'المسؤولية' : 'Accountability'}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  نتحمل مسؤولياتنا ونسعى لتجاوز التوقعات
+                  {language === 'ar' ? 'نتحمل مسؤولياتنا ونسعى لتجاوز التوقعات' : 'We take responsibility and strive to exceed expectations'}
                 </p>
               </div>
 
@@ -209,9 +231,9 @@ const About = () => {
                 <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
                   <FontAwesomeIcon icon={faUsers} className="h-12 w-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">العائلة</h3>
+                <h3 className="text-xl font-bold mb-4">{language === 'ar' ? 'العائلة' : 'Family'}</h3>
                 <p className="text-sm text-primary-foreground/90 leading-relaxed">
-                  نحب ونهتم وندعم بعضنا البعض كعائلة واحدة
+                  {language === 'ar' ? 'نحب ونهتم وندعم بعضنا البعض كعائلة واحدة' : 'We love, care for, and support each other as one family'}
                 </p>
               </div>
             </div>
@@ -223,13 +245,15 @@ const About = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 animate-fade-in-up">
               <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20 px-4 py-1" data-testid="badge-quality">
-                الجودة والتكنولوجيا
+                {language === 'ar' ? 'الجودة والتكنولوجيا' : 'Quality & Technology'}
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3" data-testid="heading-quality">
-                ضمان الجودة والتميز التقني
+                {language === 'ar' ? 'ضمان الجودة والتميز التقني' : 'Quality Assurance & Technical Excellence'}
               </h2>
               <p className="text-base text-muted-foreground max-w-3xl mx-auto" data-testid="text-quality-intro">
-                نستخدم أحدث التقنيات والأنظمة لضمان أعلى معايير الجودة في كل مرحلة من مراحل الإنتاج
+                {language === 'ar'
+                  ? 'نستخدم أحدث التقنيات والأنظمة لضمان أعلى معايير الجودة في كل مرحلة من مراحل الإنتاج'
+                  : 'We use the latest technologies and systems to ensure the highest quality standards at every stage of production'}
               </p>
             </div>
 
@@ -239,7 +263,7 @@ const About = () => {
                 <div className="relative h-64 overflow-hidden">
                   <img 
                     src={productionLineImage}
-                    alt="خطوط الإنتاج الحديثة"
+                    alt={language === 'ar' ? 'خطوط الإنتاج الحديثة' : 'Modern production lines'}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     data-testid="img-production-line"
                   />
@@ -247,15 +271,17 @@ const About = () => {
                 </div>
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center ml-4">
+                    <div className={`w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center ${dir === 'rtl' ? 'ml-4' : 'mr-4'}`}>
                       <Factory className="h-6 w-6 text-primary" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground" data-testid="heading-production">
-                      نظام التحكم الإلكتروني
+                      {language === 'ar' ? 'نظام التحكم الإلكتروني' : 'Electronic Control System'}
                     </h3>
                   </div>
                   <p className="text-muted-foreground leading-relaxed text-base" data-testid="text-production">
-                    يتم تشغيل جميع آلات المصنع من خلال نظام الإدارة الداخلي الذي يتم تحديثه وصيانته بانتظام. ما يميز هذا النظام هو أن جميع الآلات يتم التحكم بها إلكترونيًا وتسجل جميع المعلومات بدقة الثانية، مع تسجيل كافة بيانات الإنتاج.
+                    {language === 'ar'
+                      ? 'يتم تشغيل جميع آلات المصنع من خلال نظام الإدارة الداخلي الذي يتم تحديثه وصيانته بانتظام. ما يميز هذا النظام هو أن جميع الآلات يتم التحكم بها إلكترونيًا وتسجل جميع المعلومات بدقة الثانية، مع تسجيل كافة بيانات الإنتاج.'
+                      : 'All factory machines operate through an internal management system that is regularly updated and maintained. What distinguishes this system is that all machines are electronically controlled and record all information to the second, with complete production data logging.'}
                   </p>
                 </CardContent>
               </Card>
@@ -265,7 +291,7 @@ const About = () => {
                 <div className="relative h-64 overflow-hidden">
                   <img 
                     src={laboratoryImage}
-                    alt="مختبر اختبارات الجودة"
+                    alt={language === 'ar' ? 'مختبر اختبارات الجودة' : 'Quality testing laboratory'}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     data-testid="img-laboratory"
                   />
@@ -273,15 +299,17 @@ const About = () => {
                 </div>
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center ml-4">
+                    <div className={`w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center ${dir === 'rtl' ? 'ml-4' : 'mr-4'}`}>
                       <FlaskConical className="h-6 w-6 text-primary" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground" data-testid="heading-laboratory">
-                      الصيانة والجاهزية
+                      {language === 'ar' ? 'الصيانة والجاهزية' : 'Maintenance & Readiness'}
                     </h3>
                   </div>
                   <p className="text-muted-foreground leading-relaxed text-base" data-testid="text-laboratory">
-                    تفخر الفرسان بتوفير جميع قطع الغيار في الموقع مع وجود مهندسين مستعدين لإصلاح أي مشاكل قد تنشأ، مما يضمن استمرارية الإنتاج وأعلى مستويات الجودة في جميع الأوقات.
+                    {language === 'ar'
+                      ? 'تفخر الفرسان بتوفير جميع قطع الغيار في الموقع مع وجود مهندسين مستعدين لإصلاح أي مشاكل قد تنشأ، مما يضمن استمرارية الإنتاج وأعلى مستويات الجودة في جميع الأوقات.'
+                      : 'Al Fursan takes pride in providing all spare parts on-site with engineers ready to fix any issues that may arise, ensuring production continuity and highest quality levels at all times.'}
                   </p>
                 </CardContent>
               </Card>

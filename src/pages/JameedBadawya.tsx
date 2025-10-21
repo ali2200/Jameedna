@@ -6,24 +6,27 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const JameedBadawya = () => {
   const navigate = useNavigate();
+  const { language, t, dir } = useLanguage();
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.title = "جميد البدوية - الفرسان الرباعية | Jameed Badawya";
+    document.title = language === 'ar'
+      ? "جميد البدوية - الفرسان الرباعية | Jameed Badawya"
+      : "Jameed Badawya - Al Fursan Quadruple | Traditional Bedouin Jameed";
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', 
-        'جميد البدوية - جميد بدوي تقليدي 100% جميد نقي، مصنوع من حليب الغنم الطازج المبستر، معبأ بتقنية Aseptic للحفاظ على الطعم الأصيل'
+        language === 'ar'
+          ? t('products.jameedBadawya.description')
+          : 'Traditional Bedouin Jameed with a modern touch, combining authentic flavor and modern healthy packaging for a unique and healthy experience'
       );
     }
-  }, []);
-
-  const ingredients = '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.';
-  const productFeatures = 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.';
+  }, [language, t]);
 
   const specifications = [
     {
@@ -44,28 +47,36 @@ const JameedBadawya = () => {
     }
   ];
 
-  const certificates = ['Halal', 'FDA', 'HACCP', 'وزارة الصحة'];
+  const certificates = ['Halal', 'FDA', 'HACCP', language === 'ar' ? 'وزارة الصحة' : 'Ministry of Health'];
 
   const features = [
     {
       icon: Shield,
-      title: 'تراث بدوي أصيل',
-      description: 'وصفة تقليدية بدوية تم توارثها عبر الأجيال مع الحفاظ على أصالة المذاق'
+      title: language === 'ar' ? 'تراث بدوي أصيل' : 'Authentic Bedouin Heritage',
+      description: language === 'ar' 
+        ? 'وصفة تقليدية بدوية تم توارثها عبر الأجيال مع الحفاظ على أصالة المذاق' 
+        : 'Traditional Bedouin recipe passed down through generations while preserving authentic taste'
     },
     {
       icon: Package,
-      title: 'تعبئة صحية حديثة',
-      description: 'تقنية Aseptic المتطورة تضمن سلامة المنتج والحفاظ على قيمته الغذائية'
+      title: language === 'ar' ? 'تعبئة صحية حديثة' : 'Modern Healthy Packaging',
+      description: language === 'ar' 
+        ? 'تقنية Aseptic المتطورة تضمن سلامة المنتج والحفاظ على قيمته الغذائية' 
+        : 'Advanced Aseptic technology ensures product safety and preserves nutritional value'
     },
     {
       icon: CheckCircle,
-      title: 'مكونات طبيعية',
-      description: 'مصنوع من حليب الغنم الطازج مع البهارات الطبيعية بدون إضافات صناعية'
+      title: language === 'ar' ? 'مكونات طبيعية' : 'Natural Ingredients',
+      description: language === 'ar' 
+        ? 'مصنوع من حليب الغنم الطازج مع البهارات الطبيعية بدون إضافات صناعية' 
+        : 'Made from fresh sheep milk with natural spices without artificial additives'
     },
     {
       icon: Award,
-      title: 'جودة مضمونة',
-      description: 'يخضع للفحص والمراقبة المستمرة وفق أعلى معايير الجودة العالمية'
+      title: t('products.feature.quality.title'),
+      description: language === 'ar' 
+        ? 'يخضع للفحص والمراقبة المستمرة وفق أعلى معايير الجودة العالمية' 
+        : 'Subject to continuous inspection and monitoring according to the highest international quality standards'
     }
   ];
 
@@ -75,7 +86,7 @@ const JameedBadawya = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background" dir={dir}>
       <Header />
       
       <main className="pt-20">
@@ -83,11 +94,11 @@ const JameedBadawya = () => {
         <section className="py-6 bg-muted/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Link to="/" className="hover:text-primary transition-colors">الرئيسية</Link>
-              <ChevronRight className="h-4 w-4 rotate-180" />
-              <Link to="/products" className="hover:text-primary transition-colors">المنتجات</Link>
-              <ChevronRight className="h-4 w-4 rotate-180" />
-              <span className="text-foreground font-medium">جميد البدوية</span>
+              <Link to="/" className="hover:text-primary transition-colors">{t('common.home')}</Link>
+              <ChevronRight className={`h-4 w-4 ${dir === 'rtl' ? 'rotate-180' : ''}`} />
+              <Link to="/products" className="hover:text-primary transition-colors">{t('common.products')}</Link>
+              <ChevronRight className={`h-4 w-4 ${dir === 'rtl' ? 'rotate-180' : ''}`} />
+              <span className="text-foreground font-medium">{t('products.jameedBadawya.name')}</span>
             </div>
           </div>
         </section>
@@ -101,20 +112,19 @@ const JameedBadawya = () => {
               {/* Text Content */}
               <div>
                 <Badge className="mb-6 bg-primary-foreground/10 text-primary-foreground">
-                  منتج مميز
+                  {t('common.featured')}
                 </Badge>
                 
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                  جميد البدوية
+                  {t('products.jameedBadawya.name')}
                 </h1>
                 
                 <h2 className="text-2xl md:text-3xl text-primary-foreground/90 mb-8">
-                  Jameed Badawya
+                  {t('products.jameedBadawya.nameEn')}
                 </h2>
                 
                 <p className="text-xl text-primary-foreground/90 leading-relaxed mb-8">
-                  جميد بدوي تقليدي بلمسة حديثة، يجمع بين النكهة الأصيلة والتعبئة الصحية العصرية 
-                  لتجربة فريدة وصحية تعكس أصالة التراث البدوي
+                  {t('products.jameedBadawya.description')}
                 </p>
 
                 <div className="flex gap-4 flex-wrap">
@@ -124,8 +134,8 @@ const JameedBadawya = () => {
                     onClick={handleQuoteClick}
                     data-testid="button-request-quote"
                   >
-                    اطلب عرض سعر
-                    <ChevronRight className="mr-2 rtl:mr-0 rtl:ml-2 h-5 w-5" />
+                    {t('nav.requestQuote')}
+                    <ChevronRight className={`h-5 w-5 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
                   </Button>
                   
                   <Link to="/products">
@@ -135,8 +145,8 @@ const JameedBadawya = () => {
                       className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
                       data-testid="button-back-products"
                     >
-                      <ArrowLeft className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
-                      العودة للمنتجات
+                      <ArrowLeft className={`h-5 w-5 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                      {t('products.backToProducts')}
                     </Button>
                   </Link>
                 </div>
@@ -147,7 +157,7 @@ const JameedBadawya = () => {
                 <div className="relative bg-white rounded-3xl p-8 shadow-2xl">
                   <img 
                     src="/jameed-badawya-package.png" 
-                    alt="جميد البدوية"
+                    alt={t('products.jameedBadawya.name')}
                     className="w-full max-w-md mx-auto drop-shadow-xl transition-transform duration-500 hover:scale-105"
                     data-testid="img-product-jameed-badawya"
                   />
@@ -166,10 +176,12 @@ const JameedBadawya = () => {
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-foreground flex items-center gap-3 mb-4">
                     <Package className="h-6 w-6 text-amber-600" />
-                    المكونات
+                    {t('products.ingredients')}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed text-lg">
-                    {ingredients}
+                    {language === 'ar' 
+                      ? '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.' 
+                      : '100% pure Jameed (fresh pasteurized sheep milk, salt, starter culture), water, spices, salt.'}
                   </p>
                 </CardContent>
               </Card>
@@ -179,10 +191,10 @@ const JameedBadawya = () => {
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-foreground flex items-center gap-3 mb-4">
                     <Shield className="h-6 w-6 text-amber-600" />
-                    مميزات المنتج
+                    {t('products.features')}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed text-lg">
-                    {productFeatures}
+                    {t('products.jameedBadawya.features')}
                   </p>
                 </CardContent>
               </Card>
@@ -195,10 +207,10 @@ const JameedBadawya = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                المواصفات التفصيلية
+                {t('products.specifications')}
               </h2>
               <p className="text-xl text-muted-foreground">
-                الأحجام المتوفرة مع التفاصيل الكاملة
+                {language === 'ar' ? 'الأحجام المتوفرة مع التفاصيل الكاملة' : 'Available sizes with complete details'}
               </p>
             </div>
 
@@ -206,9 +218,15 @@ const JameedBadawya = () => {
               <table className="w-full border-collapse bg-white rounded-2xl overflow-hidden shadow-lg">
                 <thead>
                   <tr className="bg-gradient-to-r from-amber-700 to-amber-600 text-white">
-                    <th className="px-6 py-4 text-right text-sm font-bold">المواصفة</th>
-                    <th className="px-6 py-4 text-center text-sm font-bold">الحجم الكبير</th>
-                    <th className="px-6 py-4 text-center text-sm font-bold">الحجم الصغير</th>
+                    <th className={`px-6 py-4 text-sm font-bold ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
+                      {language === 'ar' ? 'المواصفة' : 'Specification'}
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-bold">
+                      {language === 'ar' ? 'الحجم الكبير' : 'Large Size'}
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-bold">
+                      {language === 'ar' ? 'الحجم الصغير' : 'Small Size'}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -248,7 +266,7 @@ const JameedBadawya = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                لماذا تختار جميد البدوية؟
+                {language === 'ar' ? 'لماذا تختار جميد البدوية؟' : 'Why Choose Jameed Badawya?'}
               </h2>
             </div>
 
@@ -277,10 +295,12 @@ const JameedBadawya = () => {
         <section className="py-20 bg-muted/30">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              الشهادات والمعايير
+              {t('products.certificates')}
             </h2>
             <p className="text-xl text-muted-foreground mb-12">
-              معتمد من أهم الجهات العالمية للجودة والسلامة الغذائية
+              {language === 'ar' 
+                ? 'معتمد من أهم الجهات العالمية للجودة والسلامة الغذائية' 
+                : 'Certified by the most important international quality and food safety authorities'}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -294,7 +314,7 @@ const JameedBadawya = () => {
                   style={{ animationDelay: `${index * 100}ms` }}
                   data-testid={`badge-certificate-${index}`}
                 >
-                  <Shield className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                  <Shield className={`h-4 w-4 ${dir === 'rtl' ? 'ml-2' : 'mr-2'}`} />
                   {cert}
                 </Badge>
               ))}
@@ -306,10 +326,12 @@ const JameedBadawya = () => {
         <section className="py-20 bg-gradient-to-br from-amber-700 via-amber-600 to-amber-500 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              جاهز لتذوق التراث؟
+              {language === 'ar' ? 'جاهز لتذوق التراث؟' : 'Ready to Taste Heritage?'}
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              اطلب جميد البدوية الآن واستمتع بالطعم البدوي الأصيل
+              {language === 'ar' 
+                ? 'اطلب جميد البدوية الآن واستمتع بالطعم البدوي الأصيل' 
+                : 'Order Jameed Badawya now and enjoy the authentic Bedouin taste'}
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Button 
@@ -318,8 +340,8 @@ const JameedBadawya = () => {
                 onClick={handleQuoteClick}
                 data-testid="button-cta-quote"
               >
-                <Package className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
-                اطلب عرض سعر
+                <Package className={`h-5 w-5 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                {t('nav.requestQuote')}
               </Button>
               
               <Button 
@@ -328,8 +350,8 @@ const JameedBadawya = () => {
                 className="border-white text-white hover:bg-white/10 px-8 transition-all duration-300"
                 data-testid="button-delivery-inquiry"
               >
-                <Truck className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
-                استفسر عن التوصيل
+                <Truck className={`h-5 w-5 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                {language === 'ar' ? 'استفسر عن التوصيل' : 'Inquire About Delivery'}
               </Button>
             </div>
           </div>

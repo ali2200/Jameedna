@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Calendar, User, ArrowRight, Search, Mail } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 import factoryImage from "@/assets/factory-building.png";
 
 interface Article {
@@ -24,16 +25,33 @@ interface Article {
 }
 
 const Blog = () => {
+  const { language, t, dir } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [email, setEmail] = useState('');
 
+  useEffect(() => {
+    document.title = language === 'ar'
+      ? "أخبارنا ومقالاتنا - الفرسان الرباعية | Our News & Articles"
+      : "Our News & Articles - Al Fursan Quadruple | Latest Updates";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 
+        language === 'ar'
+          ? 'تابع آخر أخبار الفرسان الرباعية واكتشف المزيد عن عالم الجميد التقليدي والمعارض والفعاليات'
+          : 'Follow the latest news from Al Fursan Quadruple and discover more about traditional Jameed, exhibitions and events'
+      );
+    }
+  }, [language]);
+
   const categories = [
-    { id: 'all', name: 'جميع المقالات', nameEn: 'All Articles' },
-    { id: 'company-news', name: 'أخبار الشركة', nameEn: 'Company News' },
-    { id: 'exhibitions', name: 'معارض ومشاركات', nameEn: 'Exhibitions & Events' },
-    { id: 'jameed-insights', name: 'مقالات عن الجميد', nameEn: 'Jameed Insights' },
-    { id: 'market-export', name: 'السوق والتصدير', nameEn: 'Market & Export' }
+    { id: 'all', name: language === 'ar' ? 'جميع المقالات' : 'All Articles' },
+    { id: 'company-news', name: language === 'ar' ? 'أخبار الشركة' : 'Company News' },
+    { id: 'exhibitions', name: language === 'ar' ? 'معارض ومشاركات' : 'Exhibitions & Events' },
+    { id: 'jameed-insights', name: language === 'ar' ? 'مقالات عن الجميد' : 'Jameed Insights' },
+    { id: 'market-export', name: language === 'ar' ? 'السوق والتصدير' : 'Market & Export' }
   ];
 
   const articles: Article[] = [
@@ -45,7 +63,7 @@ const Blog = () => {
       excerptEn: 'Al Fursan Quadruple for Management and Investment is a leading company in authentic Jordanian products manufacturing, established over 20 years ago with expertise in food industry. We started as a family business and grew our experience to become a successful brand with an extensive customer base locally and internationally.',
       category: 'company-news',
       categoryEn: 'Company News',
-      author: 'إدارة الفرسان الرباعية',
+      author: language === 'ar' ? 'إدارة الفرسان الرباعية' : 'Al Fursan Management',
       date: '2024-10-21',
       image: factoryImage,
       slug: 'alfursan-excellence-journey'
@@ -67,7 +85,7 @@ const Blog = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" dir={dir}>
       <Header />
       
       <main className="pt-24">
@@ -79,13 +97,13 @@ const Blog = () => {
           <div className="relative container-section">
             <div className="text-center text-white">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                أخبارنا ومقالاتنا
+                {t('blog.hero.title')}
               </h1>
               <p className="text-xl opacity-90 mb-8 max-w-3xl mx-auto">
-                تابع آخر أخبار الفرسان الرباعية واكتشف المزيد عن عالم الجميد التقليدي
+                {t('blog.hero.description')}
               </p>
               <p className="text-lg opacity-80">
-                Our News & Articles
+                {t('blog.hero.subtitle')}
               </p>
             </div>
           </div>
@@ -99,16 +117,16 @@ const Blog = () => {
                 {/* Search */}
                 <Card>
                   <CardHeader>
-                    <h3 className="font-semibold">البحث</h3>
+                    <h3 className="font-semibold">{t('blog.search')}</h3>
                   </CardHeader>
                   <CardContent>
                     <div className="relative">
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      <Search className={`absolute ${dir === 'rtl' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground`} />
                       <Input
-                        placeholder="ابحث في المقالات..."
+                        placeholder={t('blog.searchPlaceholder')}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-10"
+                        className={dir === 'rtl' ? 'pr-10' : 'pl-10'}
                       />
                     </div>
                   </CardContent>
@@ -117,7 +135,7 @@ const Blog = () => {
                 {/* Categories */}
                 <Card>
                   <CardHeader>
-                    <h3 className="font-semibold">التصنيفات</h3>
+                    <h3 className="font-semibold">{t('blog.categories')}</h3>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
@@ -125,7 +143,7 @@ const Blog = () => {
                         <button
                           key={category.id}
                           onClick={() => setSelectedCategory(category.id)}
-                          className={`w-full text-right px-3 py-2 rounded-lg transition-colors duration-200 ${
+                          className={`w-full ${dir === 'rtl' ? 'text-right' : 'text-left'} px-3 py-2 rounded-lg transition-colors duration-200 ${
                             selectedCategory === category.id
                               ? 'bg-primary text-primary-foreground'
                               : 'hover:bg-muted'
@@ -141,16 +159,16 @@ const Blog = () => {
                 {/* Newsletter Signup */}
                 <Card className="bg-primary/5 border-primary/20">
                   <CardHeader>
-                    <h3 className="font-semibold text-primary">اشترك في النشرة البريدية</h3>
+                    <h3 className="font-semibold text-primary">{t('blog.newsletter')}</h3>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground mb-4">
-                      احصل على آخر الأخبار والمقالات مباشرة في بريدك الإلكتروني
+                      {t('blog.newsletterDesc')}
                     </p>
                     <div className="space-y-3">
                       <Input
                         type="email"
-                        placeholder="بريدك الإلكتروني"
+                        placeholder={language === 'ar' ? 'بريدك الإلكتروني' : 'Your email'}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
@@ -159,8 +177,8 @@ const Blog = () => {
                         className="w-full"
                         size="sm"
                       >
-                        <Mail className="h-4 w-4 ml-2 rtl:ml-0 rtl:mr-2" />
-                        اشتراك
+                        <Mail className={`h-4 w-4 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                        {t('blog.subscribe')}
                       </Button>
                     </div>
                   </CardContent>
@@ -177,11 +195,11 @@ const Blog = () => {
                     <div className="relative overflow-hidden">
                       <img 
                         src={article.image}
-                        alt={article.title}
+                        alt={language === 'ar' ? article.title : article.titleEn}
                         className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <Badge 
-                        className="absolute top-4 right-4 bg-primary/90 text-primary-foreground"
+                        className={`absolute top-4 ${dir === 'rtl' ? 'left-4' : 'right-4'} bg-primary/90 text-primary-foreground`}
                       >
                         {categories.find(cat => cat.id === article.category)?.name}
                       </Badge>
@@ -190,27 +208,27 @@ const Blog = () => {
                     <CardContent className="p-6">
                       <div className="flex items-center text-sm text-muted-foreground mb-3 space-x-4 rtl:space-x-reverse">
                         <div className="flex items-center">
-                          <Calendar className="h-4 w-4 ml-1 rtl:ml-0 rtl:mr-1" />
-                          <span>{new Date(article.date).toLocaleDateString('ar-SA')}</span>
+                          <Calendar className={`h-4 w-4 ${dir === 'rtl' ? 'mr-1' : 'ml-1'}`} />
+                          <span>{new Date(article.date).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}</span>
                         </div>
                         <div className="flex items-center">
-                          <User className="h-4 w-4 ml-1 rtl:ml-0 rtl:mr-1" />
+                          <User className={`h-4 w-4 ${dir === 'rtl' ? 'mr-1' : 'ml-1'}`} />
                           <span>{article.author}</span>
                         </div>
                       </div>
                       
                       <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-200">
-                        {article.title}
+                        {language === 'ar' ? article.title : article.titleEn}
                       </h3>
                       
                       <p className="text-muted-foreground mb-4 line-clamp-3">
-                        {article.excerpt}
+                        {language === 'ar' ? article.excerpt : article.excerptEn}
                       </p>
                       
                       <Link to={`/blog/${article.slug}`}>
                         <Button variant="outline" className="group/btn">
-                          اقرأ المزيد
-                          <ArrowRight className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2 group-hover/btn:translate-x-1 rtl:group-hover/btn:-translate-x-1 transition-transform duration-200" />
+                          {t('common.readMore')}
+                          <ArrowRight className={`h-4 w-4 ${dir === 'rtl' ? 'ml-2' : 'mr-2'} ${dir === 'rtl' ? 'rotate-180' : ''} group-hover/btn:translate-x-1 ${dir === 'rtl' ? 'group-hover/btn:-translate-x-1' : ''} transition-transform duration-200`} />
                         </Button>
                       </Link>
                     </CardContent>
@@ -222,7 +240,7 @@ const Blog = () => {
               {filteredArticles.length === 0 && (
                 <div className="text-center py-12">
                   <p className="text-lg text-muted-foreground">
-                    لم يتم العثور على مقالات تطابق البحث
+                    {language === 'ar' ? 'لم يتم العثور على مقالات تطابق البحث' : 'No articles found matching your search'}
                   </p>
                 </div>
               )}
