@@ -2,14 +2,16 @@ import { Phone, Mail, MapPin, Globe, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { language, t, dir } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-primary text-primary-foreground" dir={dir}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="py-16">
@@ -18,42 +20,44 @@ const Footer = () => {
             <div className="space-y-4">
               <img 
                 src="/assets/images/alfursan-logo.png" 
-                alt="شعار الفرسان الرباعية للإدارة والاستثمار"
+                alt={t('common.companyName')}
                 className="h-8 w-auto object-contain brightness-0 invert transition-all duration-300"
                 loading="lazy"
                 decoding="async"
               />
               <p className="text-primary-foreground/90 text-sm leading-relaxed">
-                رائدون في صناعة المنتجات الأردنية الأصيلة منذ أكثر من 20 عامًا، نقدم منتجات عالية الجودة بمعايير دولية.
+                {t('footer.companyDescription')}
               </p>
               <div className="flex space-x-2 rtl:space-x-reverse">
                 <Award className="h-4 w-4 text-primary-foreground/80" />
-                <span className="text-xs text-primary-foreground/80">7 شهادات جودة عالمية</span>
+                <span className="text-xs text-primary-foreground/80">
+                  {language === 'ar' ? '7 شهادات جودة عالمية' : '7 International Quality Certificates'}
+                </span>
               </div>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h3 className="font-bold text-lg mb-4">روابط سريعة</h3>
+              <h3 className="font-bold text-lg mb-4">{t('footer.quickLinks')}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link to="/about" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm">
-                    من نحن
+                    {t('nav.about')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/products" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm">
-                    منتجاتنا
+                    {t('nav.products')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/certificates" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm">
-                    الجودة والشهادات
+                    {t('nav.certificates')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/contact" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm">
-                    اتصل بنا
+                    {t('nav.contact')}
                   </Link>
                 </li>
               </ul>
@@ -61,16 +65,16 @@ const Footer = () => {
 
             {/* Products */}
             <div>
-              <h3 className="font-bold text-lg mb-4">منتجاتنا</h3>
+              <h3 className="font-bold text-lg mb-4">{t('footer.ourProducts')}</h3>
               <ul className="space-y-2">
                 <li className="text-primary-foreground/80 text-sm">
-                  جميدنا زمان
+                  {language === 'ar' ? 'جميدنا زمان' : 'Jameedna Zaman'}
                 </li>
                 <li className="text-primary-foreground/80 text-sm">
-                  جميد بدوية
+                  {language === 'ar' ? 'جميد بدوية' : 'Jameed Badawya'}
                 </li>
                 <li className="text-primary-foreground/80 text-sm">
-                  منتجات قادمة...
+                  {language === 'ar' ? 'منتجات قادمة...' : 'More coming soon...'}
                 </li>
               </ul>
               <div className="mt-4">
@@ -80,14 +84,14 @@ const Footer = () => {
                   className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
                   onClick={() => navigate('/request-quote')}
                 >
-                  اطلب عرض سعر
+                  {t('nav.requestQuote')}
                 </Button>
               </div>
             </div>
 
             {/* Contact Info */}
             <div>
-              <h3 className="font-bold text-lg mb-4">معلومات التواصل</h3>
+              <h3 className="font-bold text-lg mb-4">{t('footer.contactInfo')}</h3>
               <div className="space-y-3">
                 <div className="flex items-start space-x-3 rtl:space-x-reverse">
                   <MapPin className="h-4 w-4 text-primary-foreground/80 flex-shrink-0 mt-1" />
@@ -125,12 +129,12 @@ const Footer = () => {
         <div className="py-8 border-t border-primary-foreground/20">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-primary-foreground/80">
-              © {currentYear} الفرسان الرباعية للإدارة والاستثمار. جميع الحقوق محفوظة.
+              © {currentYear} {t('common.companyName')}. {language === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
             </div>
             <div className="flex items-center space-x-4 rtl:space-x-reverse text-sm text-primary-foreground/80">
-              <span>صنع في الأردن بفخر</span>
+              <span>{language === 'ar' ? 'صنع في الأردن بفخر' : 'Proudly Made in Jordan'}</span>
               <div className="w-px h-4 bg-primary-foreground/30"></div>
-              <span>ISO 22000 معتمد</span>
+              <span>ISO 22000 {language === 'ar' ? 'معتمد' : 'Certified'}</span>
             </div>
           </div>
         </div>
