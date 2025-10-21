@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBullseye, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faBullseye } from '@fortawesome/free-solid-svg-icons';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -109,7 +109,7 @@ const About = () => {
                   <div className="flex items-start space-x-6 rtl:space-x-reverse">
                     <div className="flex-shrink-0">
                       <div className="w-16 h-16 border-4 border-primary rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <FontAwesomeIcon icon={faBullseye} className="h-8 w-8 text-primary" />
+                        <FontAwesomeIcon icon={faEye} className="h-8 w-8 text-primary" />
                       </div>
                     </div>
                     <div className="flex-1">
@@ -130,7 +130,7 @@ const About = () => {
                   <div className="flex items-start space-x-6 rtl:space-x-reverse">
                     <div className="flex-shrink-0">
                       <div className="w-16 h-16 border-4 border-primary rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <FontAwesomeIcon icon={faTrophy} className="h-8 w-8 text-primary" />
+                        <FontAwesomeIcon icon={faBullseye} className="h-8 w-8 text-primary" />
                       </div>
                     </div>
                     <div className="flex-1">
