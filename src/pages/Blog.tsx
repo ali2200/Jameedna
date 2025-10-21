@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Calendar, User, ArrowRight, Search, Mail } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import factoryImage from "@/assets/factory-exterior.jpg";
+import factoryImage from "@/assets/factory-building.png";
 
 interface Article {
   id: string;
