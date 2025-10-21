@@ -78,7 +78,7 @@ const JameednaZaman = () => {
     <div className="min-h-screen bg-background" dir="rtl">
       <Header />
       
-      <main className="pt-32">
+      <main className="pt-20">
         {/* Breadcrumb */}
         <section className="py-6 bg-muted/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,15 +93,14 @@ const JameednaZaman = () => {
         </section>
 
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)] 
-                        bg-[length:30px_30px] animate-shimmer" />
+        <section className="relative py-16 bg-gradient-hero text-primary-foreground overflow-hidden">
+          <div className="absolute inset-0 bg-black/20"></div>
           
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Text Content */}
-              <div className="animate-fade-in-up">
-                <Badge className="mb-6 bg-white/20 text-white border-white/30 hover:bg-white/30">
+              <div>
+                <Badge className="mb-6 bg-primary-foreground/10 text-primary-foreground">
                   منتج مميز
                 </Badge>
                 
@@ -109,11 +108,11 @@ const JameednaZaman = () => {
                   جميدنا زمان
                 </h1>
                 
-                <h2 className="text-2xl md:text-3xl text-white/90 mb-8">
+                <h2 className="text-2xl md:text-3xl text-primary-foreground/90 mb-8">
                   Jameedna Zaman
                 </h2>
                 
-                <p className="text-xl text-white/90 leading-relaxed mb-8">
+                <p className="text-xl text-primary-foreground/90 leading-relaxed mb-8">
                   جميد أردني أصيل مصنوع من حليب الغنم الطازج المبستر، 
                   معبأ بطريقة عصرية تحافظ على الطعم التقليدي الأصيل
                 </p>
@@ -121,7 +120,7 @@ const JameednaZaman = () => {
                 <div className="flex gap-4 flex-wrap">
                   <Button 
                     size="lg" 
-                    className="bg-white text-primary hover:bg-white/90 px-8 transition-all duration-300 hover:scale-105"
+                    className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 px-8"
                     onClick={handleQuoteClick}
                     data-testid="button-request-quote"
                   >
@@ -133,7 +132,7 @@ const JameednaZaman = () => {
                     <Button 
                       variant="outline" 
                       size="lg" 
-                      className="border-white text-white hover:bg-white/10 transition-all duration-300"
+                      className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
                       data-testid="button-back-products"
                     >
                       <ArrowLeft className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />

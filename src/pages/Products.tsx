@@ -96,30 +96,22 @@ const Products = () => {
     <div className="min-h-screen bg-background" dir="rtl">
       <Header />
       
-      <main className="pt-32">
+      <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)] 
-                        bg-[length:30px_30px] animate-shimmer" />
-          
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm 
-                            border border-white/30 mb-6 animate-fade-in-up">
-                <Sparkles className="h-5 w-5 text-white animate-pulse" />
-                <span className="text-sm font-semibold text-white">منتجاتنا المميزة</span>
-              </div>
-
-              <h1 className="text-4xl md:text-5xl font-bold mb-8 animate-fade-in-up">
-                منتجات الجميد الأصيل
-              </h1>
-              
-              <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed animate-slide-in-right">
-                اكتشف مجموعة منتجاتنا من الجميد الأردني الأصيل
-                <br />
-                <span className="font-semibold">طعم أصيل • جودة استثنائية • تراث أردني</span>
-              </p>
-            </div>
+        <section className="relative py-16 bg-gradient-hero text-primary-foreground overflow-hidden">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <Badge className="mb-6 bg-primary-foreground/10 text-primary-foreground">
+              منتجاتنا المميزة
+            </Badge>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              منتجات الجميد الأصيل
+            </h1>
+            <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto">
+              اكتشف مجموعة منتجاتنا من الجميد الأردني الأصيل
+              <br />
+              طعم أصيل • جودة استثنائية • تراث أردني
+            </p>
           </div>
         </section>
 
