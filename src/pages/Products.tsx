@@ -110,7 +110,7 @@ const Products = () => {
                 <span className="text-sm font-semibold text-white">منتجاتنا المميزة</span>
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-bold mb-8 animate-fade-in-up">
+              <h1 className="text-4xl md:text-5xl font-bold mb-8 animate-fade-in-up">
                 منتجات الجميد الأصيل
               </h1>
               

@@ -112,7 +112,7 @@ const Contact = () => {
             <Badge className="mb-6 bg-primary-foreground/10 text-primary-foreground">
               تواصل معنا
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
               نحن هنا لخدمتكم
             </h1>
             <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">

@@ -78,7 +78,7 @@ const Blog = () => {
           
           <div className="relative container-section">
             <div className="text-center text-white">
-              <h1 className="text-5xl font-bold mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 أخبارنا ومقالاتنا
               </h1>
               <p className="text-xl opacity-90 mb-8 max-w-3xl mx-auto">

@@ -105,7 +105,7 @@ const JameedBadawya = () => {
                   منتج مميز
                 </Badge>
                 
-                <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold mb-6">
                   جميد البدوية
                 </h1>
                 
