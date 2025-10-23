@@ -33,7 +33,7 @@ const Blog = () => {
   useEffect(() => {
     document.title = language === 'ar'
       ? "أخبارنا ومقالاتنا - الفرسان الرباعية | Our News & Articles"
-      : "Our News & Articles - Al Fursan Quadruple | Latest Updates";
+      : "Our News & Articles - Al-Fursan Al-Rubaiah | Latest Updates";
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -41,7 +41,7 @@ const Blog = () => {
       metaDescription.setAttribute('content', 
         language === 'ar'
           ? 'تابع آخر أخبار الفرسان الرباعية واكتشف المزيد عن عالم الجميد التقليدي والمعارض والفعاليات'
-          : 'Follow the latest news from Al Fursan Quadruple and discover more about traditional Jameed, exhibitions and events'
+          : 'Follow the latest news from Al-Fursan Al-Rubaiah and discover more about traditional products, exhibitions and events'
       );
     }
   }, [language]);
@@ -58,9 +58,9 @@ const Blog = () => {
     {
       id: '1',
       title: 'الفرسان الرباعية: رحلة التميز في صناعة الجميد الأردني',
-      titleEn: 'Al Fursan Quadruple: Journey of Excellence in Jordanian Jameed Manufacturing',
+      titleEn: 'Al-Fursan Al-Rubaiah: Journey of Excellence in Jordanian Products Manufacturing',
       excerpt: 'شركة الفرسان الرباعية للإدارة والاستثمار هي شركة رائدة في صناعة المنتجات الأردنية الأصيلة، تأسست منذ أكثر من 20 عاماً من الخبرة في مجال الأغذية. بدأنا كعمل عائلي، ونمت خبرتنا لتصبح علامة تجارية ناجحة تمتلك قاعدة عملاء واسعة محلياً ودولياً. نلتزم بمعالجة المواد الخام بأقصى درجات الاهتمام للحفاظ على جودتها الطبيعية وطعمها الأصيل، مع تطبيق أحدث التقنيات وأعلى معايير الجودة العالمية.',
-      excerptEn: 'Al Fursan Quadruple for Management and Investment is a leading company in authentic Jordanian products manufacturing, established over 20 years ago with expertise in food industry. We started as a family business and grew our experience to become a successful brand with an extensive customer base locally and internationally.',
+      excerptEn: 'Al-Fursan Al-Rubaiah for Management and Investment is a leading company in authentic Jordanian products manufacturing, established over 20 years ago with expertise in food industry. We started as a family business and grew our experience to become a successful brand with an extensive customer base locally and internationally.',
       category: 'company-news',
       categoryEn: 'Company News',
       author: language === 'ar' ? 'إدارة الفرسان الرباعية' : 'Al Fursan Management',

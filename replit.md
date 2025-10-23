@@ -1,8 +1,8 @@
-# Al Fursan Quadruple Factory - Traditional Jordanian Jameed Production
+# Al-Fursan Al-Rubaiah for Management and Investment - Traditional Jordanian Products
 
 ## Overview
 
-Al Fursan Quadruple Factory is a comprehensive web application built on Replit for a Jordanian food manufacturing company specializing in traditional Jameed production. The application serves as both a corporate website and product showcase, featuring the company's two main product lines: "Jameedna Zaman" and "Jameed Badawya". Built with modern web technologies and optimized for Replit's deployment platform, the site emphasizes Arabic-first design with RTL support, elegant visual presentation, and comprehensive business information including certifications, production capabilities, and contact management.
+Al-Fursan Al-Rubaiah for Management and Investment is a comprehensive web application built on Replit for a Jordanian food manufacturing company specializing in traditional products. The application serves as both a corporate website and product showcase, featuring the company's two main product lines: "Jameedna Zaman" and "Jameed Al Badawia". Built with modern web technologies and optimized for Replit's deployment platform, the site emphasizes Arabic-first design with RTL support, elegant visual presentation, and comprehensive business information including certifications, production capabilities, and contact management.
 
 ## User Preferences
 
@@ -64,9 +64,20 @@ The application includes image optimization strategies, lazy loading implementat
 - **CMDK**: Command menu functionality
 - **Input OTP**: One-time password input components
 
-## Recent Changes (Migration to Replit)
+## Recent Changes
 
-### December 2024
+### October 2025 - Complete Rebranding Update
+- **Company Name Update**: Updated all references from "Al Fursan Quadruple" to "Al-Fursan Al-Rubaiah for Management and Investment" throughout the codebase
+- **Product Naming**: Updated "Jameed Badawya" to "Jameed Al Badawia" across all components, pages, and translation files
+- **Tagline Update**: Changed "Knights of Quality" to "Al-Fursan Quality" (Arabic: "جودة الفرسان")
+- **About Page Content**: Completely refreshed company story, vision, mission, and quality assurance sections with professional copy in both Arabic and English
+- **Logo Enhancement**: Updated to original logo with proper blue/gray colors, increased size for better visibility across all pages
+- **Hero Section Design**: Removed color overlay from video background for clearer viewing, changed header text to blue matching logo colors
+- **Translation Files**: Updated LanguageContext.tsx with consistent bilingual naming conventions throughout the application
+- **SEO Updates**: Updated meta titles, descriptions, and structured data across all pages to reflect new company name
+- **Component Updates**: Modified Header, Footer, ContactRFQ, ProductShowcase, AboutUs, and all page components for brand consistency
+
+### December 2024 - Migration to Replit
 - **Complete Platform Migration**: Successfully migrated from external platform to native Replit development environment
 - **Asset Optimization**: Reorganized all images to `/assets/images/` with descriptive names for better maintainability
 - **Configuration Updates**: Optimized Vite configuration for Replit's hosting environment (port 5000, proper host binding)

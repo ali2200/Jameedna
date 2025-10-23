@@ -15,15 +15,15 @@ const Products = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const title = language === 'ar' 
-      ? "منتجاتنا - الفرسان الرباعية | Al Fursan Quadruple Products"
-      : "Our Products - Al Fursan Quadruple | Authentic Jameed Products";
+      ? "منتجاتنا - الفرسان الرباعية | Al-Fursan Al-Rubaiah Products"
+      : "Our Products - Al-Fursan Al-Rubaiah | Authentic Products";
     document.title = title;
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       const desc = language === 'ar'
-        ? 'اكتشف مجموعة منتجات الفرسان الرباعية من الجميد الأردني الأصيل - جميدنا زمان وجميد البدوية بأعلى معايير الجودة العالمية'
-        : 'Discover Al Fursan Quadruple collection of authentic Jordanian Jameed products - Jameedna Zaman and Jameed Badawya with international quality standards';
+        ? 'اكتشف مجموعة منتجات الفرسان الرباعية الأردنية الأصيلة - جميدنا زمان وجميد البدوية بأعلى معايير الجودة العالمية'
+        : 'Discover Al-Fursan Al-Rubaiah collection of authentic Jordanian products - Jameedna Zaman and Jameed Al Badawia with international quality standards';
       metaDescription.setAttribute('content', desc);
     }
   }, [language]);
@@ -62,7 +62,7 @@ const Products = () => {
     {
       id: 'jameed-badawya',
       name: 'جميد البدوية',
-      nameEn: 'Jameed Badawya',
+      nameEn: 'Jameed Al Badawia',
       description: 'جميد بدوي تقليدي بلمسة حديثة، يجمع بين النكهة الأصيلة والتعبئة الصحية العصرية لتجربة فريدة وصحية',
       ingredients: '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.',
       features: 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',

@@ -26,7 +26,7 @@ const Contact = () => {
   useEffect(() => {
     document.title = language === 'ar'
       ? "اتصل بنا - الفرسان الرباعية | Contact Us"
-      : "Contact Us - Al Fursan Quadruple | Get in Touch";
+      : "Contact Us - Al-Fursan Al-Rubaiah | Get in Touch";
       
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {

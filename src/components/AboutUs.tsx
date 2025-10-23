@@ -41,7 +41,7 @@ const AboutUs = () => {
                     {language === 'ar' ? 'من نحن' : 'About Us'}
                   </h2>
                   <h3 className="text-xl sm:text-2xl font-bold text-primary">
-                    {language === 'ar' ? 'فرسان الجودة' : 'Knights of Quality'}
+                    {language === 'ar' ? 'جودة الفرسان' : 'Al-Fursan Quality'}
                   </h3>
                 </div>
               </div>
@@ -49,13 +49,13 @@ const AboutUs = () => {
               <p className="text-muted-foreground leading-relaxed text-base sm:text-lg font-medium">
                 {language === 'ar' 
                   ? 'تسعى الفرسان الرباعية إلى التميز الدائم في توفير منتجات صحية وذات جودة عالية من خيرات الطبيعة الأردنية.' 
-                  : 'Al Fursan Quadruple strives for continuous excellence in providing healthy and high-quality products from the bounties of Jordanian nature.'}
+                  : 'Al-Fursan Al-Rubaiah strives for continuous excellence in providing healthy and high-quality products from the bounties of Jordanian nature.'}
               </p>
 
               <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                 {language === 'ar' 
                   ? 'شركة الفرسان الرباعية للإدارة والاستثمار هي من أكبر الشركات الرائدة في المملكة الأردنية الهاشمية وهي شركة ذات مسئولية محدودة تعمل في مجال صناعة المواد الغذائية المختلفة ويقع مبني الشركة في منطقة المفرق.' 
-                  : 'Al Fursan Quadruple for Management and Investment is one of the largest leading companies in the Hashemite Kingdom of Jordan. It is a limited liability company operating in the field of manufacturing various food products, and the company\'s building is located in the Mafraq area.'}
+                  : 'Al-Fursan Al-Rubaiah for Management and Investment is one of the largest leading companies in the Hashemite Kingdom of Jordan. It is a limited liability company operating in the field of manufacturing various food products, and the company\'s building is located in the Mafraq area.'}
               </p>
 
               <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
@@ -77,7 +77,7 @@ const AboutUs = () => {
             <div className="relative overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl">
               <img 
                 src="/factory-building.png" 
-                alt={language === 'ar' ? 'مصنع الفرسان الرباعية' : 'Al Fursan Quadruple Factory'} 
+                alt={language === 'ar' ? 'مصنع الفرسان الرباعية' : 'Al-Fursan Al-Rubaiah Factory'} 
                 className="w-full h-64 sm:h-80 lg:h-[500px] object-cover transition-transform duration-300 hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>

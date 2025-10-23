@@ -266,7 +266,7 @@ const JameedBadawya = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                {language === 'ar' ? 'لماذا تختار جميد البدوية؟' : 'Why Choose Jameed Badawya?'}
+                {language === 'ar' ? 'لماذا تختار جميد البدوية؟' : 'Why Choose Jameed Al Badawia?'}
               </h2>
             </div>
 
@@ -331,7 +331,7 @@ const JameedBadawya = () => {
             <p className="text-xl text-white/90 mb-8">
               {language === 'ar' 
                 ? 'اطلب جميد البدوية الآن واستمتع بالطعم البدوي الأصيل' 
-                : 'Order Jameed Badawya now and enjoy the authentic Bedouin taste'}
+                : 'Order Jameed Al Badawia now and enjoy the authentic Bedouin taste'}
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Button 

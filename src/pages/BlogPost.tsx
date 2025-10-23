@@ -32,7 +32,7 @@ const BlogPost = () => {
     'alfursan-excellence-journey': {
       id: '1',
       title: 'الفرسان الرباعية: رحلة التميز في صناعة الجميد الأردني',
-      titleEn: 'Al Fursan Quadruple: Journey of Excellence in Jordanian Jameed Manufacturing',
+      titleEn: 'Al-Fursan Al-Rubaiah: Journey of Excellence in Jordanian Products Manufacturing',
       content: `
         <p class="lead text-lg font-medium">شركة الفرسان الرباعية للإدارة والاستثمار هي شركة رائدة في صناعة المنتجات الأردنية الأصيلة، تأسست منذ أكثر من 20 عاماً من الخبرة في مجال الأغذية. بدأنا كعمل عائلي، ونمت خبرتنا لتصبح علامة تجارية ناجحة تمتلك قاعدة عملاء واسعة محلياً ودولياً.</p>
 
@@ -124,7 +124,7 @@ const BlogPost = () => {
     if (post) {
       document.title = language === 'ar'
         ? `${post.title} | الفرسان الرباعية`
-        : `${post.titleEn} | Al Fursan Quadruple`;
+        : `${post.titleEn} | Al-Fursan Al-Rubaiah`;
       
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {

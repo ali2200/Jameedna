@@ -17,14 +17,14 @@ const About = () => {
 
   useEffect(() => {
     document.title = language === 'ar' 
-      ? "من نحن - الفرسان الرباعية | About Al Fursan Quadruple"
-      : "About - Al Fursan Quadruple | Traditional Jordanian Jameed";
+      ? "من نحن - الفرسان الرباعية | About Al-Fursan Al-Rubaiah"
+      : "About - Al-Fursan Al-Rubaiah | Traditional Jordanian Products";
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', language === 'ar'
         ? 'تعرف على الفرسان الرباعية - أكثر من 20 عامًا من الخبرة في صناعة الجميد الأردني الأصيل، رؤيتنا ورسالتنا وقيمنا'
-        : 'Learn about Al Fursan Quadruple - Over 20 years of experience in producing authentic Jordanian Jameed, our vision, mission and values'
+        : 'Learn about Al-Fursan Al-Rubaiah - Over 20 years of experience in producing authentic Jordanian products, our vision, mission and values'
       );
     }
   }, [language]);
@@ -92,7 +92,7 @@ const About = () => {
                 <div className="relative rounded-3xl overflow-hidden shadow-glow">
                   <img 
                     src={factoryWorkerImage}
-                    alt={language === 'ar' ? 'عامل في مصنع الفرسان الرباعية' : 'Worker at Al Fursan Quadruple factory'}
+                    alt={language === 'ar' ? 'عامل في مصنع الفرسان الرباعية' : 'Worker at Al-Fursan Al-Rubaiah factory'}
                     className="w-full h-auto object-cover"
                     data-testid="img-factory-worker"
                   />

@@ -40,8 +40,8 @@ const ProductShowcase = () => {
     },
     {
       id: 'jameed-badawya',
-      name: language === 'ar' ? 'جميد البدوية' : 'Jameed Badawya',
-      nameEn: 'Jameed Badawya',
+      name: language === 'ar' ? 'جميد البدوية' : 'Jameed Al Badawia',
+      nameEn: 'Jameed Al Badawia',
       ingredients: language === 'ar' ? '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.' : '100% pure Jameed (fresh pasteurized sheep milk, salt, starter culture), water, spices, salt.',
       features: t('products.jameedBadawya.features'),
       certificates: ['Halal', 'FDA', 'HACCP'],

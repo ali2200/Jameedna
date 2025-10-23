@@ -49,7 +49,7 @@ const RequestQuote = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.title = language === 'ar'
       ? "طلب عرض سعر - الفرسان الرباعية | Request Quote"
-      : "Request Quote - Al Fursan Quadruple | Get a Price Estimate";
+      : "Request Quote - Al-Fursan Al-Rubaiah | Get a Price Estimate";
       
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
@@ -90,7 +90,7 @@ const RequestQuote = () => {
     },
     { 
       value: 'jameed-badawya', 
-      label: language === 'ar' ? 'جميد بدوية - Jameed Badawya' : 'Jameed Badawya'
+      label: language === 'ar' ? 'جميد البدوية - Jameed Al Badawia' : 'Jameed Al Badawia'
     },
     { 
       value: 'other', 

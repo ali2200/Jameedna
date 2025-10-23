@@ -71,7 +71,7 @@ const Footer = () => {
                   {language === 'ar' ? 'جميدنا زمان' : 'Jameedna Zaman'}
                 </li>
                 <li className="text-primary-foreground/80 text-sm">
-                  {language === 'ar' ? 'جميد بدوية' : 'Jameed Badawya'}
+                  {language === 'ar' ? 'جميد بدوية' : 'Jameed Al Badawia'}
                 </li>
                 <li className="text-primary-foreground/80 text-sm">
                   {language === 'ar' ? 'منتجات قادمة...' : 'More coming soon...'}

@@ -16,7 +16,7 @@ const JameednaZaman = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.title = language === 'ar' 
       ? "جميدنا زمان - الفرسان الرباعية | Jameedna Zaman"
-      : "Jameedna Zaman - Al Fursan Quadruple | Traditional Jordanian Jameed";
+      : "Jameedna Zaman - Al-Fursan Al-Rubaiah | Traditional Jordanian Jameed";
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {

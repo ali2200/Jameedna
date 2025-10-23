@@ -14,7 +14,7 @@ const Certificates = () => {
   useEffect(() => {
     document.title = language === 'ar'
       ? "الشهادات والجودة - الفرسان الرباعية | Quality & Certificates"
-      : "Quality & Certificates - Al Fursan Quadruple | International Standards";
+      : "Quality & Certificates - Al-Fursan Al-Rubaiah | International Standards";
       
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
@@ -220,7 +220,7 @@ const Certificates = () => {
                 <div className="relative h-64 lg:h-auto">
                   <img 
                     src={productionExcellenceImage} 
-                    alt={language === 'ar' ? 'خطوط الإنتاج في مصنع الفرسان الرباعية' : 'Production lines at Al Fursan Quadruple factory'}
+                    alt={language === 'ar' ? 'خطوط الإنتاج في مصنع الفرسان الرباعية' : 'Production lines at Al-Fursan Al-Rubaiah factory'}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent"></div>

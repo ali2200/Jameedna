@@ -14,16 +14,16 @@ const Index = () => {
   useEffect(() => {
     // Set document title for SEO
     const title = language === 'ar'
-      ? "الفرسان الرباعية - مصنع الجميد الأردني الأصيل | Al Fursan Quadruple"
-      : "Al Fursan Quadruple - Authentic Jordanian Jameed Factory";
+      ? "الفرسان الرباعية - مصنع المنتجات الأردنية الأصيلة | Al-Fursan Al-Rubaiah"
+      : "Al-Fursan Al-Rubaiah - Authentic Jordanian Products Factory";
     document.title = title;
     
     // Add meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       const desc = language === 'ar'
-        ? 'مصنع الفرسان الرباعية للجميد الأردني الأصيل - أكثر من 20 عامًا من الخبرة في تصنيع جميدنا زمان وجميد بدوية بأعلى معايير الجودة العالمية'
-        : 'Al Fursan Quadruple Factory for authentic Jordanian Jameed - Over 20 years of experience in manufacturing Jameedna Zaman and Jameed Badawya with highest international quality standards';
+        ? 'مصنع الفرسان الرباعية للمنتجات الأردنية الأصيلة - أكثر من 20 عامًا من الخبرة في تصنيع جميدنا زمان وجميد البدوية بأعلى معايير الجودة العالمية'
+        : 'Al-Fursan Al-Rubaiah Factory for authentic Jordanian products - Over 20 years of experience in manufacturing Jameedna Zaman and Jameed Al Badawia with highest international quality standards';
       metaDescription.setAttribute('content', desc);
     }
 
@@ -32,7 +32,7 @@ const Index = () => {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "الفرسان الرباعية للإدارة والاستثمار",
-      "alternateName": "Al Fursan Quadruple",
+      "alternateName": "Al-Fursan Al-Rubaiah for Management and Investment",
       "description": "مصنع رائد في صناعة الألبان والجميد الأردني الأصيل",
       "url": "https://www.alfursanjo.com",
       "logo": "https://www.alfursanjo.com/logo.png",
