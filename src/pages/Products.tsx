@@ -215,28 +215,6 @@ const Products = () => {
                       </div>
                     </div>
 
-                    {/* Certificates */}
-                    <div className="mb-8">
-                      <h4 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-                        <Award className="h-5 w-5 text-primary" />
-                        {t('products.certificates')}
-                      </h4>
-                      <div className="flex flex-wrap gap-3">
-                        {product.certificates.map((cert, idx) => (
-                          <Badge 
-                            key={cert} 
-                            variant="secondary" 
-                            className="bg-gradient-glass backdrop-blur-sm border border-primary/20 text-primary 
-                                     hover:bg-primary/10 transition-all duration-300 px-4 py-2 font-semibold"
-                            data-testid={`badge-certificate-${product.id}-${idx}`}
-                          >
-                            <Shield className="h-3 w-3 mr-1 rtl:mr-0 rtl:ml-1" />
-                            {cert}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
                     {/* Action Buttons */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <Button 
