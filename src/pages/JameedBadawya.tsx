@@ -15,8 +15,8 @@ const JameedBadawya = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.title = language === 'ar'
-      ? "جميد البدوية - الفرسان الرباعية | Jameed Badawya"
-      : "Jameed Badawya - Al Fursan Quadruple | Traditional Bedouin Jameed";
+      ? "جميد البدوية - الفرسان الرباعية | Jameed Al Badawia"
+      : "Jameed Al Badawia - Al-Fursan Al-Rubaiah | Traditional Bedouin Jameed";
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {

@@ -83,30 +83,30 @@ const translations: Record<Language, Record<string, string>> = {
     'home.hero.title': 'من خيرات الطبيعة الأردنية',
     'home.hero.title1': 'من خيرات الطبيعة',
     'home.hero.title2': 'الأردنية',
-    'home.hero.subtitle': 'نمنحكم جميد أصيل بطعم لا ينسى',
-    'home.hero.description': 'شركة الفرسان الرباعية - رائدة في صناعة المنتجات الأردنية الأصيلة، بجودة عالمية ونكهة تراثية أصيلة.',
+    'home.hero.subtitle': 'نمنحكم منتجات أصيلة بطعم لا ينسى',
+    'home.hero.description': 'الفرسان الرباعية للإدارة والاستثمار - رائدة في صناعة المنتجات الأردنية الأصيلة، بجودة عالمية ونكهة تراثية أصيلة.',
     'home.hero.watchVideo': 'شاهد الفيديو التعريفي',
     'home.hero.viewProducts': 'عرض المنتجات',
     'home.hero.requestQuote': 'اطلب عرض سعر الآن',
     
     'home.discover.title': 'اكتشف المزيد',
     'home.about.badge': 'عن الشركة',
-    'home.about.title': 'أكثر من 20 عاماً من الخبرة في صناعة الجميد الأردني الأصيل',
+    'home.about.title': 'جودة الفرسان',
     'home.about.description': 'شركة الفرسان الرباعية للإدارة والاستثمار هي شركة رائدة في صناعة المنتجات الأردنية الأصيلة. تأسست منذ أكثر من 20 عاماً من الخبرة في مجال الأغذية. بدأنا كعمل عائلي، ونمت خبرتنا لتصبح علامة تجارية ناجحة تمتلك قاعدة عملاء واسعة محلياً ودولياً.',
     
     'home.values.title': 'قيمنا الأساسية',
     'home.values.quality.title': 'الجودة',
     'home.values.quality.desc': 'نلتزم بأعلى معايير الجودة في كل مراحل الإنتاج',
     'home.values.authenticity.title': 'الأصالة',
-    'home.values.authenticity.desc': 'نحافظ على الطعم التقليدي الأصيل للجميد الأردني',
+    'home.values.authenticity.desc': 'نحافظ على الطعم التقليدي الأصيل للمنتجات الأردنية',
     'home.values.innovation.title': 'الابتكار',
     'home.values.innovation.desc': 'نستخدم أحدث التقنيات في التعبئة والتغليف',
     'home.values.trust.title': 'الثقة',
     'home.values.trust.desc': 'نبني علاقات طويلة الأمد مع عملائنا',
     
     'home.products.badge': 'منتجاتنا',
-    'home.products.title': 'منتجات الجميد الأصيل',
-    'home.products.description': 'نفخر بتقديم مجموعة متنوعة من منتجات الجميد الأردني الأصيل بأعلى معايير الجودة',
+    'home.products.title': 'المنتجات الأصيلة',
+    'home.products.description': 'نفخر بتقديم مجموعة متنوعة من المنتجات الأردنية الأصيلة بأعلى معايير الجودة',
     
     'home.certificates.badge': 'الشهادات والجودة',
     'home.certificates.title': 'معايير الجودة العالمية',
@@ -118,12 +118,12 @@ const translations: Record<Language, Record<string, string>> = {
     'home.stats.customers': 'عميل سعيد',
     
     'home.cta.title': 'هل أنت مستعد للبدء؟',
-    'home.cta.description': 'تواصل معنا اليوم واحصل على أفضل منتجات الجميد الأردني الأصيل',
+    'home.cta.description': 'تواصل معنا اليوم واحصل على أفضل المنتجات الأردنية الأصيلة',
     
     // Products Page
     'products.hero.badge': 'منتجاتنا المميزة',
-    'products.hero.title': 'منتجات الجميد الأصيل',
-    'products.hero.description': 'اكتشف مجموعة منتجاتنا من الجميد الأردني الأصيل',
+    'products.hero.title': 'المنتجات الأصيلة',
+    'products.hero.description': 'اكتشف مجموعة منتجاتنا الأردنية الأصيلة',
     'products.hero.subtitle': 'طعم أصيل • جودة استثنائية • تراث أردني',
     
     'products.jameednaZaman.name': 'جميدنا زمان',
@@ -133,7 +133,7 @@ const translations: Record<Language, Record<string, string>> = {
     'products.jameednaZaman.features': 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',
     
     'products.jameedBadawya.name': 'جميد البدوية',
-    'products.jameedBadawya.nameEn': 'Jameed Badawya',
+    'products.jameedBadawya.nameEn': 'Jameed Al Badawia',
     'products.jameedBadawya.description': 'جميد بدوي تقليدي بلمسة حديثة، يجمع بين النكهة الأصيلة والتعبئة الصحية العصرية لتجربة فريدة وصحية',
     'products.jameedBadawya.features': 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',
     
@@ -187,7 +187,7 @@ const translations: Record<Language, Record<string, string>> = {
     // About Page
     'about.hero.badge': 'من نحن',
     'about.hero.title': 'شركة الفرسان الرباعية',
-    'about.hero.subtitle': 'رائدة في صناعة الجميد الأردني الأصيل منذ 2004',
+    'about.hero.subtitle': 'رائدة في صناعة المنتجات الأردنية الأصيلة منذ 2004',
     
     'about.story.title': 'قصتنا',
     'about.vision.title': 'رؤيتنا',
@@ -238,37 +238,37 @@ const translations: Record<Language, Record<string, string>> = {
     'common.featured': 'Featured Product',
     'common.home': 'Home',
     'common.products': 'Products',
-    'common.companyName': 'Al Fursan Quadruple',
+    'common.companyName': 'Al-Fursan Al-Rubaiah for Management and Investment',
     
     // Home Page
     'home.hero.badge': 'Leading Manufacturer Since 20+ Years',
     'home.hero.title': 'From the Bounties of Jordanian Nature',
     'home.hero.title1': 'From the Bounties of',
     'home.hero.title2': 'Jordanian Nature',
-    'home.hero.subtitle': 'We Bring You Authentic Jameed with Unforgettable Taste',
-    'home.hero.description': 'Al Fursan Quadruple - A leader in authentic Jordanian products manufacturing, with world-class quality and traditional heritage flavor.',
+    'home.hero.subtitle': 'We Bring You Authentic Products with Unforgettable Taste',
+    'home.hero.description': 'Al-Fursan Al-Rubaiah for Management and Investment - A leader in authentic Jordanian products manufacturing, with world-class quality and traditional heritage flavor.',
     'home.hero.watchVideo': 'Watch Intro Video',
     'home.hero.viewProducts': 'View Products',
     'home.hero.requestQuote': 'Request Quote Now',
     
     'home.discover.title': 'Discover More',
     'home.about.badge': 'About the Company',
-    'home.about.title': 'Over 20 Years of Experience in Authentic Jordanian Jameed Manufacturing',
-    'home.about.description': 'Al Fursan Quadruple for Management and Investment is a leading company in authentic Jordanian products manufacturing. Established over 20 years ago with expertise in the food industry. We started as a family business and grew our experience to become a successful brand with an extensive customer base locally and internationally.',
+    'home.about.title': 'Al-Fursan Quality',
+    'home.about.description': 'Al-Fursan Al-Rubaiah for Management and Investment is a leading company in authentic Jordanian products manufacturing. Established over 20 years ago with expertise in the food industry. We started as a family business and grew our experience to become a successful brand with an extensive customer base locally and internationally.',
     
     'home.values.title': 'Our Core Values',
     'home.values.quality.title': 'Quality',
     'home.values.quality.desc': 'We commit to the highest quality standards in every production stage',
     'home.values.authenticity.title': 'Authenticity',
-    'home.values.authenticity.desc': 'We preserve the traditional authentic taste of Jordanian Jameed',
+    'home.values.authenticity.desc': 'We preserve the traditional authentic taste of Jordanian Products',
     'home.values.innovation.title': 'Innovation',
     'home.values.innovation.desc': 'We use the latest technologies in packaging and processing',
     'home.values.trust.title': 'Trust',
     'home.values.trust.desc': 'We build long-term relationships with our customers',
     
     'home.products.badge': 'Our Products',
-    'home.products.title': 'Authentic Jameed Products',
-    'home.products.description': 'We are proud to offer a diverse range of authentic Jordanian Jameed products with the highest quality standards',
+    'home.products.title': 'Authentic Products',
+    'home.products.description': 'We are proud to offer a diverse range of authentic Jordanian products with the highest quality standards',
     
     'home.certificates.badge': 'Certificates & Quality',
     'home.certificates.title': 'International Quality Standards',
@@ -280,12 +280,12 @@ const translations: Record<Language, Record<string, string>> = {
     'home.stats.customers': 'Happy Customers',
     
     'home.cta.title': 'Ready to Get Started?',
-    'home.cta.description': 'Contact us today and get the best authentic Jordanian Jameed products',
+    'home.cta.description': 'Contact us today and get the best authentic Jordanian products',
     
     // Products Page
     'products.hero.badge': 'Our Featured Products',
-    'products.hero.title': 'Authentic Jameed Products',
-    'products.hero.description': 'Discover our collection of authentic Jordanian Jameed',
+    'products.hero.title': 'Authentic Products',
+    'products.hero.description': 'Discover our collection of authentic Jordanian products',
     'products.hero.subtitle': 'Authentic Taste • Exceptional Quality • Jordanian Heritage',
     
     'products.jameednaZaman.name': 'Jameedna Zaman',
@@ -294,8 +294,8 @@ const translations: Record<Language, Record<string, string>> = {
     'products.jameednaZaman.ingredients': '100% pure Jameed (fresh pasteurized sheep milk, salt, starter culture), water, spices, salt.',
     'products.jameednaZaman.features': 'Washed Jameed free from all impurities, dissolved in sterilized water, cooked and packaged in a sterile, hermetically sealed carton packet.',
     
-    'products.jameedBadawya.name': 'Jameed Badawya',
-    'products.jameedBadawya.nameEn': 'Jameed Badawya',
+    'products.jameedBadawya.name': 'Jameed Al Badawia',
+    'products.jameedBadawya.nameEn': 'Jameed Al Badawia',
     'products.jameedBadawya.description': 'Traditional Bedouin Jameed with a modern touch, combining authentic flavor and modern healthy packaging for a unique and healthy experience',
     'products.jameedBadawya.features': 'Washed Jameed free from all impurities, dissolved in sterilized water, cooked and packaged in a sterile, hermetically sealed carton packet.',
     
@@ -348,8 +348,8 @@ const translations: Record<Language, Record<string, string>> = {
     
     // About Page
     'about.hero.badge': 'About Us',
-    'about.hero.title': 'Al Fursan Quadruple Company',
-    'about.hero.subtitle': 'Leading in Authentic Jordanian Jameed Manufacturing Since 2004',
+    'about.hero.title': 'Al-Fursan Al-Rubaiah for Management and Investment',
+    'about.hero.subtitle': 'Leading in Authentic Jordanian Products Manufacturing Since 2004',
     
     'about.story.title': 'Our Story',
     'about.vision.title': 'Our Vision',
@@ -357,7 +357,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Blog Page
     'blog.hero.title': 'Our News & Articles',
-    'blog.hero.description': 'Follow the latest Al Fursan Quadruple news and discover more about the traditional Jameed world',
+    'blog.hero.description': 'Follow the latest Al-Fursan Al-Rubaiah news and discover more about our traditional products',
     'blog.hero.subtitle': 'Our News & Articles',
     
     'blog.search': 'Search',

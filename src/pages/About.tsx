@@ -43,7 +43,7 @@ const About = () => {
               {t('about.hero.badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in-up" data-testid="heading-about">
-              {language === 'ar' ? 'الفرسان الرباعية للإدارة والاستثمار' : 'Al Fursan Quadruple for Management & Investment'}
+              {language === 'ar' ? 'الفرسان الرباعية للإدارة والاستثمار' : 'Al-Fursan Al-Rubaiah for Management & Investment'}
             </h1>
             <p className="text-lg md:text-xl text-primary-foreground/90 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }} data-testid="text-tagline">
               {t('about.hero.subtitle')}

@@ -52,7 +52,7 @@ const Header = () => {
             <div className="flex-shrink-0">
               {/* Company Logo */}
               <div className="relative transition-all duration-300 group-hover:scale-105">
-                 <img src="/assets/images/alfursan-logo.png" alt="شعار الفرسان الرباعية للإدارة والاستثمار" className={cn("h-10 w-auto object-contain transition-all duration-500", isScrolled || location.pathname !== '/' ? "brightness-100 contrast-100 saturate-100" : "brightness-0 invert contrast-100")} loading="eager" decoding="async" />
+                 <img src="/assets/images/alfursan-logo.png" alt="شعار الفرسان الرباعية للإدارة والاستثمار" className={cn("h-14 w-auto object-contain transition-all duration-500", isScrolled || location.pathname !== '/' ? "brightness-100 contrast-100 saturate-100" : "brightness-100 contrast-100 saturate-100")} loading="eager" decoding="async" />
                 {/* Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-primary rounded-lg opacity-0 blur-lg -z-10 
                               group-hover:opacity-20 transition-opacity duration-300" />

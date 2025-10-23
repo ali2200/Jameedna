@@ -35,11 +35,8 @@ const Hero = () => {
           />
         </div>
         
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/70 to-primary-dark/90" />
-        
-        {/* Additional Glass Effect Overlay */}
-        <div className="absolute inset-0 bg-gradient-hero opacity-60" />
+        {/* Light Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-black/5 to-black/10" />
         
         {/* Floating Particles Effect */}
         <div className="absolute inset-0 overflow-hidden">
@@ -63,24 +60,24 @@ const Hero = () => {
           {/* Modern Heading with Glass Effect */}
           <div className="mx-auto max-w-5xl">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 backdrop-blur-sm mb-8 animate-fade-in-up">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
-              <span className="text-sm text-primary-foreground/90">{t('home.hero.badge')}</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm mb-8 animate-fade-in-up">
+              <Sparkles className="h-4 w-4 text-primary" />
+              <span className="text-sm text-primary font-medium">{t('home.hero.badge')}</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground mb-4 sm:mb-6 animate-fade-in-up leading-tight">
-              <span className="block bg-gradient-to-r from-primary-foreground to-primary-foreground/80 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in-up leading-tight">
+              <span className="block text-primary drop-shadow-lg">
                 {t('home.hero.title1')}
               </span>
-              <span className="block bg-gradient-to-r from-primary-light to-primary-foreground bg-clip-text text-transparent animate-glow">
+              <span className="block text-primary drop-shadow-lg animate-glow">
                 {t('home.hero.title2')}
               </span>
-              <span className="block text-primary-foreground/90 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-3">
+              <span className="block text-primary/90 drop-shadow-md text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-3">
                 {t('home.hero.subtitle')}
               </span>
             </h1>
 
-            <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto leading-relaxed animate-slide-in-right px-4 sm:px-0">
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-foreground/90 drop-shadow-md max-w-2xl mx-auto leading-relaxed animate-slide-in-right px-4 sm:px-0">
               {t('home.hero.description')}
             </p>
           </div>
@@ -89,14 +86,14 @@ const Hero = () => {
           <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in-scale px-4 sm:px-0">
             <Button 
               size="lg" 
-              className="group relative overflow-hidden bg-primary-foreground text-primary hover:bg-primary-foreground/90 
+              className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 
                        shadow-glass px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold rounded-2xl transition-all duration-300 
-                       hover:scale-105 hover:shadow-glow border border-primary-foreground/20 w-full sm:w-auto"
+                       hover:scale-105 hover:shadow-glow border border-primary/20 w-full sm:w-auto"
               onClick={() => setIsVideoOpen(true)}
               data-testid="button-watch-video"
             >
               {/* Shimmer Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/20 to-transparent 
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
                             -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
               <Play className={`${dir === 'rtl' ? 'ml-2' : 'mr-2'} h-5 w-5 transition-transform group-hover:scale-110`} />
               {t('home.hero.watchVideo')}
@@ -106,11 +103,11 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="group relative overflow-hidden bg-primary-foreground/5 border-2 border-primary-foreground/30 
-                         text-primary-foreground hover:bg-primary-foreground/10 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base 
+                className="group relative overflow-hidden bg-white/95 border-2 border-primary/30 
+                         text-primary hover:bg-white backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base 
                          font-semibold rounded-2xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/10 to-transparent 
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent 
                               -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
                 <Package className={`${dir === 'rtl' ? 'ml-2' : 'mr-2'} h-5 w-5 transition-transform group-hover:scale-110`} />
                 {t('home.hero.viewProducts')}
@@ -120,12 +117,12 @@ const Hero = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="group relative overflow-hidden bg-primary-foreground/5 border-2 border-primary-foreground/30 
-                       text-primary-foreground hover:bg-primary-foreground/10 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base 
+              className="group relative overflow-hidden bg-white/95 border-2 border-primary/30 
+                       text-primary hover:bg-white backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base 
                        font-semibold rounded-2xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
               onClick={() => navigate('/request-quote')}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/10 to-transparent 
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent 
                             -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
               {t('home.hero.requestQuote')}
             </Button>
@@ -136,7 +133,7 @@ const Hero = () => {
 
       {/* Simple Centered Text */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <p className="text-primary-foreground/80 text-base font-medium cursor-pointer hover:text-primary-foreground transition-colors duration-300"
+        <p className="text-primary/80 text-base font-medium cursor-pointer hover:text-primary transition-colors duration-300"
            onClick={() => {
              const aboutSection = document.getElementById('about');
              if (aboutSection) {
@@ -153,7 +150,7 @@ const Hero = () => {
       {/* Video Dialog */}
       <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
         <DialogContent className="max-w-5xl w-[95vw] p-0 bg-background/95 backdrop-blur-xl border-2 border-primary/20 overflow-hidden">
-          <DialogTitle className="sr-only">{language === 'ar' ? 'الفيديو التعريفي - شركة الفرسان الرباعية' : 'Intro Video - Al Fursan Quadruple'}</DialogTitle>
+          <DialogTitle className="sr-only">{language === 'ar' ? 'الفيديو التعريفي - شركة الفرسان الرباعية' : 'Intro Video - Al-Fursan Al-Rubaiah'}</DialogTitle>
           <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
             <iframe
               className="absolute inset-0 w-full h-full rounded-lg"
