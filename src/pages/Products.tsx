@@ -88,6 +88,36 @@ const Products = () => {
           dimensions: '9cm x 9.5cm x 6.5cm'
         }
       ]
+    },
+    {
+      id: 'medjoul-dates',
+      name: 'التمر المجدول',
+      nameEn: 'Medjoul Dates',
+      description: 'يُعرف باسم "ملك التمور"، التمر المجدول محبوب عالمياً لنكهته الغنية وحلاوته الطبيعية وقوامه الطري.',
+      ingredients: 'تمر مجدول طبيعي 100%، من مزارع الأردن المختارة بعناية.',
+      features: 'تمر مجدول عالي الجودة، معبأ بطريقة صحية، غني بالألياف والعناصر الغذائية الطبيعية.',
+      image: '/medjoul-dates-package.png',
+      certificates: ['ISO', 'HACCP', 'Halal'],
+      link: '/products/medjoul-dates',
+      gradient: 'from-amber-600 to-amber-800',
+      sizes: [
+        {
+          size: '5 kg',
+          barcode: 'Coming Soon',
+          weight: '5 kg',
+          netWeight: '11 lbs',
+          packagingType: 'Premium',
+          dimensions: 'Various Sizes'
+        },
+        {
+          size: '1 kg',
+          barcode: 'Coming Soon',
+          weight: '1 kg',
+          netWeight: '2.2 lbs',
+          packagingType: 'Premium',
+          dimensions: 'Various Sizes'
+        }
+      ]
     }
   ];
 

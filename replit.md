@@ -66,6 +66,15 @@ The application includes image optimization strategies, lazy loading implementat
 
 ## Recent Changes
 
+### October 2025 - Medjoul Dates Product Addition
+- **New Product Launch**: Added Medjoul Dates (التمر المجدول) as the third product line in the company's portfolio
+- **Full Integration**: Product integrated across all pages including ProductShowcase, Products page, Footer, ContactRFQ, and RequestQuote forms
+- **Bilingual Content**: Complete Arabic and English translations added to LanguageContext for product name, description, ingredients, and features
+- **Product Details**: Includes premium packaging options (5kg and 1kg sizes), quality certifications (ISO, HACCP, Halal), and "King of Dates" positioning
+- **Consistent Styling**: Product card styling matches existing products with amber gradient theme, certificate badges, and size specifications
+- **Image Asset**: Product image path set to `/medjoul-dates-package.png` (requires image upload to public folder)
+- **Forms Updated**: Product now available for quote requests and RFQ submissions alongside existing Jameed products
+
 ### October 2025 - Complete Rebranding Update
 - **Company Name Update**: Updated all references from "Al Fursan Quadruple" to "Al-Fursan Al-Rubaiah for Management and Investment" throughout the codebase
 - **Product Naming**: Updated "Jameed Badawya" to "Jameed Al Badawia" across all components, pages, and translation files

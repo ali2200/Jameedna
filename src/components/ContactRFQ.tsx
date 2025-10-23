@@ -48,7 +48,8 @@ const ContactRFQ = () => {
 
   const products = [
     { value: 'jameedna-zaman', label: language === 'ar' ? 'جميدنا زمان' : 'Jameedna Zaman' },
-    { value: 'jameed-badawya', label: language === 'ar' ? 'جميد بدوية' : 'Jameed Al Badawia' },
+    { value: 'jameed-badawya', label: language === 'ar' ? 'جميد البدوية' : 'Jameed Al Badawia' },
+    { value: 'medjoul-dates', label: language === 'ar' ? 'التمر المجدول' : 'Medjoul Dates' },
     { value: 'mixed-order', label: language === 'ar' ? 'طلبية مختلطة' : 'Mixed Order' },
     { value: 'other', label: language === 'ar' ? 'منتج آخر' : 'Other Product' }
   ];

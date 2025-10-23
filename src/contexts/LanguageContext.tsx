@@ -137,6 +137,12 @@ const translations: Record<Language, Record<string, string>> = {
     'products.jameedBadawya.description': 'جميد بدوي تقليدي بلمسة حديثة، يجمع بين النكهة الأصيلة والتعبئة الصحية العصرية لتجربة فريدة وصحية',
     'products.jameedBadawya.features': 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',
     
+    'products.medjoulDates.name': 'التمر المجدول',
+    'products.medjoulDates.nameEn': 'Medjoul Dates',
+    'products.medjoulDates.description': 'يُعرف باسم "ملك التمور"، التمر المجدول محبوب عالمياً لنكهته الغنية وحلاوته الطبيعية وقوامه الطري. من قلب الأردن، نهتم بإنتاج وتعبئة تمور مجدول فاخرة بأعلى معايير الجودة.',
+    'products.medjoulDates.ingredients': 'تمر مجدول طبيعي 100%، من مزارع الأردن المختارة بعناية.',
+    'products.medjoulDates.features': 'تمر مجدول عالي الجودة، معبأ بطريقة صحية، غني بالألياف والعناصر الغذائية الطبيعية، خالٍ من المواد الحافظة.',
+    
     'products.ingredients': 'المكونات',
     'products.features': 'المميزات',
     'products.specifications': 'المواصفات',
@@ -298,6 +304,12 @@ const translations: Record<Language, Record<string, string>> = {
     'products.jameedBadawya.nameEn': 'Jameed Al Badawia',
     'products.jameedBadawya.description': 'Traditional Bedouin Jameed with a modern touch, combining authentic flavor and modern healthy packaging for a unique and healthy experience',
     'products.jameedBadawya.features': 'Washed Jameed free from all impurities, dissolved in sterilized water, cooked and packaged in a sterile, hermetically sealed carton packet.',
+    
+    'products.medjoulDates.name': 'Medjoul Dates',
+    'products.medjoulDates.nameEn': 'Medjoul Dates',
+    'products.medjoulDates.description': 'Known as the "King of Dates," Medjoul dates are cherished worldwide for their rich flavor, natural sweetness, and soft texture. From the heart of Jordan, we take pride in producing and packing premium Medjoul dates with the highest standards of quality.',
+    'products.medjoulDates.ingredients': '100% natural Medjoul dates from carefully selected Jordanian farms.',
+    'products.medjoulDates.features': 'Premium quality Medjoul dates, hygienically packaged, rich in fiber and natural nutrients, free from preservatives.',
     
     'products.ingredients': 'Ingredients',
     'products.features': 'Features',

@@ -93,6 +93,10 @@ const RequestQuote = () => {
       label: language === 'ar' ? 'جميد البدوية - Jameed Al Badawia' : 'Jameed Al Badawia'
     },
     { 
+      value: 'medjoul-dates', 
+      label: language === 'ar' ? 'التمر المجدول - Medjoul Dates' : 'Medjoul Dates'
+    },
+    { 
       value: 'other', 
       label: language === 'ar' ? 'أخرى - Other' : 'Other'
     }

@@ -64,6 +64,33 @@ const ProductShowcase = () => {
           dimensions: '9cm x 9.5cm x 6.5cm'
         }
       ]
+    },
+    {
+      id: 'medjoul-dates',
+      name: language === 'ar' ? 'التمر المجدول' : 'Medjoul Dates',
+      nameEn: 'Medjoul Dates',
+      ingredients: t('products.medjoulDates.ingredients'),
+      features: t('products.medjoulDates.features'),
+      certificates: ['ISO', 'HACCP', 'Halal'],
+      image: '/medjoul-dates-package.png',
+      sizes: [
+        {
+          size: 1,
+          barcode: 'Coming Soon',
+          weight: '5 kg',
+          netWeight: '11 lbs',
+          packagingType: 'Premium',
+          dimensions: 'Various Sizes Available'
+        },
+        {
+          size: 2,
+          barcode: 'Coming Soon',
+          weight: '1 kg',
+          netWeight: '2.2 lbs',
+          packagingType: 'Premium',
+          dimensions: 'Various Sizes Available'
+        }
+      ]
     }
   ];
 
