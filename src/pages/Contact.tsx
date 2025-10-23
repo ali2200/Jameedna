@@ -101,7 +101,7 @@ const Contact = () => {
   ];
 
   const downloadCompanyProfile = () => {
-    window.open('/alfursan-company-profile.pdf', '_blank');
+    window.open('https://drive.google.com/file/d/1QVGI1nvAb_GgLAsa9WiLLf6HeHMWwKMf/view?usp=sharing', '_blank');
     
     toast({
       title: language === 'ar' ? 'جاري التحميل' : 'Downloading',

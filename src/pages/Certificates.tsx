@@ -27,7 +27,7 @@ const Certificates = () => {
   }, [language]);
 
   const downloadCompanyProfile = () => {
-    window.open('/alfursan-company-profile.pdf', '_blank');
+    window.open('https://drive.google.com/file/d/1QVGI1nvAb_GgLAsa9WiLLf6HeHMWwKMf/view?usp=sharing', '_blank');
   };
 
   return (
@@ -137,75 +137,6 @@ const Certificates = () => {
                   <p className="font-bold text-foreground text-sm">
                     {language === 'ar' ? 'صنع في الأردن' : 'Made in Jordan'}
                   </p>
-                </div>
-              </div>
-              
-              {/* Second Row - Additional FDA Logos */}
-              <div className="border-t border-gray-200 pt-8">
-                <h3 className="text-center text-lg font-semibold text-foreground mb-6">
-                  {language === 'ar' ? 'شهادات FDA الإضافية' : 'Additional FDA Certificates'}
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
-                  <div className="text-center">
-                    <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
-                      <img 
-                        src="/assets/images/industry-cert-1.png"
-                        alt="FDA Gold Approved Certificate"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <p className="font-bold text-foreground text-sm">FDA Gold</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
-                      <img 
-                        src="/assets/images/industry-cert-2.png"
-                        alt="FDA Red Stamp Certificate"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <p className="font-bold text-foreground text-sm">FDA Stamp</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
-                      <img 
-                        src="/assets/images/industry-cert-3.png"
-                        alt="FDA Green Badge Certificate"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <p className="font-bold text-foreground text-sm">FDA Badge</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
-                      <img 
-                        src="/assets/images/industry-cert-4.png"
-                        alt="FDA Green Check Certificate"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <p className="font-bold text-foreground text-sm">FDA Check</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
-                      <img 
-                        src="/assets/images/industry-cert-5.png"
-                        alt="FDA Black Text Certificate"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <p className="font-bold text-foreground text-sm">FDA Black</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-24 h-24 flex items-center justify-center mx-auto mb-4 p-2">
-                      <img 
-                        src="/assets/images/industry-cert-6.png"
-                        alt="FDA Red Badge Certificate"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <p className="font-bold text-foreground text-sm">FDA Red</p>
-                  </div>
                 </div>
               </div>
             </div>
