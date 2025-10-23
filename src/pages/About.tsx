@@ -66,23 +66,23 @@ const About = () => {
                 <div className="space-y-4 text-base text-muted-foreground leading-relaxed">
                   <p className="text-lg font-medium text-primary" data-testid="text-story-intro">
                     {language === 'ar' 
-                      ? 'في الفرسان الرباعية، نؤمن بالاستفادة من وفرة وغنى الأردن، حيث يتم التعامل مع منتجاتنا الغذائية بأقصى درجات العناية والاهتمام للحفاظ على نضارتها وخصائصها الأصيلة.'
-                      : 'At Al Fursan Quadruple, we believe in leveraging the abundance and richness of Jordan, where our food products are handled with the utmost care and attention to preserve their freshness and authentic characteristics.'}
+                      ? 'في الفرسان، لدينا التزام راسخ بالجودة المثالية. نحن نؤمن بالاستفادة من وفرة وغنى الأردن، حيث يتم التعامل مع منتجاتنا الغذائية بأقصى درجات العناية والاهتمام للحفاظ على نضارتها وخصائصها الأصيلة.'
+                      : 'ALFURSAN have a strong commitment to impeccable quality. We are of the mindset of taking advantage of the abundance and richness of Jordan, where our food products are handled with utmost care and attention to maintain their freshness and authentic traits.'}
                   </p>
                   <p data-testid="text-story-1">
                     {language === 'ar'
-                      ? 'نحن شركة تمتلك خبرة تزيد عن عشرين عامًا في صناعة الأغذية. بدأنا كعمل عائلي، حيث نشأت الإدارة العليا في هذا المجال وطبقت معرفتها لتحقيق منتجات عالية الجودة.'
-                      : 'We are a company with over twenty years of experience in the food industry. We started as a family business, where senior management grew up in this field and applied their knowledge to achieve high-quality products.'}
+                      ? 'الفرسان شركة تمتلك خبرة تزيد عن عشرين عامًا في صناعة الأغذية. بدأت كعمل عائلي، حيث نشأت الإدارة العليا داخل هذا المجال وطبقت معرفتها من أجل تحقيق منتجات عالية الجودة.'
+                      : 'ALFURSAN is a company with over twenty years of experience within the food industry. It started off as a family business, with the top management growing up within the field and implementing their knowledge in order to attain top-quality products.'}
                   </p>
                   <p data-testid="text-story-2">
                     {language === 'ar'
-                      ? 'كعلامة تجارية رائدة وناجحة في الأردن، مع تاريخ عريق في السوق وقاعدة عملاء واسعة، استطاع فريق الفرسان بناء حضور وسمعة قوية محليًا ودوليًا.'
-                      : 'As a leading and successful brand in Jordan, with a rich market history and broad customer base, the Al Fursan team has built a strong presence and reputation locally and internationally.'}
+                      ? 'كرائد قوي وناجح في الأردن، مع تاريخ عميق في السوق وقاعدة عملاء واسعة، استطاع فريق الفرسان بناء حضور وسمعة قوية محليًا ودوليًا.'
+                      : 'A solid, successful flagship in Jordan, with a deep history in the market as well as an extensive client base, has allowed the Al Fursan team to build a strong presence and reputation locally and internationally.'}
                   </p>
                   <p data-testid="text-story-3">
                     {language === 'ar'
-                      ? 'نحرص على معالجة المواد الخام لإنتاج منتجات غذائية عالية الجودة بأقصى درجات الاهتمام والنزاهة فيما يتعلق بالنظافة والحفاظ على جودتها الطبيعية وطعمها الأصيل.'
-                      : 'We ensure processing raw materials to produce high-quality food products with the utmost attention and integrity regarding cleanliness and preserving their natural quality and authentic taste.'}
+                      ? 'يتم التعامل مع اقتناء ومعالجة المواد الخام لإنشاء منتجات غذائية عالية الجودة بأقصى قدر من الاهتمام والنزاهة فيما يتعلق بالنظافة والحفاظ على جودتها الطبيعية وطعمها وأصالتها.'
+                      : 'The acquisition and processing of raw materials to create high-quality food products are handled with the utmost attention and integrity in regards to hygiene and conservancy of their natural quality, taste, and authenticity.'}
                   </p>
                 </div>
               </div>
@@ -136,8 +136,8 @@ const About = () => {
                       </h3>
                       <p className="text-muted-foreground leading-relaxed text-base" data-testid="text-vision">
                         {language === 'ar'
-                          ? 'أن نكون الخيار الأول للمنتجات الغذائية الأردنية الأصيلة عالميًا، من خلال الحفاظ على التراث والأصالة مع تطبيق أعلى معايير الجودة العالمية. نسعى للاستفادة من غنى الأردن وخيراته، ومعالجة منتجاتنا بعناية فائقة للحفاظ على نضارتها وخصائصها الطبيعية الأصيلة.'
-                          : 'To be the first choice for authentic Jordanian food products globally, by preserving heritage and authenticity while applying the highest international quality standards. We strive to leverage Jordan\'s richness and bounties, and process our products with utmost care to preserve their freshness and authentic natural characteristics.'}
+                          ? 'في الفرسان، لدينا التزام راسخ بالجودة المثالية. نحن نؤمن بالاستفادة من وفرة وغنى الأردن، حيث يتم التعامل مع منتجاتنا الغذائية بأقصى درجات العناية والاهتمام للحفاظ على نضارتها وخصائصها الأصيلة. الفرسان شركة تمتلك خبرة تزيد عن عشرين عامًا في صناعة الأغذية. بدأت كعمل عائلي، حيث نشأت الإدارة العليا داخل هذا المجال وطبقت معرفتها من أجل تحقيق منتجات عالية الجودة. كرائد قوي وناجح في الأردن، مع تاريخ عميق في السوق وقاعدة عملاء واسعة، استطاع فريق الفرسان بناء حضور وسمعة قوية محليًا ودوليًا. يتم التعامل مع اقتناء ومعالجة المواد الخام لإنشاء منتجات غذائية عالية الجودة بأقصى قدر من الاهتمام والنزاهة فيما يتعلق بالنظافة والحفاظ على جودتها الطبيعية وطعمها وأصالتها.'
+                          : 'ALFURSAN have a strong commitment to impeccable quality. We are of the mindset of taking advantage of the abundance and richness of Jordan, where our food products are handled with utmost care and attention to maintain their freshness and authentic traits. ALFURSAN is a company with over twenty years of experience within the food industry. It started off as a family business, with the top management growing up within the field and implementing their knowledge in order to attain top-quality products. A solid, successful flagship in Jordan, with a deep history in the market as well as an extensive client base, has allowed the Al Fursan team to build a strong presence and reputation locally and internationally. The acquisition and processing of raw materials to create high-quality food products are handled with the utmost attention and integrity in regards to hygiene and conservancy of their natural quality, taste, and authenticity.'}
                       </p>
                     </div>
                   </div>
@@ -159,8 +159,8 @@ const About = () => {
                       </h3>
                       <p className="text-muted-foreground leading-relaxed text-base" data-testid="text-mission">
                         {language === 'ar'
-                          ? 'نلتزم بإنتاج منتجات عالية الجودة من خلال استخدام التكنولوجيا المتقدمة والالتزام الصارم بمعايير السلامة. عملياتنا مبنية على الكفاءة والاستدامة، مدفوعة بالتزام وخبرة فريقنا بأكمله. نستثمر باستمرار في موظفينا والتكنولوجيا المتطورة والمعدات الحديثة لضمان جودة لا هوادة فيها وخدمة عملاء استثنائية.'
-                          : 'We commit to producing high-quality products through advanced technology and strict adherence to safety standards. Our operations are built on efficiency and sustainability, driven by the commitment and expertise of our entire team. We continuously invest in our employees, advanced technology, and modern equipment to ensure uncompromising quality and exceptional customer service.'}
+                          ? 'نحن ملتزمون بإنتاج منتجات ممتازة الجودة من خلال استخدام التكنولوجيا المتقدمة والالتزام الصارم بمعايير السلامة. عملياتنا مبنية على الكفاءة والاستدامة، مدفوعة بالتزام وخبرة فريقنا بأكمله. من خلال الاستثمار المستمر في موظفينا والتكنولوجيا المتطورة والمعدات الحديثة، نضمن جودة لا هوادة فيها وخدمة عملاء استثنائية.'
+                          : 'We are dedicated to producing premium-quality products through the use of advanced technology and strict adherence to safety standards. Our operations are built on efficiency and sustainability, driven by the commitment and expertise of our entire team. By continuously investing in our people, cutting-edge technology, and state-of-the-art equipment, we ensure uncompromising quality and exceptional customer service.'}
                       </p>
                     </div>
                   </div>
@@ -189,7 +189,7 @@ const About = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4">{language === 'ar' ? 'الالتزام' : 'Commitment'}</h3>
                 <p className="text-sm text-primary-foreground/90 leading-relaxed">
-                  {language === 'ar' ? 'نلتزم بفعل الصواب في جميع الأوقات' : 'We commit to doing what is right at all times'}
+                  {language === 'ar' ? 'نفعل الشيء الصحيح في جميع الأوقات' : 'We do the right thing at all times'}
                 </p>
               </div>
 
@@ -200,7 +200,7 @@ const About = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4">{language === 'ar' ? 'التواصل' : 'Communication'}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  {language === 'ar' ? 'نؤمن بالتواصل الواضح والفعال والتغذية الراجعة كأساس للنجاح' : 'We believe in clear and effective communication as a foundation for success'}
+                  {language === 'ar' ? 'نرى التواصل الواضح والمقصود والفعال والتغذية الراجعة بيننا وبين العالم كأكثر الطرق فعالية' : 'We see clear, intentional, and effective communication and feedback between each other and the world as the most effective way'}
                 </p>
               </div>
 
@@ -211,7 +211,7 @@ const About = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4">{language === 'ar' ? 'النزاهة' : 'Integrity'}</h3>
                 <p className="text-sm text-primary-foreground/90 leading-relaxed">
-                  {language === 'ar' ? 'نمارس أعمالنا بمعايير أخلاقية عالية وشفافية تامة' : 'We conduct business with high ethical standards and complete transparency'}
+                  {language === 'ar' ? 'نمارس أعمالنا من خلال معايير أخلاقية قوية والشفافية والصدق' : 'We conduct business through strong ethical standards, transparency and honesty'}
                 </p>
               </div>
 
@@ -222,7 +222,7 @@ const About = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4">{language === 'ar' ? 'المسؤولية' : 'Accountability'}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  {language === 'ar' ? 'نتحمل مسؤولياتنا ونسعى لتجاوز التوقعات' : 'We take responsibility and strive to exceed expectations'}
+                  {language === 'ar' ? 'نأخذ المبادرة لامتلاك مسؤولياتنا وتجاوز التوقعات' : 'We take initiative to own our responsibilities and exceed expectations'}
                 </p>
               </div>
 
@@ -233,7 +233,7 @@ const About = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4">{language === 'ar' ? 'العائلة' : 'Family'}</h3>
                 <p className="text-sm text-primary-foreground/90 leading-relaxed">
-                  {language === 'ar' ? 'نحب ونهتم وندعم بعضنا البعض كعائلة واحدة' : 'We love, care for, and support each other as one family'}
+                  {language === 'ar' ? 'نحب ونهتم وندعم بعضنا البعض' : 'We love, care, and support each other'}
                 </p>
               </div>
             </div>
@@ -280,8 +280,8 @@ const About = () => {
                   </div>
                   <p className="text-muted-foreground leading-relaxed text-base" data-testid="text-production">
                     {language === 'ar'
-                      ? 'يتم تشغيل جميع آلات المصنع من خلال نظام الإدارة الداخلي الذي يتم تحديثه وصيانته بانتظام. ما يميز هذا النظام هو أن جميع الآلات يتم التحكم بها إلكترونيًا وتسجل جميع المعلومات بدقة الثانية، مع تسجيل كافة بيانات الإنتاج.'
-                      : 'All factory machines operate through an internal management system that is regularly updated and maintained. What distinguishes this system is that all machines are electronically controlled and record all information to the second, with complete production data logging.'}
+                      ? 'يتم تشغيل جميع آلات المصنع من خلال نظام الإدارة الداخلي الذي يتم تحديثه وصيانته بانتظام. الجانب المثير للاهتمام في هذا النظام هو أن جميع الآلات يتم التحكم بها إلكترونيًا وتسجل جميع المعلومات وصولاً إلى الثانية، مع تسجيل كافة بيانات الإنتاج.'
+                      : 'All factory machinery is operated through the internal administration system that is consistently updated and maintained regularly. The interesting aspect of this system is that all machinery is controlled electronically and records all information down to the second, registering all data about production.'}
                   </p>
                 </CardContent>
               </Card>
@@ -308,8 +308,8 @@ const About = () => {
                   </div>
                   <p className="text-muted-foreground leading-relaxed text-base" data-testid="text-laboratory">
                     {language === 'ar'
-                      ? 'تفخر الفرسان بتوفير جميع قطع الغيار في الموقع مع وجود مهندسين مستعدين لإصلاح أي مشاكل قد تنشأ، مما يضمن استمرارية الإنتاج وأعلى مستويات الجودة في جميع الأوقات.'
-                      : 'Al Fursan takes pride in providing all spare parts on-site with engineers ready to fix any issues that may arise, ensuring production continuity and highest quality levels at all times.'}
+                      ? 'تفخر الفرسان أيضًا بتوفير جميع قطع الغيار في الموقع مع وجود مهندسين مستعدين لإصلاح أي مشاكل قد تنشأ.'
+                      : 'Al Fursan also prides itself on having all spare parts on site with engineers prepared to fix any problems that may arise.'}
                   </p>
                 </CardContent>
               </Card>
