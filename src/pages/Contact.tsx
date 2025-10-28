@@ -176,8 +176,8 @@ const Contact = () => {
                     <CardTitle className="text-lg">{item.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="font-semibold text-foreground mb-2">{item.info}</p>
-                    <p className="text-sm text-muted-foreground">{item.details}</p>
+                    <p className="font-semibold text-foreground mb-2" dir={item.icon === Phone ? "ltr" : undefined}>{item.info}</p>
+                    <p className="text-sm text-muted-foreground" dir={item.icon === Phone ? "ltr" : undefined}>{item.details}</p>
                   </CardContent>
                 </Card>
               ))}

@@ -83,7 +83,7 @@ const translations: Record<Language, Record<string, string>> = {
     'home.hero.title': 'من خيرات الطبيعة الأردنية',
     'home.hero.title1': 'من خيرات الطبيعة',
     'home.hero.title2': 'الأردنية',
-    'home.hero.subtitle': 'نمنحكم منتجات أصيلة بطعم لا ينسى',
+    'home.hero.subtitle': 'نمنحكم منتجات أصيلة بطعم لا يُنسى',
     'home.hero.description': 'الفرسان الرباعية للإدارة والاستثمار - رائدة في صناعة المنتجات الأردنية الأصيلة، بجودة عالمية ونكهة تراثية أصيلة.',
     'home.hero.watchVideo': 'شاهد الفيديو التعريفي',
     'home.hero.viewProducts': 'عرض المنتجات',

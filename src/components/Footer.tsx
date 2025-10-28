@@ -103,9 +103,9 @@ const Footer = () => {
                 <div className="flex items-start space-x-3 rtl:space-x-reverse">
                   <Phone className="h-4 w-4 text-primary-foreground/80 flex-shrink-0 mt-1" />
                   <div className="text-sm text-primary-foreground/80">
-                    <div>Tel: +962 2 626 4582</div>
-                    <div>Tel: +201147877414</div>
-                    <div>Fax: +962 2 626 4474</div>
+                    <div dir="ltr">Tel: +962 2 626 4582</div>
+                    <div dir="ltr">Tel: +201147877414</div>
+                    <div dir="ltr">Fax: +962 2 626 4474</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
