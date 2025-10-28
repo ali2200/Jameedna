@@ -64,15 +64,15 @@ const About = () => {
                   {language === 'ar' ? 'التزام راسخ بالجودة المثالية' : 'Firm Commitment to Perfect Quality'}
                 </h2>
                 <div className="space-y-4 text-base text-muted-foreground leading-relaxed">
-                  <p className="text-lg font-medium text-foreground" data-testid="text-story-intro">
+                  <p data-testid="text-story-intro">
                     {language === 'ar' 
                       ? 'في الفرسان، لدينا التزام راسخ بالجودة المثالية. نحن نؤمن بالاستفادة من وفرة وغنى الأردن، حيث يتم التعامل مع منتجاتنا الغذائية بأقصى درجات العناية والاهتمام للحفاظ على نضارتها وخصائصها الأصيلة.'
-                      : <><span className="text-primary font-bold">ALFURSAN</span> have a strong commitment to impeccable quality. We are of the mindset of taking advantage of the abundance and richness of Jordan, where our food products are handled with utmost care and attention to maintain their freshness and authentic traits.</>}
+                      : 'ALFURSAN have a strong commitment to impeccable quality. We are of the mindset of taking advantage of the abundance and richness of Jordan, where our food products are handled with utmost care and attention to maintain their freshness and authentic traits.'}
                   </p>
                   <p data-testid="text-story-1">
                     {language === 'ar'
                       ? 'الفرسان شركة تمتلك خبرة تزيد عن عشرين عامًا في صناعة الأغذية. بدأت كعمل عائلي، حيث نشأت الإدارة العليا داخل هذا المجال وطبقت معرفتها من أجل تحقيق منتجات عالية الجودة.'
-                      : <><span className="text-primary font-bold">ALFURSAN</span> is a company with over twenty years of experience within the food industry. It started off as a family business, with the top management growing up within the field and implementing their knowledge in order to attain top-quality products.</>}
+                      : 'ALFURSAN is a company with over twenty years of experience within the food industry. It started off as a family business, with the top management growing up within the field and implementing their knowledge in order to attain top-quality products.'}
                   </p>
                   <p data-testid="text-story-2">
                     {language === 'ar'
