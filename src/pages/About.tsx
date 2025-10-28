@@ -76,8 +76,8 @@ const About = () => {
                   </p>
                   <p data-testid="text-story-2">
                     {language === 'ar'
-                      ? <>كرائد قوي وناجح في الأردن، مع تاريخ عميق في السوق وقاعدة عملاء واسعة، إستطاع فريق <span className="text-primary font-bold">الفرسان</span> بناء حضور وسمعة قوية محليًا ودوليًا.</>
-                      : <>A solid, successful flagship in Jordan, with a deep history in the market as well as an extensive client base, has allowed the <span className="text-primary font-bold">Al Fursan</span> team to build a strong presence and reputation locally and internationally.</>}
+                      ? 'كرائد قوي وناجح في الأردن، مع تاريخ عميق في السوق وقاعدة عملاء واسعة، إستطاع فريق الفرسان بناء حضور وسمعة قوية محليًا ودوليًا.'
+                      : 'A solid, successful flagship in Jordan, with a deep history in the market as well as an extensive client base, has allowed the Al Fursan team to build a strong presence and reputation locally and internationally.'}
                   </p>
                   <p data-testid="text-story-3">
                     {language === 'ar'
