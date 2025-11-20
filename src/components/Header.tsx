@@ -44,7 +44,7 @@ const Header = () => {
       description: language === 'ar' ? "يتم تحضير ملف الشركة للتحميل..." : "Preparing company profile for download..."
     });
   };
-  return <header className={cn("fixed top-0 w-full z-50 transition-all duration-500", isScrolled || location.pathname !== '/' ? "bg-background/95 backdrop-blur-xl shadow-elegant border-b border-border/50" : "bg-transparent backdrop-blur-none")}>
+  return <header className="fixed top-0 w-full z-50 transition-all duration-500 bg-white shadow-elegant border-b border-border/50">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
@@ -75,9 +75,7 @@ const Header = () => {
                       "hover:scale-105 animate-fade-in-up",
                       isCurrent 
                         ? "bg-primary/90 text-primary-foreground shadow-glow" 
-                        : isScrolled || location.pathname !== '/' 
-                          ? "text-foreground hover:bg-accent/50 hover:text-accent-foreground" 
-                          : "text-primary-foreground/80 hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                        : "text-foreground hover:bg-accent/50 hover:text-accent-foreground"
                     )} 
                     style={{ animationDelay: `${index * 100}ms` }}
                     aria-current={isCurrent ? 'page' : undefined}
@@ -97,9 +95,7 @@ const Header = () => {
                       "hover:scale-105 animate-fade-in-up",
                       isCurrent 
                         ? "bg-primary/90 text-primary-foreground shadow-glow" 
-                        : isScrolled || location.pathname !== '/' 
-                          ? "text-foreground hover:bg-accent/50 hover:text-accent-foreground" 
-                          : "text-primary-foreground/80 hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                        : "text-foreground hover:bg-accent/50 hover:text-accent-foreground"
                     )} 
                     style={{ animationDelay: `${index * 100}ms` }}
                     aria-current={isCurrent ? 'page' : undefined}
@@ -119,7 +115,7 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-3 rtl:space-x-reverse">
             
 
-            <Button variant="ghost" size="sm" onClick={toggleLanguage} className={cn("relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105 group px-2 py-1 min-w-[50px]", isScrolled || location.pathname !== '/' ? "text-muted-foreground hover:text-foreground hover:bg-accent/50" : "text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10")}>
+            <Button variant="ghost" size="sm" onClick={toggleLanguage} className="relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105 group px-2 py-1 min-w-[50px] text-muted-foreground hover:text-foreground hover:bg-accent/50">
               <div className="absolute inset-0 bg-gradient-glass opacity-0 group-hover:opacity-100 
                             transition-opacity duration-300" />
               <span className="relative z-10 text-xs font-semibold">
@@ -142,7 +138,7 @@ const Header = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)} className={cn("transition-all duration-300 rounded-xl hover:scale-105", isScrolled || location.pathname !== '/' ? "text-foreground hover:bg-accent" : "text-primary-foreground hover:bg-primary-foreground/10")}>
+            <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)} className="transition-all duration-300 rounded-xl hover:scale-105 text-foreground hover:bg-accent">
               <span className="sr-only">Open main menu</span>
               {isMenuOpen ? <X className="block h-6 w-6 transition-transform duration-300 rotate-180" aria-hidden="true" /> : <Menu className="block h-6 w-6 transition-transform duration-300" aria-hidden="true" />}
             </Button>

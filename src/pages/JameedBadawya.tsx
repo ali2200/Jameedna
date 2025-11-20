@@ -34,7 +34,7 @@ const JameedBadawya = () => {
       barcode: '6251591112229',
       weight: '1000 gm',
       netWeight: '2.2 lbs',
-      packagingType: 'Aseptic',
+      packagingType: 'Combi Blocks',
       dimensions: '19.5cm x 10.5cm x 7cm'
     },
     {
@@ -42,7 +42,7 @@ const JameedBadawya = () => {
       barcode: '6251591112212',
       weight: '500 gm',
       netWeight: '1.1 lbs',
-      packagingType: 'Aseptic',
+      packagingType: 'Combi Blocks',
       dimensions: '9cm x 9.5cm x 6.5cm'
     }
   ];
@@ -61,8 +61,8 @@ const JameedBadawya = () => {
       icon: Package,
       title: language === 'ar' ? 'تعبئة صحية حديثة' : 'Modern Healthy Packaging',
       description: language === 'ar' 
-        ? 'تقنية Aseptic المتطورة تضمن سلامة المنتج والحفاظ على قيمته الغذائية' 
-        : 'Advanced Aseptic technology ensures product safety and preserves nutritional value'
+        ? 'تقنية كومبي بلوك المتطورة تضمن سلامة المنتج والحفاظ على قيمته الغذائية' 
+        : 'Advanced Combi Blocks technology ensures product safety and preserves nutritional value'
     },
     {
       icon: CheckCircle,

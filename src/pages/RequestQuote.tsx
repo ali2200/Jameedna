@@ -108,8 +108,8 @@ const RequestQuote = () => {
       label: language === 'ar' ? 'كرتون - Carton' : 'Carton'
     },
     { 
-      value: 'aseptic', 
-      label: language === 'ar' ? 'أسيبتك - Aseptic' : 'Aseptic'
+      value: 'combi-blocks', 
+      label: language === 'ar' ? 'كومبي بلوك - Combi Blocks' : 'Combi Blocks'
     },
     { 
       value: 'custom', 

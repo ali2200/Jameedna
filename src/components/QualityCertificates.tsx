@@ -246,7 +246,7 @@ const QualityCertificates = () => {
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold mb-2">18</div>
+                      <div className="text-3xl font-bold mb-2">24</div>
                       <div className="text-white/80 text-sm">
                         {language === 'ar' ? 'شهر مدة صلاحية' : 'Months Shelf Life'}
                       </div>

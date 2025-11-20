@@ -34,7 +34,7 @@ const JameednaZaman = () => {
       barcode: '6251591112205',
       weight: '1000 gm',
       netWeight: '2.2 lbs',
-      packagingType: 'Aseptic',
+      packagingType: 'Combi Blocks',
       dimensions: '19.5cm x 10.5cm x 7cm'
     },
     {
@@ -42,7 +42,7 @@ const JameednaZaman = () => {
       barcode: '6251591112199',
       weight: '500 gm',
       netWeight: '1.1 lbs',
-      packagingType: 'Aseptic',
+      packagingType: 'Combi Blocks',
       dimensions: '9cm x 9.5cm x 6.5cm'
     }
   ];

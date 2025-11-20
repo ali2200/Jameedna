@@ -31,11 +31,11 @@ const Products = () => {
   const products = [
     {
       id: 'jameedna-zaman',
-      name: 'جميدنا زمان',
-      nameEn: 'Jameedna Zaman',
-      description: 'جميد أردني أصيل مصنوع من حليب الغنم الطازج المبستر، معبأ بطريقة عصرية تحافظ على الطعم التقليدي الأصيل',
-      ingredients: '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.',
-      features: 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',
+      name: t('products.jameednaZaman.name'),
+      nameEn: t('products.jameednaZaman.nameEn'),
+      description: t('products.jameednaZaman.description'),
+      ingredients: t('products.jameednaZaman.ingredients'),
+      features: t('products.jameednaZaman.features'),
       image: '/jameedna-zaman-package.png',
       certificates: ['ISO 22000', 'HACCP', 'FDA'],
       link: '/products/jameedna-zaman',
@@ -46,7 +46,7 @@ const Products = () => {
           barcode: '6251591112205',
           weight: '1000 gm',
           netWeight: '2.2 lbs',
-          packagingType: 'Aseptic',
+          packagingType: 'Combi Blocks',
           dimensions: '19.5cm x 10.5cm x 7cm'
         },
         {
@@ -54,18 +54,18 @@ const Products = () => {
           barcode: '6251591112199',
           weight: '500 gm',
           netWeight: '1.1 lbs',
-          packagingType: 'Aseptic',
+          packagingType: 'Combi Blocks',
           dimensions: '9cm x 9.5cm x 6.5cm'
         }
       ]
     },
     {
       id: 'jameed-badawya',
-      name: 'جميد البدوية',
-      nameEn: 'Jameed Al Badawia',
-      description: 'جميد بدوي تقليدي بلمسة حديثة، يجمع بين النكهة الأصيلة والتعبئة الصحية العصرية لتجربة فريدة وصحية',
-      ingredients: '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.',
-      features: 'جميد مغسول وخالي من كافة الشوائب، محلول بماء معقم، مطبوخ ومعبأ في باكيت كارتون معقم، محكم الإغلاق.',
+      name: t('products.jameedBadawya.name'),
+      nameEn: t('products.jameedBadawya.nameEn'),
+      description: t('products.jameedBadawya.description'),
+      ingredients: t('products.jameedBadawya.ingredients'),
+      features: t('products.jameedBadawya.features'),
       image: '/jameed-badawya-package.png',
       certificates: ['Halal', 'FDA', 'HACCP'],
       link: '/products/jameed-badawya',
@@ -76,7 +76,7 @@ const Products = () => {
           barcode: '6251591112229',
           weight: '1000 gm',
           netWeight: '2.2 lbs',
-          packagingType: 'Aseptic',
+          packagingType: 'Combi Blocks',
           dimensions: '19.5cm x 10.5cm x 7cm'
         },
         {
@@ -84,18 +84,18 @@ const Products = () => {
           barcode: '6251591112212',
           weight: '500 gm',
           netWeight: '1.1 lbs',
-          packagingType: 'Aseptic',
+          packagingType: 'Combi Blocks',
           dimensions: '9cm x 9.5cm x 6.5cm'
         }
       ]
     },
     {
       id: 'medjoul-dates',
-      name: 'التمر المجدول',
-      nameEn: 'Medjoul Dates',
-      description: 'يُعرف باسم "ملك التمور"، التمر المجدول محبوب عالمياً لنكهته الغنية وحلاوته الطبيعية وقوامه الطري.',
-      ingredients: 'تمر مجدول طبيعي 100%، من مزارع الأردن المختارة بعناية.',
-      features: 'تمر مجدول عالي الجودة، معبأ بطريقة صحية، غني بالألياف والعناصر الغذائية الطبيعية.',
+      name: t('products.medjoulDates.name'),
+      nameEn: t('products.medjoulDates.nameEn'),
+      description: t('products.medjoulDates.description'),
+      ingredients: t('products.medjoulDates.ingredients'),
+      features: t('products.medjoulDates.features'),
       image: '/medjoul-dates-package.png',
       certificates: ['ISO', 'HACCP', 'Halal'],
       link: '/products/medjoul-dates',
@@ -201,7 +201,7 @@ const Products = () => {
                   <CardContent className="p-6 sm:p-8">
                     {/* Product Description */}
                     <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
-                      {language === 'ar' ? product.description : t(`products.${product.id.replace('-', '')}.description`)}
+                      {product.description}
                     </p>
 
                     {/* Product Ingredients */}
@@ -211,7 +211,7 @@ const Products = () => {
                         {t('products.ingredients')}
                       </h4>
                       <p className="text-muted-foreground leading-relaxed">
-                        {language === 'ar' ? product.ingredients : t(`products.${product.id.replace('-', '')}.ingredients`)}
+                        {product.ingredients}
                       </p>
                     </div>
 
@@ -222,7 +222,7 @@ const Products = () => {
                         {t('products.features')}
                       </h4>
                       <p className="text-muted-foreground leading-relaxed">
-                        {language === 'ar' ? product.features : t(`products.${product.id.replace('-', '')}.features`)}
+                        {product.features}
                       </p>
                     </div>
 
@@ -310,8 +310,8 @@ const Products = () => {
                   icon: Package,
                   titleAr: 'تعبئة عصرية',
                   titleEn: 'Modern Packaging',
-                  descAr: 'تقنية Aseptic للحفاظ على الجودة والنضارة',
-                  descEn: 'Aseptic technology to preserve quality and freshness',
+                  descAr: 'تقنية كومبي بلوك للحفاظ على الجودة والنضارة',
+                  descEn: 'Combi Blocks technology to preserve quality and freshness',
                   color: 'text-blue-600',
                   bg: 'bg-blue-50'
                 },

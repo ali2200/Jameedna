@@ -25,7 +25,7 @@ const ProductShowcase = () => {
           barcode: '6251591112205',
           weight: '1000 gm',
           netWeight: '2.2 lbs',
-          packagingType: 'Aseptic',
+          packagingType: 'Combi Blocks',
           dimensions: '19.5cm x 10.5cm x 7cm'
         },
         {
@@ -33,7 +33,7 @@ const ProductShowcase = () => {
           barcode: '6251591112199',
           weight: '500 gm',
           netWeight: '1.1 lbs',
-          packagingType: 'Aseptic',
+          packagingType: 'Combi Blocks',
           dimensions: '9cm x 9.5cm x 6.5cm'
         }
       ]
@@ -42,7 +42,7 @@ const ProductShowcase = () => {
       id: 'jameed-al-badawia',
       name: language === 'ar' ? 'جميد البدوية' : 'Jameed Al Badawia',
       nameEn: 'Jameed Al Badawia',
-      ingredients: language === 'ar' ? '100% جميد نقي (حليب غنم طازج مبستر، ملح، بادئ) ماء، بهارات، ملح.' : '100% pure Jameed (fresh pasteurized sheep milk, salt, starter culture), water, spices, salt.',
+      ingredients: t('products.jameedBadawya.ingredients'),
       features: t('products.jameedBadawya.features'),
       certificates: ['Halal', 'FDA', 'HACCP'],
       image: '/jameed-badawya-package.png',
@@ -52,7 +52,7 @@ const ProductShowcase = () => {
           barcode: '6251591112229',
           weight: '1000 gm',
           netWeight: '2.2 lbs',
-          packagingType: 'Aseptic',
+          packagingType: 'Combi Blocks',
           dimensions: '19.5cm x 10.5cm x 7cm'
         },
         {
@@ -60,7 +60,7 @@ const ProductShowcase = () => {
           barcode: '6251591112212',
           weight: '500 gm',
           netWeight: '1.1 lbs',
-          packagingType: 'Aseptic',
+          packagingType: 'Combi Blocks',
           dimensions: '9cm x 9.5cm x 6.5cm'
         }
       ]
@@ -105,7 +105,7 @@ const ProductShowcase = () => {
     {
       icon: Package,
       title: language === 'ar' ? 'تعبئة عصرية' : 'Modern Packaging',
-      description: language === 'ar' ? 'تقنية Aseptic للحفاظ على الجودة' : 'Aseptic Technology to Preserve Quality',
+      description: language === 'ar' ? 'تقنية كومبي بلوك للحفاظ على الجودة' : 'Combi Blocks Technology to Preserve Quality',
       color: 'text-blue-600',
       bg: 'bg-blue-50'
     },
