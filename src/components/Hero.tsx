@@ -19,7 +19,7 @@ const Hero = () => {
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <iframe
             className="absolute top-1/2 left-1/2"
-            src="https://www.youtube.com/embed/Qqm7n4iHC5I?si=8PtMKwiCbb-OtBvk&controls=0&start=33&autoplay=1&mute=1&loop=1&playlist=Qqm7n4iHC5I&rel=0&modestbranding=1"
+            src="https://www.youtube.com/embed/8yEOFR77ICc?controls=0&autoplay=1&mute=1&loop=1&playlist=8yEOFR77ICc&rel=0&modestbranding=1"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -157,7 +157,7 @@ const Hero = () => {
           <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
             <iframe
               className="absolute inset-0 w-full h-full rounded-lg"
-              src={isVideoOpen ? "https://www.youtube.com/embed/Qqm7n4iHC5I?si=8PtMKwiCbb-OtBvk&autoplay=1" : ""}
+              src={isVideoOpen ? "https://www.youtube.com/embed/8yEOFR77ICc?autoplay=1" : ""}
               title="الفيديو التعريفي - شركة الفرسان الرباعية"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
