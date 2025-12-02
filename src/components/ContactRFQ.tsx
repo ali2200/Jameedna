@@ -127,7 +127,7 @@ const ContactRFQ = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-foreground">{info.label}</h4>
-                      <p className="text-muted-foreground">{info.value}</p>
+                      <p className="text-muted-foreground" dir="ltr">{info.value}</p>
                       {info.value2 && (
                         <p className="text-muted-foreground" dir="ltr">{info.value2}</p>
                       )}
