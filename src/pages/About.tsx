@@ -303,13 +303,13 @@ const About = () => {
                       <FlaskConical className="h-6 w-6 text-primary" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground" data-testid="heading-laboratory">
-                      {language === 'ar' ? 'الصيانة والجاهزية' : 'Maintenance & Readiness'}
+                      {language === 'ar' ? 'اختبارات جودة المعمل' : 'Laboratory Quality Testing'}
                     </h3>
                   </div>
                   <p className="text-muted-foreground leading-relaxed text-base" data-testid="text-laboratory">
                     {language === 'ar'
-                      ? 'تفخر الفرسان أيضًا بتوفير جميع قطع الغيار في الموقع مع وجود مهندسين مستعدين لإصلاح أي مشاكل قد تنشأ.'
-                      : 'Al Fursan also prides itself on having all spare parts on site with engineers prepared to fix any problems that may arise.'}
+                      ? 'معمل اختبارات متقدم مجهز بأحدث الأجهزة لفحص وتحليل كل دفعة من الإنتاج. نختبر معايير السلامة الغذائية والنظافة والجودة بما يتوافق مع المعايير الدولية والشهادات المعترف بها عالمياً.'
+                      : 'Advanced testing laboratory equipped with state-of-the-art equipment to inspect and analyze every batch of production. We test food safety standards, hygiene, and quality in compliance with international standards and globally recognized certifications.'}
                   </p>
                 </CardContent>
               </Card>
