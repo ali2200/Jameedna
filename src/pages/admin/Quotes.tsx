@@ -15,10 +15,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Mail, Phone, Building, Clock, Check, Trash2, Package, Globe, ShoppingBag } from "lucide-react";
+import { Mail, Phone, Building, Clock, Check, Trash2, Package, Globe, ShoppingBag, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { formatDistanceToNow } from "date-fns";
 import { ar } from "date-fns/locale";
+import { exportToCSV, quotesHeaders } from "@/lib/exportToExcel";
 
 interface Quote {
   id: number;
@@ -87,11 +88,29 @@ export default function AdminQuotes() {
             إجمالي الطلبات: {quotes?.length || 0}
           </p>
         </div>
-        {unreadCount > 0 && (
-          <Badge variant="destructive" className="text-lg px-4 py-2">
-            {unreadCount} طلب جديد
-          </Badge>
-        )}
+        <div className="flex items-center gap-3">
+          {unreadCount > 0 && (
+            <Badge variant="destructive" className="text-lg px-4 py-2">
+              {unreadCount} طلب جديد
+            </Badge>
+          )}
+          <Button
+            variant="outline"
+            onClick={() => quotes && exportToCSV(
+              quotes.map(q => ({
+                ...q,
+                isRead: q.isRead ? 'نعم' : 'لا',
+                createdAt: new Date(q.createdAt).toLocaleDateString('ar-SA')
+              })),
+              'quotes',
+              quotesHeaders
+            )}
+            disabled={!quotes || quotes.length === 0}
+          >
+            <Download className="ml-2 h-4 w-4" />
+            تصدير Excel
+          </Button>
+        </div>
       </div>
 
       <div className="space-y-4">

@@ -15,10 +15,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Mail, Phone, Building, Clock, Check, Trash2, MessageSquare } from "lucide-react";
+import { Mail, Phone, Building, Clock, Check, Trash2, MessageSquare, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { formatDistanceToNow } from "date-fns";
 import { ar } from "date-fns/locale";
+import { exportToCSV, contactsHeaders } from "@/lib/exportToExcel";
 
 interface Contact {
   id: number;
@@ -85,11 +86,29 @@ export default function AdminContacts() {
             إجمالي الرسائل: {contacts?.length || 0}
           </p>
         </div>
-        {unreadCount > 0 && (
-          <Badge variant="destructive" className="text-lg px-4 py-2">
-            {unreadCount} رسالة جديدة
-          </Badge>
-        )}
+        <div className="flex items-center gap-3">
+          {unreadCount > 0 && (
+            <Badge variant="destructive" className="text-lg px-4 py-2">
+              {unreadCount} رسالة جديدة
+            </Badge>
+          )}
+          <Button
+            variant="outline"
+            onClick={() => contacts && exportToCSV(
+              contacts.map(c => ({
+                ...c,
+                isRead: c.isRead ? 'نعم' : 'لا',
+                createdAt: new Date(c.createdAt).toLocaleDateString('ar-SA')
+              })),
+              'contacts',
+              contactsHeaders
+            )}
+            disabled={!contacts || contacts.length === 0}
+          >
+            <Download className="ml-2 h-4 w-4" />
+            تصدير Excel
+          </Button>
+        </div>
       </div>
 
       <div className="space-y-4">
