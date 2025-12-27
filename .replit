@@ -29,25 +29,21 @@ task = "shell.exec"
 args = "npm run dev"
 waitForPort = 5000
 
+[workflows.workflow.metadata]
+outputType = "webview"
+
 [[ports]]
-localPort = 5000
+localPort = 3001
 externalPort = 3000
 
 [[ports]]
-localPort = 5001
+localPort = 5000
 externalPort = 80
 
 [[ports]]
 localPort = 8080
 externalPort = 80
 
-[[ports]]
-localPort = 34465
-externalPort = 3002
-
-[[ports]]
-localPort = 38589
-externalPort = 3001
-
 [agent]
 expertMode = true
+integrations = ["javascript_database:1.0.0"]

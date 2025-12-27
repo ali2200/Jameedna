@@ -7,8 +7,18 @@ export default defineConfig(() => ({
   server: {
     host: "0.0.0.0",
     port: 5000,
-    allowedHosts: true,
+    allowedHosts: true as const,
     strictPort: false,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+      },
+      "/uploads": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+      },
+    },
   },
   build: {
     outDir: 'dist',
@@ -21,6 +31,7 @@ export default defineConfig(() => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@shared": path.resolve(__dirname, "./shared"),
     },
   },
 }));
