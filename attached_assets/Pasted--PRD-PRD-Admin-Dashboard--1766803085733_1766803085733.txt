@@ -1,0 +1,338 @@
+الآن عندي كل المعلومات. هذا PRD كامل ومفصل للوحة التحكم:
+
+PRD - لوحة تحكم الأدمن (Admin Dashboard)
+نظرة عامة
+لوحة تحكم إدارية كاملة لإدارة موقع تسويقي مع نظام مدونة ونماذج تواصل. مبنية بـ React + TypeScript + TailwindCSS مع دعم كامل للعربية (RTL).
+
+1. صفحة تسجيل الدخول (/login)
+الوصف
+صفحة تسجيل دخول بسيطة وآمنة للوصول إلى لوحة التحكم.
+
+المكونات
+الشعار: صورة اللوجو في الأعلى
+العنوان: "تسجيل الدخول"
+نص فرعي: "أدخل بياناتك للوصول إلى لوحة التحكم"
+الحقول
+الحقل	النوع	التحقق	ملاحظات
+البريد الإلكتروني	email	مطلوب + صيغة صحيحة	اتجاه LTR
+كلمة المرور	password	مطلوب	زر إظهار/إخفاء العين
+الأزرار
+تسجيل الدخول: إرسال النموذج مع حالة تحميل (Loading Spinner)
+السلوك
+نجاح: توجيه لـ /admin + رسالة نجاح Toast
+فشل: رسالة خطأ Toast
+التشفير: bcrypt للهاش + sessions للجلسات
+التقنيات المستخدمة
+react-hook-form + zod للتحقق
+useMutation من TanStack Query
+Toast للإشعارات
+2. هيكل لوحة التحكم (AdminLayout)
+الوصف
+إطار مشترك لجميع صفحات الأدمن مع sidebar للتنقل.
+
+المكونات
+Sidebar (الشريط الجانبي)
+العرض: 64 (256px) على الديسكتوب، قابل للإخفاء على الموبايل
+
+العناصر:
+
+الهيدر: اسم التطبيق + "Admin"
+
+قائمة التنقل:
+
+لوحة التحكم (/admin) - أيقونة LayoutDashboard
+رسائل التواصل (/admin/contacts) - أيقونة MessageSquare
+طلبات التجربة (/admin/trials) - أيقونة Zap
+المستخدمين (/admin/users) - أيقونة Users
+المقالات (/admin/articles) - أيقونة FileText
+مقال جديد (/admin/articles/new) - أيقونة Plus
+الإعدادات (/admin/settings) - أيقونة Settings
+الفوتر:
+
+صورة المستخدم (إن وجدت)
+اسم المستخدم
+زر تسجيل الخروج
+الموبايل
+زر هامبرغر ثابت في الزاوية
+Overlay شفاف عند فتح الـ Sidebar
+الـ Sidebar يفتح بانيميشن slide
+الحماية
+التحقق من وجود مستخدم مسجل
+التحقق من صلاحية Admin (isAdmin === "true")
+توجيه تلقائي لـ /login إذا غير مسجل
+3. لوحة التحكم الرئيسية (/admin)
+الوصف
+عرض إحصائيات سريعة وأحدث المقالات.
+
+الإحصائيات (4 كروت)
+البطاقة	الأيقونة	اللون
+إجمالي المقالات	FileText	أزرق
+المقالات المنشورة	TrendingUp	أخضر
+إجمالي المشاهدات	Eye	بنفسجي
+التصنيفات	Tag	برتقالي
+أحدث المقالات
+جدول بأحدث 5 مقالات
+لكل مقال: العنوان، التاريخ، المشاهدات، الحالة (منشور/مسودة)
+حالة فارغة: "لا توجد مقالات بعد"
+4. إدارة المقالات (/admin/articles)
+الوصف
+قائمة جميع المقالات مع البحث والتصفح والإجراءات.
+
+الهيدر
+العنوان: "المقالات"
+عدد المقالات
+زر "مقال جديد"
+أدوات البحث
+حقل بحث مع أيقونة Search
+البحث يعمل على العناوين
+جدول المقالات
+العمود	الوصف
+العنوان	نص مع اقتطاع
+الحالة	Badge (منشور/مسودة/مجدول)
+التصنيفات	Badges للتاجات (أول 2 + عدد الباقي)
+المشاهدات	أيقونة Eye + الرقم
+التاريخ	تاريخ الإنشاء بالعربي
+الإجراءات	فتح خارجي، تعديل، حذف
+التصفح (Pagination)
+10 مقالات لكل صفحة
+أزرار السابق/التالي
+عرض "صفحة X من Y"
+حوار الحذف
+تأكيد قبل الحذف
+رسالة تحذيرية
+أزرار: إلغاء، حذف
+5. إنشاء/تعديل مقال (/admin/articles/new و /admin/articles/:id/edit)
+الوصف
+محرر متكامل لإنشاء وتعديل المقالات مع SEO ودعم الذكاء الاصطناعي.
+
+الهيدر
+زر الرجوع للقائمة
+العنوان: "مقال جديد" أو "تعديل المقال"
+أزرار: استيراد HTML، حفظ كمسودة، نشر
+قسم المحتوى الأساسي
+الحقل	النوع	ملاحظات
+العنوان	نص	مطلوب
+الرابط (Slug)	نص	يُنشأ تلقائياً، اتجاه LTR
+الملخص	textarea	اختياري
+المحتوى	Rich Text Editor	مطلوب للنشر
+محرر المحتوى (Rich Text Editor)
+مبني على TipTap مع:
+
+تنسيق: عريض، مائل، تحته خط
+العناوين: H1, H2, H3
+القوائم: مرقمة، نقطية
+الروابط
+الصور: رفع، لصق من Clipboard، سحب وإفلات
+محاذاة: يمين، وسط، يسار
+اقتباسات
+قسم SEO
+الحقل	الوصف	الحد
+الكلمة المفتاحية الرئيسية	Focus Keyword	-
+عنوان الصفحة	Meta Title	60 حرف
+وصف الصفحة	Meta Description	160 حرف
+الكلمات المفتاحية	Meta Keywords	مفصولة بفاصلة
+الرابط القانوني	Canonical URL	-
+توجيهات الروبوتات	Select	index/noindex, follow/nofollow
+زر الذكاء الاصطناعي: "إنشاء SEO بالذكاء الاصطناعي"
+
+يستخدم Gemini API
+يولد: metaDescription, metaKeywords, focusKeyword, ogTitle, ogDescription
+قسم Open Graph
+الحقل	الوصف
+عنوان المشاركة	OG Title
+وصف المشاركة	OG Description
+صورة المشاركة	OG Image URL
+قسم الإعدادات الجانبية
+صورة الغلاف
+زر رفع صورة
+معاينة الصورة
+زر إزالة
+الكاتب
+حقل نص (افتراضي: "فريق موتفلكس")
+التصنيفات (Tags)
+حقل إدخال + زر إضافة
+عرض كـ Badges قابلة للحذف
+الجدولة
+حقل datetime-local
+إذا كان في المستقبل: يُجدول تلقائياً
+إذا كان في الماضي أو فارغ: يُنشر فوراً
+وقت القراءة
+يُحسب تلقائياً من المحتوى
+عرض فقط (غير قابل للتعديل)
+استيراد HTML
+زر "استيراد HTML"
+يقبل ملفات .html و .htm
+يستخرج: العنوان، المحتوى مع الصور، الملخص، بيانات SEO
+يحافظ على جميع الصور والتنسيق
+حالات المقال
+الحالة	الشرط
+draft	حفظ كمسودة
+scheduled	scheduledAt في المستقبل
+published	نشر فوري أو وصول وقت الجدولة
+6. رسائل التواصل (/admin/contacts)
+الوصف
+إدارة رسائل نموذج "تواصل معنا".
+
+الهيدر
+العنوان: "رسائل التواصل"
+عدد الرسائل الجديدة
+Badge للجديدة
+بطاقة كل رسالة
+الهيدر: اسم المرسل + Badge "جديدة" + الوقت النسبي
+معلومات الاتصال: البريد، الهاتف، الشركة (مع أيقونات)
+الرسالة: في مربع ملون
+الإجراءات: تحديد كمقروءة، حذف
+السلوك
+الرسائل غير المقروءة: خلفية ملونة + حدود مميزة
+تحديث فوري بعد أي إجراء
+7. طلبات التجربة المجانية (/admin/trials)
+الوصف
+إدارة طلبات الفترة التجريبية.
+
+الهيدر
+العنوان: "طلبات التجربة المجانية"
+عدد الطلبات الجديدة
+Badge للجديدة
+بطاقة كل طلب
+الهيدر: الاسم الكامل + Badge "جديد" + الوقت النسبي
+معلومات:
+البريد الإلكتروني
+رقم الهاتف
+اسم الشركة
+القطاع/الصناعة (مترجم للعربية)
+الإجراءات: تحديد كمقروء، حذف
+القطاعات المتاحة
+المفتاح	الترجمة
+marble	مصانع الرخام والجرانيت
+construction	شركات المقاولات الإنشائية
+finishing	شركات التشطيب والترميم
+design	شركات التصميم والديكور
+kitchen	مصانع المطابخ
+aluminum	شركات الألمنيوم
+other	أخرى
+8. إدارة المستخدمين (/admin/users)
+الوصف
+إضافة وتعديل وحذف مستخدمي لوحة التحكم.
+
+الهيدر
+العنوان: "إدارة المستخدمين"
+عدد المستخدمين
+زر "إضافة مستخدم"
+بطاقة كل مستخدم
+الاسم: الاسم الأول + الأخير (أو "مستخدم")
+Badge أدمن: إذا كان له صلاحيات
+البريد الإلكتروني
+تاريخ الانضمام: نسبي بالعربية
+الإجراءات: تعديل، حذف
+حوار إضافة/تعديل مستخدم
+الحقل	النوع	ملاحظات
+البريد الإلكتروني	email	مطلوب
+كلمة المرور	password	مطلوب للجديد، اختياري للتعديل
+الاسم الأول	نص	اختياري
+الاسم الأخير	نص	اختياري
+صلاحيات الأدمن	Switch	تبديل true/false
+9. الإعدادات (/admin/settings)
+الوصف
+إعدادات النظام والإشعارات.
+
+قسم إعدادات الإشعارات
+العنوان: "إعدادات الإشعارات"
+الوصف: "إعداد البريد الإلكتروني لاستقبال إشعارات رسائل التواصل"
+الحقل	النوع	الوصف
+البريد الإلكتروني للإشعارات	email	يستقبل إشعارات التواصل الجديدة
+زر: "حفظ الإعدادات"
+التكامل
+عند وصول رسالة تواصل جديدة، يُرسل إيميل للعنوان المُعد
+يستخدم Resend API للإرسال
+الـ APIs المطلوبة
+Authentication
+Method	Endpoint	الوصف
+POST	/api/auth/login	تسجيل الدخول
+POST	/api/auth/logout	تسجيل الخروج
+GET	/api/auth/user	جلب بيانات المستخدم الحالي
+Articles
+Method	Endpoint	الوصف
+GET	/api/admin/articles	قائمة المقالات (مع search, page, limit, status)
+GET	/api/admin/articles/:id	مقال واحد
+POST	/api/admin/articles	إنشاء مقال (FormData)
+PUT	/api/admin/articles/:id	تحديث مقال (FormData)
+DELETE	/api/admin/articles/:id	حذف مقال
+POST	/api/admin/articles/parse-html	تحليل ملف HTML
+POST	/api/admin/articles/generate-seo	إنشاء SEO بالذكاء الاصطناعي
+Contacts
+Method	Endpoint	الوصف
+GET	/api/admin/contacts	قائمة رسائل التواصل
+PATCH	/api/admin/contacts/:id/read	تحديد كمقروءة
+DELETE	/api/admin/contacts/:id	حذف رسالة
+Trials
+Method	Endpoint	الوصف
+GET	/api/admin/trials	قائمة طلبات التجربة
+PATCH	/api/admin/trials/:id/read	تحديد كمقروء
+DELETE	/api/admin/trials/:id	حذف طلب
+Users
+Method	Endpoint	الوصف
+GET	/api/admin/users	قائمة المستخدمين
+POST	/api/admin/users	إنشاء مستخدم
+PATCH	/api/admin/users/:id	تحديث مستخدم
+DELETE	/api/admin/users/:id	حذف مستخدم
+Settings
+Method	Endpoint	الوصف
+GET	/api/admin/settings	جلب الإعدادات
+PUT	/api/admin/settings	تحديث الإعدادات
+قاعدة البيانات (Schema)
+users
+id: varchar (UUID)
+email: varchar (unique)
+passwordHash: varchar
+firstName: varchar (nullable)
+lastName: varchar (nullable)
+profileImageUrl: varchar (nullable)
+isAdmin: varchar ("true"/"false")
+createdAt: timestamp
+articles
+id: serial
+title: varchar
+slug: varchar (unique)
+excerpt: text (nullable)
+content: text
+coverImage: varchar (nullable)
+author: varchar (nullable)
+status: varchar ("draft"/"published"/"scheduled")
+tags: text[] (array)
+viewCount: integer (default 0)
+metaTitle: varchar (nullable)
+metaDescription: text (nullable)
+metaKeywords: varchar (nullable)
+focusKeyword: varchar (nullable)
+canonicalUrl: varchar (nullable)
+ogTitle: varchar (nullable)
+ogDescription: text (nullable)
+ogImage: varchar (nullable)
+robotsDirective: varchar (nullable)
+readingTime: varchar (nullable)
+publishedAt: timestamp (nullable)
+scheduledAt: timestamp (nullable)
+createdAt: timestamp
+contact_submissions
+id: serial
+name: varchar
+email: varchar
+phone: varchar (nullable)
+company: varchar (nullable)
+message: text
+isRead: varchar ("true"/"false")
+createdAt: timestamp
+trial_submissions
+id: serial
+fullName: varchar
+email: varchar
+phone: varchar
+company: varchar
+industry: varchar
+isRead: varchar ("true"/"false")
+createdAt: timestamp
+settings
+id: serial
+key: varchar (unique)
+value: text
+createdAt: timestamp
