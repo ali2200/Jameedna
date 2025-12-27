@@ -66,13 +66,17 @@ The application includes image optimization strategies, lazy loading implementat
 
 ## Recent Changes
 
-### December 2025 - Admin Dashboard System
+### December 2025 - Admin Dashboard System & Enhancements
 - **Complete Admin Panel**: Built full-featured administration dashboard accessible at `/admin`
 - **Authentication System**: Secure login with bcrypt password hashing and express-session with PostgreSQL storage
 - **Database Integration**: PostgreSQL database with Drizzle ORM for users, articles, contacts, quotes, and settings tables
 - **Dashboard Stats**: Overview page with article counts, contact messages, and quote requests statistics
 - **Content Management**: Articles management with create, edit, delete, and publish capabilities
 - **Lead Management**: Contact messages and quote request tracking with status updates (new, read, replied)
+- **Rich Text Editor**: TipTap WYSIWYG editor for creating and formatting articles with full toolbar (headings, bold, italic, lists, links, images, text alignment, colors)
+- **Excel Export**: CSV export functionality for contacts and quote requests with Arabic headers
+- **Public Blog Integration**: Blog pages now fetch published articles from database via API endpoints
+- **Admin Account**: Default admin account (admin@alfursan.com / Fursan@2024)
 - **Article Editor Features**:
   - HTML import functionality for existing content
   - Comprehensive SEO fields (meta title, description, keywords, focus keyword)
