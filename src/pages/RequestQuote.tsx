@@ -8,7 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronRight, ChevronLeft, Upload, FileText, CheckCircle, Phone, Mail, HelpCircle } from "lucide-react";
+import { ChevronRight, ChevronLeft, Upload, FileText, CheckCircle, Phone, Mail, HelpCircle, Loader2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -31,6 +31,7 @@ const RequestQuote = () => {
   const { toast } = useToast();
   const { language, t, dir } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     companyName: '',
     country: '',
@@ -181,8 +182,39 @@ const RequestQuote = () => {
     updateFormData('attachments', newFiles);
   };
 
-  const handleSubmit = () => {
-    if (validateStep(1) && validateStep(2)) {
+  const handleSubmit = async () => {
+    if (!validateStep(1) || !validateStep(2)) {
+      toast({
+        title: language === 'ar' ? 'خطأ في البيانات' : 'Data Error',
+        description: language === 'ar' ? 'الرجاء مراجعة البيانات المدخلة' : 'Please review the entered data',
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/quotes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          companyName: formData.companyName,
+          country: formData.country,
+          city: formData.city,
+          email: formData.email,
+          phone: formData.phone,
+          product: formData.product,
+          quantity: formData.quantity,
+          packaging: formData.packaging,
+          deliveryDate: formData.deliveryDate || null,
+          message: formData.message
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit');
+      }
+
       toast({
         title: language === 'ar' ? 'تم إرسال طلبكم بنجاح!' : 'Your request has been submitted successfully!',
         description: language === 'ar' ? 'سيتم التواصل معكم خلال 48 ساعة عمل' : 'We will contact you within 48 business hours',
@@ -202,12 +234,14 @@ const RequestQuote = () => {
         attachments: []
       });
       setCurrentStep(1);
-    } else {
+    } catch (error) {
       toast({
-        title: language === 'ar' ? 'خطأ في البيانات' : 'Data Error',
-        description: language === 'ar' ? 'الرجاء مراجعة البيانات المدخلة' : 'Please review the entered data',
+        title: language === 'ar' ? 'حدث خطأ' : 'An error occurred',
+        description: language === 'ar' ? 'حدث خطأ أثناء إرسال الطلب' : 'An error occurred while submitting the request',
         variant: "destructive"
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -561,7 +595,8 @@ const RequestQuote = () => {
                       <ChevronRight className={`h-4 w-4 ${dir === 'rtl' ? 'ml-2' : 'mr-2'}`} />
                     </Button>
                   ) : (
-                    <Button onClick={handleSubmit} className="bg-green-600 hover:bg-green-700">
+                    <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-green-600 hover:bg-green-700">
+                      {isSubmitting && <Loader2 className="h-4 w-4 animate-spin ml-2" />}
                       {language === 'ar' ? 'إرسال الطلب' : 'Submit Request'}
                     </Button>
                   )}

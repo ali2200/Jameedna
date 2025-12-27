@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send, Download } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, Download, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const Contact = () => {
   const { toast } = useToast();
   const { language, t, dir } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -46,7 +47,7 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.message) {
@@ -58,19 +59,40 @@ const Contact = () => {
       return;
     }
 
-    toast({
-      title: t('common.success'),
-      description: language === 'ar' ? 'سنتواصل معكم في أقرب وقت ممكن' : 'We will contact you as soon as possible',
-    });
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
 
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      subject: '',
-      message: ''
-    });
+      if (!response.ok) {
+        throw new Error('Failed to submit');
+      }
+
+      toast({
+        title: t('common.success'),
+        description: language === 'ar' ? 'سنتواصل معكم في أقرب وقت ممكن' : 'We will contact you as soon as possible',
+      });
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        title: t('common.error'),
+        description: language === 'ar' ? 'حدث خطأ أثناء إرسال الرسالة' : 'An error occurred while sending the message',
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -272,8 +294,13 @@ const Contact = () => {
                       <Button 
                         type="submit" 
                         className="w-full bg-gradient-primary hover:scale-105 transition-transform duration-300"
+                        disabled={isSubmitting}
                       >
-                        <Send className={`h-4 w-4 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                        {isSubmitting ? (
+                          <Loader2 className={`h-4 w-4 animate-spin ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                        ) : (
+                          <Send className={`h-4 w-4 ${dir === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                        )}
                         {language === 'ar' ? 'إرسال الرسالة' : 'Send Message'}
                       </Button>
                     </form>
