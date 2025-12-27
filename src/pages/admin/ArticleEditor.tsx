@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
+import RichTextEditor from "@/components/admin/RichTextEditor";
 
 interface Article {
   id: number;
@@ -390,17 +391,15 @@ export default function ArticleEditor() {
               </div>
               <div className="space-y-2">
                 <Label>المحتوى *</Label>
-                <Textarea
-                  value={formData.content}
-                  onChange={(e) =>
-                    setFormData({ ...formData, content: e.target.value })
+                <RichTextEditor
+                  content={formData.content}
+                  onChange={(content) =>
+                    setFormData({ ...formData, content })
                   }
-                  placeholder="محتوى المقال (يدعم HTML)..."
-                  rows={15}
-                  className="font-mono text-sm"
+                  placeholder="ابدأ بكتابة المقال..."
                 />
                 <p className="text-xs text-gray-500">
-                  يمكنك كتابة HTML مباشرة أو استيراد ملف HTML
+                  استخدم شريط الأدوات للتنسيق أو استورد ملف HTML
                 </p>
               </div>
             </CardContent>
