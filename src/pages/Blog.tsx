@@ -1,27 +1,29 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Calendar, User, ArrowRight, Search, Mail } from "lucide-react";
+import { Calendar, User, ArrowRight, Search, Mail, Loader2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
-import factoryImage from "@/assets/factory-building.png";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Article {
-  id: string;
+  id: number;
   title: string;
-  titleEn: string;
-  excerpt: string;
-  excerptEn: string;
-  category: string;
-  categoryEn: string;
-  author: string;
-  date: string;
-  image: string;
   slug: string;
+  excerpt: string | null;
+  content: string | null;
+  coverImage: string | null;
+  author: string | null;
+  status: string;
+  tags: string | null;
+  readingTime: string | null;
+  publishedAt: string | null;
+  createdAt: string;
 }
 
 const Blog = () => {
@@ -29,6 +31,15 @@ const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [email, setEmail] = useState('');
+
+  const { data: articles = [], isLoading } = useQuery<Article[]>({
+    queryKey: ["public-articles"],
+    queryFn: async () => {
+      const response = await fetch("/api/articles");
+      if (!response.ok) throw new Error("Failed to fetch articles");
+      return response.json();
+    },
+  });
 
   useEffect(() => {
     document.title = language === 'ar'
@@ -54,27 +65,10 @@ const Blog = () => {
     { id: 'market-export', name: language === 'ar' ? 'السوق والتصدير' : 'Market & Export' }
   ];
 
-  const articles: Article[] = [
-    {
-      id: '1',
-      title: 'الفرسان الرباعية: رحلة التميز في صناعة الجميد الأردني',
-      titleEn: 'Al-Fursan Al-Rubaiah: Journey of Excellence in Jordanian Products Manufacturing',
-      excerpt: 'شركة الفرسان الرباعية للإدارة والاستثمار هي شركة رائدة في صناعة المنتجات الأردنية الأصيلة، تأسست منذ أكثر من 20 عاماً من الخبرة في مجال الأغذية. بدأنا كعمل عائلي، ونمت خبرتنا لتصبح علامة تجارية ناجحة تمتلك قاعدة عملاء واسعة محلياً ودولياً. نلتزم بمعالجة المواد الخام بأقصى درجات الاهتمام للحفاظ على جودتها الطبيعية وطعمها الأصيل، مع تطبيق أحدث التقنيات وأعلى معايير الجودة العالمية.',
-      excerptEn: 'Al-Fursan Al-Rubaiah for Management and Investment is a leading company in authentic Jordanian products manufacturing, established over 20 years ago with expertise in food industry. We started as a family business and grew our experience to become a successful brand with an extensive customer base locally and internationally.',
-      category: 'company-news',
-      categoryEn: 'Company News',
-      author: language === 'ar' ? 'إدارة الفرسان الرباعية' : 'Al Fursan Management',
-      date: '2024-10-21',
-      image: factoryImage,
-      slug: 'alfursan-excellence-journey'
-    }
-  ];
-
   const filteredArticles = articles.filter(article => {
-    const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory;
     const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         article.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
+                         (article.excerpt || '').toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesSearch;
   });
 
   const handleNewsletterSignup = () => {
@@ -84,12 +78,20 @@ const Blog = () => {
     }
   };
 
+  const parseTags = (tagsString: string | null): string[] => {
+    if (!tagsString) return [];
+    try {
+      return JSON.parse(tagsString);
+    } catch {
+      return tagsString.split(',').map(t => t.trim());
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background" dir={dir}>
       <Header />
       
       <main className="pt-24">
-        {/* Hero Section */}
         <section className="relative py-20 bg-gradient-hero">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary-dark/90" />
           <div className="absolute inset-0 bg-[url('/src/assets/factory-exterior.jpg')] bg-cover bg-center opacity-20" />
@@ -111,10 +113,8 @@ const Blog = () => {
 
         <div className="container-section py-16">
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar */}
             <aside className="lg:w-1/4">
               <div className="space-y-6">
-                {/* Search */}
                 <Card>
                   <CardHeader>
                     <h3 className="font-semibold">{t('blog.search')}</h3>
@@ -132,7 +132,6 @@ const Blog = () => {
                   </CardContent>
                 </Card>
 
-                {/* Categories */}
                 <Card>
                   <CardHeader>
                     <h3 className="font-semibold">{t('blog.categories')}</h3>
@@ -156,7 +155,6 @@ const Blog = () => {
                   </CardContent>
                 </Card>
 
-                {/* Newsletter Signup */}
                 <Card className="bg-primary/5 border-primary/20">
                   <CardHeader>
                     <h3 className="font-semibold text-primary">{t('blog.newsletter')}</h3>
@@ -186,61 +184,89 @@ const Blog = () => {
               </div>
             </aside>
 
-            {/* Main Content */}
             <div className="lg:w-3/4">
-              {/* Articles Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {filteredArticles.map((article) => (
-                  <Card key={article.id} className="overflow-hidden hover:shadow-card transition-shadow duration-300 group">
-                    <div className="relative overflow-hidden">
-                      <img 
-                        src={article.image}
-                        alt={language === 'ar' ? article.title : article.titleEn}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <Badge 
-                        className={`absolute top-4 ${dir === 'rtl' ? 'left-4' : 'right-4'} bg-primary/90 text-primary-foreground`}
-                      >
-                        {categories.find(cat => cat.id === article.category)?.name}
-                      </Badge>
-                    </div>
-                    
-                    <CardContent className="p-6">
-                      <div className="flex items-center text-sm text-muted-foreground mb-3 space-x-4 rtl:space-x-reverse">
-                        <div className="flex items-center">
-                          <Calendar className={`h-4 w-4 ${dir === 'rtl' ? 'mr-1' : 'ml-1'}`} />
-                          <span>{new Date(article.date).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <User className={`h-4 w-4 ${dir === 'rtl' ? 'mr-1' : 'ml-1'}`} />
-                          <span>{article.author}</span>
-                        </div>
+              {isLoading ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {[1, 2, 3, 4].map((i) => (
+                    <Card key={i} className="overflow-hidden">
+                      <Skeleton className="h-48 w-full" />
+                      <CardContent className="p-6 space-y-3">
+                        <Skeleton className="h-4 w-24" />
+                        <Skeleton className="h-6 w-full" />
+                        <Skeleton className="h-20 w-full" />
+                        <Skeleton className="h-10 w-32" />
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {filteredArticles.map((article) => (
+                    <Card key={article.id} className="overflow-hidden hover:shadow-card transition-shadow duration-300 group">
+                      <div className="relative overflow-hidden">
+                        <img 
+                          src={article.coverImage || '/assets/images/factory-building.png'}
+                          alt={article.title}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        {parseTags(article.tags)[0] && (
+                          <Badge 
+                            className={`absolute top-4 ${dir === 'rtl' ? 'left-4' : 'right-4'} bg-primary/90 text-primary-foreground`}
+                          >
+                            {parseTags(article.tags)[0]}
+                          </Badge>
+                        )}
                       </div>
                       
-                      <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-200">
-                        {language === 'ar' ? article.title : article.titleEn}
-                      </h3>
-                      
-                      <p className="text-muted-foreground mb-4 line-clamp-3">
-                        {language === 'ar' ? article.excerpt : article.excerptEn}
-                      </p>
-                      
-                      <Link to={`/blog/${article.slug}`}>
-                        <Button variant="outline" className="group/btn">
-                          {t('common.readMore')}
-                          <ArrowRight className={`h-4 w-4 ${dir === 'rtl' ? 'ml-2' : 'mr-2'} ${dir === 'rtl' ? 'rotate-180' : ''} group-hover/btn:translate-x-1 ${dir === 'rtl' ? 'group-hover/btn:-translate-x-1' : ''} transition-transform duration-200`} />
-                        </Button>
-                      </Link>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                      <CardContent className="p-6">
+                        <div className="flex items-center text-sm text-muted-foreground mb-3 space-x-4 rtl:space-x-reverse">
+                          <div className="flex items-center">
+                            <Calendar className={`h-4 w-4 ${dir === 'rtl' ? 'mr-1' : 'ml-1'}`} />
+                            <span>
+                              {new Date(article.publishedAt || article.createdAt).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
+                            </span>
+                          </div>
+                          {article.author && (
+                            <div className="flex items-center">
+                              <User className={`h-4 w-4 ${dir === 'rtl' ? 'mr-1' : 'ml-1'}`} />
+                              <span>{article.author}</span>
+                            </div>
+                          )}
+                        </div>
+                        
+                        <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-200">
+                          {article.title}
+                        </h3>
+                        
+                        <p className="text-muted-foreground mb-4 line-clamp-3">
+                          {article.excerpt || ''}
+                        </p>
 
-              {/* No Results */}
-              {filteredArticles.length === 0 && (
+                        {article.readingTime && (
+                          <p className="text-xs text-muted-foreground mb-4">
+                            {language === 'ar' ? `وقت القراءة: ${article.readingTime}` : `Reading time: ${article.readingTime}`}
+                          </p>
+                        )}
+                        
+                        <Link to={`/blog/${article.slug}`}>
+                          <Button variant="outline" className="group/btn">
+                            {t('common.readMore')}
+                            <ArrowRight className={`h-4 w-4 ${dir === 'rtl' ? 'ml-2' : 'mr-2'} ${dir === 'rtl' ? 'rotate-180' : ''} group-hover/btn:translate-x-1 ${dir === 'rtl' ? 'group-hover/btn:-translate-x-1' : ''} transition-transform duration-200`} />
+                          </Button>
+                        </Link>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
+
+              {!isLoading && filteredArticles.length === 0 && (
                 <div className="text-center py-12">
                   <p className="text-lg text-muted-foreground">
-                    {language === 'ar' ? 'لم يتم العثور على مقالات تطابق البحث' : 'No articles found matching your search'}
+                    {language === 'ar' ? 'لا توجد مقالات منشورة حالياً' : 'No published articles at the moment'}
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    {language === 'ar' ? 'تابعنا لأحدث الأخبار والمقالات' : 'Follow us for the latest news and articles'}
                   </p>
                 </div>
               )}
