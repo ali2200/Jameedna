@@ -89,7 +89,7 @@ export default function AdminLogin() {
         <CardHeader className="text-center">
           <div className="mx-auto mb-4">
             <img
-              src="/assets/images/logo-main.png"
+              src="/assets/images/alfursan-logo.png"
               alt="الفرسان الرباعية"
               className="h-20 object-contain mx-auto"
             />
