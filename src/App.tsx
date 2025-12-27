@@ -15,6 +15,15 @@ import RequestQuote from "./pages/RequestQuote";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/Login";
+import AdminLayout from "./components/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminContacts from "./pages/admin/Contacts";
+import AdminQuotes from "./pages/admin/Quotes";
+import AdminArticles from "./pages/admin/Articles";
+import ArticleEditor from "./pages/admin/ArticleEditor";
+import AdminUsers from "./pages/admin/Users";
+import AdminSettings from "./pages/admin/Settings";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +45,20 @@ const App = () => (
             <Route path="/request-quote" element={<RequestQuote />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path="contacts" element={<AdminContacts />} />
+              <Route path="quotes" element={<AdminQuotes />} />
+              <Route path="articles" element={<AdminArticles />} />
+              <Route path="articles/new" element={<ArticleEditor />} />
+              <Route path="articles/:id/edit" element={<ArticleEditor />} />
+              <Route path="users" element={<AdminUsers />} />
+              <Route path="settings" element={<AdminSettings />} />
+            </Route>
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
