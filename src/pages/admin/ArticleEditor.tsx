@@ -29,6 +29,7 @@ import {
   X,
   Plus,
   Sparkles,
+  Calendar,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -235,38 +236,59 @@ export default function ArticleEditor() {
     }
   };
 
-  const handleHtmlImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [isImporting, setIsImporting] = useState(false);
+
+  const handleHtmlImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const content = reader.result as string;
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(content, "text/html");
+    if (!file) return;
 
-        const title = doc.querySelector("title")?.textContent || "";
-        const metaDescription =
-          doc
-            .querySelector('meta[name="description"]')
-            ?.getAttribute("content") || "";
-        const metaKeywords =
-          doc
-            .querySelector('meta[name="keywords"]')
-            ?.getAttribute("content") || "";
-        const bodyContent = doc.body.innerHTML || content;
+    setIsImporting(true);
+    try {
+      const formDataUpload = new FormData();
+      formDataUpload.append("file", file);
 
-        setFormData((prev) => ({
-          ...prev,
-          title: title || prev.title,
-          slug: prev.slug || createSlug(title),
-          content: bodyContent,
-          metaDescription: metaDescription || prev.metaDescription,
-          metaKeywords: metaKeywords || prev.metaKeywords,
-        }));
+      const response = await fetch("/api/admin/import-html", {
+        method: "POST",
+        body: formDataUpload,
+        credentials: "include",
+      });
 
-        toast({ title: "تم استيراد HTML بنجاح" });
-      };
-      reader.readAsText(file);
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
+
+      const data = await response.json();
+
+      setFormData((prev) => ({
+        ...prev,
+        title: data.title || prev.title,
+        slug: prev.slug || createSlug(data.title),
+        content: data.content || prev.content,
+        excerpt: data.excerpt || prev.excerpt,
+        metaTitle: data.metaTitle || prev.metaTitle,
+        metaDescription: data.metaDescription || prev.metaDescription,
+        metaKeywords: data.metaKeywords || prev.metaKeywords,
+        focusKeyword: data.focusKeyword || prev.focusKeyword,
+        ogTitle: data.ogTitle || prev.ogTitle,
+        ogDescription: data.ogDescription || prev.ogDescription,
+        ogImage: data.ogImage || prev.ogImage,
+        canonicalUrl: data.canonicalUrl || prev.canonicalUrl,
+        robotsDirective: data.robotsDirective || prev.robotsDirective,
+      }));
+
+      toast({ title: "تم استيراد HTML بنجاح", description: "تم استخراج المحتوى وبيانات SEO" });
+    } catch (error: any) {
+      toast({
+        title: "خطأ في الاستيراد",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsImporting(false);
+      if (htmlInputRef.current) {
+        htmlInputRef.current.value = "";
+      }
     }
   };
 
@@ -322,8 +344,13 @@ export default function ArticleEditor() {
           <Button
             variant="outline"
             onClick={() => htmlInputRef.current?.click()}
+            disabled={isImporting}
           >
-            <Upload className="ml-2 h-4 w-4" />
+            {isImporting ? (
+              <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+            ) : (
+              <Upload className="ml-2 h-4 w-4" />
+            )}
             استيراد HTML
           </Button>
           <Button
@@ -337,6 +364,19 @@ export default function ArticleEditor() {
             <Save className="ml-2 h-4 w-4" />
             حفظ كمسودة
           </Button>
+          {formData.scheduledAt && (
+            <Button
+              variant="secondary"
+              onClick={() => saveMutation.mutate("scheduled")}
+              disabled={saveMutation.isPending || !formData.title || !formData.content}
+            >
+              {saveMutation.isPending && (
+                <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+              )}
+              <Calendar className="ml-2 h-4 w-4" />
+              جدولة النشر
+            </Button>
+          )}
           <Button
             onClick={() => saveMutation.mutate("published")}
             disabled={saveMutation.isPending || !formData.title || !formData.content}
