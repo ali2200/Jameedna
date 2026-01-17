@@ -78,13 +78,16 @@ The application includes image optimization strategies, lazy loading implementat
 - **Public Blog Integration**: Blog pages now fetch published articles from database via API endpoints
 - **Admin Account**: Default admin account (admin@alfursan.com / Fursan@2024)
 - **Article Editor Features**:
-  - HTML import functionality for existing content
+  - Enhanced HTML import with server-side parsing (using cheerio)
+  - Automatic SEO extraction from imported HTML (meta tags, OG tags, canonical, robots)
+  - Auto-generated focus keyword from word frequency analysis
   - Comprehensive SEO fields (meta title, description, keywords, focus keyword)
   - Open Graph tags for social sharing
   - Canonical URLs and robots directives
   - Cover image upload with preview
   - Tags and scheduling system
-  - Auto-calculated reading time
+  - Auto-calculated reading time and excerpt
+- **Automatic Article Scheduler**: Background scheduler runs every minute to publish scheduled articles automatically
 - **Users Management**: Admin user creation and management
 - **Settings Page**: Site configuration options
 - **Frontend Integration**: Contact and Quote forms now save to database via API
