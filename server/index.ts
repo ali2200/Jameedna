@@ -4,6 +4,7 @@ import cors from "cors";
 import { registerRoutes } from "./routes";
 import { pool } from "./db";
 import connectPgSimple from "connect-pg-simple";
+import { startScheduler } from "./scheduler";
 
 const app = express();
 
@@ -79,5 +80,6 @@ app.use((req, res, next) => {
   const port = 3001;
   app.listen(port, "0.0.0.0", () => {
     console.log(`Server running on port ${port}`);
+    startScheduler();
   });
 })();

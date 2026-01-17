@@ -24,6 +24,7 @@ export interface IStorage {
   deleteArticle(id: number): Promise<boolean>;
   getAllArticles(options?: { search?: string; status?: string; page?: number; limit?: number }): Promise<{ articles: Article[]; total: number }>;
   getPublishedArticles(): Promise<Article[]>;
+  getScheduledArticlesDue(): Promise<Article[]>;
   incrementArticleViews(id: number): Promise<void>;
 
   getContact(id: number): Promise<Contact | undefined>;
@@ -108,15 +109,14 @@ export class DatabaseStorage implements IStorage {
     const { search, status, page = 1, limit = 10 } = options || {};
     const offset = (page - 1) * limit;
 
-    let conditions = [];
-    if (search) {
-      conditions.push(like(articles.title, `%${search}%`));
+    let whereClause;
+    if (search && status) {
+      whereClause = and(like(articles.title, `%${search}%`), eq(articles.status, status));
+    } else if (search) {
+      whereClause = like(articles.title, `%${search}%`);
+    } else if (status) {
+      whereClause = eq(articles.status, status);
     }
-    if (status) {
-      conditions.push(eq(articles.status, status));
-    }
-
-    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
     const [totalResult] = await db
       .select({ count: sql<number>`count(*)` })
@@ -140,6 +140,19 @@ export class DatabaseStorage implements IStorage {
       .from(articles)
       .where(eq(articles.status, "published"))
       .orderBy(desc(articles.publishedAt));
+  }
+
+  async getScheduledArticlesDue(): Promise<Article[]> {
+    const now = new Date();
+    return db
+      .select()
+      .from(articles)
+      .where(
+        and(
+          eq(articles.status, "scheduled"),
+          sql`${articles.scheduledAt} <= ${now}`
+        )
+      );
   }
 
   async incrementArticleViews(id: number): Promise<void> {

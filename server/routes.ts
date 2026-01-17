@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import * as cheerio from "cheerio";
 import { storage } from "./storage";
 import { insertContactSchema, insertQuoteSchema, insertArticleSchema } from "../shared/schema";
 
@@ -546,6 +547,93 @@ export function registerRoutes(app: Express) {
       res.json({ isSetup: users.length > 0 });
     } catch (error) {
       res.json({ isSetup: false });
+    }
+  });
+
+  const htmlUpload = multer({
+    storage: multer.memoryStorage(),
+    limits: { fileSize: 2 * 1024 * 1024 },
+    fileFilter: (req, file, cb) => {
+      if (file.mimetype === "text/html" || file.originalname.endsWith(".html") || file.originalname.endsWith(".htm")) {
+        cb(null, true);
+      } else {
+        cb(new Error("يجب أن يكون الملف HTML"));
+      }
+    },
+  });
+
+  app.post("/api/admin/import-html", requireAuth, htmlUpload.single("file"), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: "لم يتم رفع ملف" });
+      }
+
+      const htmlContent = req.file.buffer.toString("utf-8");
+      const $ = cheerio.load(htmlContent);
+
+      $("script, style, noscript, object, embed, iframe").remove();
+      $("nav, .sidebar, .comments, .share-buttons, .ads, form, header, footer").remove();
+
+      const title = $("h1").first().text() || $("title").text() || "";
+      const metaTitle = $("title").text() || title;
+      const metaDescription = $('meta[name="description"]').attr("content") || "";
+      const metaKeywords = $('meta[name="keywords"]').attr("content") || "";
+      const ogTitle = $('meta[property="og:title"]').attr("content") || "";
+      const ogDescription = $('meta[property="og:description"]').attr("content") || "";
+      const ogImage = $('meta[property="og:image"]').attr("content") || "";
+      const canonicalUrl = $('link[rel="canonical"]').attr("href") || "";
+      const robotsDirective = $('meta[name="robots"]').attr("content") || "index,follow";
+
+      const contentSelectors = ["article", "main", ".content", ".article-content", ".post-content", ".entry-content", "#content", "body"];
+      let content = "";
+      
+      for (const selector of contentSelectors) {
+        const element = $(selector);
+        if (element.length && element.html()?.trim()) {
+          content = element.html()?.trim() || "";
+          break;
+        }
+      }
+
+      if (!content) {
+        content = $("body").html()?.trim() || htmlContent;
+      }
+
+      const text = $("body").text().replace(/\s+/g, " ").trim();
+      const words = text.split(/\s+/);
+      const excerpt = words.slice(0, 50).join(" ") + (words.length > 50 ? "..." : "");
+      
+      const wordCount = words.length;
+      const readingTime = `${Math.ceil(wordCount / 200)} دقيقة`;
+
+      const wordFrequency: Record<string, number> = {};
+      const arabicWords = text.match(/[\u0600-\u06FF]+/g) || [];
+      arabicWords.forEach((word) => {
+        if (word.length > 3) {
+          wordFrequency[word] = (wordFrequency[word] || 0) + 1;
+        }
+      });
+      const sortedWords = Object.entries(wordFrequency).sort((a, b) => b[1] - a[1]);
+      const focusKeyword = sortedWords[0]?.[0] || "";
+
+      res.json({
+        title,
+        metaTitle,
+        content,
+        excerpt,
+        metaDescription,
+        metaKeywords,
+        ogTitle,
+        ogDescription,
+        ogImage,
+        canonicalUrl,
+        robotsDirective,
+        readingTime,
+        focusKeyword,
+      });
+    } catch (error) {
+      console.error("HTML import error:", error);
+      res.status(500).json({ message: "حدث خطأ في استيراد الملف" });
     }
   });
 }
