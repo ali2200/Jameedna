@@ -85,7 +85,7 @@ export default function AdminLayout() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <img
-                  src="/assets/images/logo-main.png"
+                  src="/assets/images/alfursan-logo.png"
                   alt="الفرسان الرباعية"
                   className="h-10 object-contain"
                 />
