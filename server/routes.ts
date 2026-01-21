@@ -763,6 +763,7 @@ export function registerRoutes(app: Express) {
       const products = await storage.getActiveProducts();
       res.json(products);
     } catch (error) {
+      console.error("Get products error:", error);
       res.status(500).json({ message: "حدث خطأ" });
     }
   });
