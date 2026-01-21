@@ -1,10 +1,11 @@
 import {
-  users, articles, contacts, quotes, settings,
+  users, articles, contacts, quotes, settings, products,
   type User, type InsertUser,
   type Article, type InsertArticle,
   type Contact, type InsertContact,
   type Quote, type InsertQuote,
-  type Setting
+  type Setting,
+  type Product, type InsertProduct
 } from "../shared/schema";
 import { db } from "./db";
 import { eq, desc, like, sql, and } from "drizzle-orm";
@@ -44,6 +45,14 @@ export interface IStorage {
   getSetting(key: string): Promise<string | undefined>;
   setSetting(key: string, value: string): Promise<void>;
   getAllSettings(): Promise<Setting[]>;
+
+  getProduct(id: number): Promise<Product | undefined>;
+  getProductBySlug(slug: string): Promise<Product | undefined>;
+  createProduct(product: InsertProduct): Promise<Product>;
+  updateProduct(id: number, data: Partial<InsertProduct>): Promise<Product | undefined>;
+  deleteProduct(id: number): Promise<boolean>;
+  getAllProducts(): Promise<Product[]>;
+  getActiveProducts(): Promise<Product[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -243,6 +252,47 @@ export class DatabaseStorage implements IStorage {
 
   async getAllSettings(): Promise<Setting[]> {
     return db.select().from(settings);
+  }
+
+  async getProduct(id: number): Promise<Product | undefined> {
+    const [product] = await db.select().from(products).where(eq(products.id, id));
+    return product || undefined;
+  }
+
+  async getProductBySlug(slug: string): Promise<Product | undefined> {
+    const [product] = await db.select().from(products).where(eq(products.slug, slug));
+    return product || undefined;
+  }
+
+  async createProduct(product: InsertProduct): Promise<Product> {
+    const [newProduct] = await db.insert(products).values(product).returning();
+    return newProduct;
+  }
+
+  async updateProduct(id: number, data: Partial<InsertProduct>): Promise<Product | undefined> {
+    const [updated] = await db
+      .update(products)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(products.id, id))
+      .returning();
+    return updated || undefined;
+  }
+
+  async deleteProduct(id: number): Promise<boolean> {
+    await db.delete(products).where(eq(products.id, id));
+    return true;
+  }
+
+  async getAllProducts(): Promise<Product[]> {
+    return db.select().from(products).orderBy(products.sortOrder);
+  }
+
+  async getActiveProducts(): Promise<Product[]> {
+    return db
+      .select()
+      .from(products)
+      .where(eq(products.isActive, true))
+      .orderBy(products.sortOrder);
   }
 }
 

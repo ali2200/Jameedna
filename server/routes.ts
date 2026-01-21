@@ -5,7 +5,7 @@ import path from "path";
 import fs from "fs";
 import * as cheerio from "cheerio";
 import { storage } from "./storage";
-import { insertContactSchema, insertQuoteSchema, insertArticleSchema } from "../shared/schema";
+import { insertContactSchema, insertQuoteSchema, insertArticleSchema, insertProductSchema } from "../shared/schema";
 
 declare module "express-session" {
   interface SessionData {
@@ -634,6 +634,148 @@ export function registerRoutes(app: Express) {
     } catch (error) {
       console.error("HTML import error:", error);
       res.status(500).json({ message: "حدث خطأ في استيراد الملف" });
+    }
+  });
+
+  // Products Admin API
+  app.get("/api/admin/products", requireAuth, async (req, res) => {
+    try {
+      const products = await storage.getAllProducts();
+      res.json(products);
+    } catch (error) {
+      console.error("Get products error:", error);
+      res.status(500).json({ message: "حدث خطأ" });
+    }
+  });
+
+  app.get("/api/admin/products/:id", requireAuth, async (req, res) => {
+    try {
+      const product = await storage.getProduct(parseInt(req.params.id));
+      if (!product) {
+        return res.status(404).json({ message: "المنتج غير موجود" });
+      }
+      res.json(product);
+    } catch (error) {
+      res.status(500).json({ message: "حدث خطأ" });
+    }
+  });
+
+  app.post("/api/admin/products", requireAuth, upload.single("image"), async (req, res) => {
+    try {
+      const data = req.body;
+      
+      if (!data.nameAr || !data.nameEn || !data.slug) {
+        return res.status(400).json({ message: "اسم المنتج والرابط مطلوبان" });
+      }
+
+      const existing = await storage.getProductBySlug(data.slug);
+      if (existing) {
+        return res.status(400).json({ message: "هذا الرابط مستخدم بالفعل" });
+      }
+
+      const image = req.file ? `/uploads/${req.file.filename}` : data.image;
+
+      const product = await storage.createProduct({
+        slug: data.slug,
+        nameAr: data.nameAr,
+        nameEn: data.nameEn,
+        descriptionAr: data.descriptionAr || null,
+        descriptionEn: data.descriptionEn || null,
+        ingredientsAr: data.ingredientsAr || null,
+        ingredientsEn: data.ingredientsEn || null,
+        featuresAr: data.featuresAr || null,
+        featuresEn: data.featuresEn || null,
+        sizesAr: data.sizesAr || null,
+        sizesEn: data.sizesEn || null,
+        certificates: data.certificates || null,
+        image: image || null,
+        gradientFrom: data.gradientFrom || null,
+        gradientTo: data.gradientTo || null,
+        isActive: data.isActive !== "false",
+        sortOrder: parseInt(data.sortOrder) || 0,
+      });
+
+      res.status(201).json(product);
+    } catch (error) {
+      console.error("Create product error:", error);
+      res.status(500).json({ message: "حدث خطأ" });
+    }
+  });
+
+  app.put("/api/admin/products/:id", requireAuth, upload.single("image"), async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const data = req.body;
+
+      const existing = await storage.getProduct(id);
+      if (!existing) {
+        return res.status(404).json({ message: "المنتج غير موجود" });
+      }
+
+      if (data.slug && data.slug !== existing.slug) {
+        const slugExists = await storage.getProductBySlug(data.slug);
+        if (slugExists) {
+          return res.status(400).json({ message: "هذا الرابط مستخدم بالفعل" });
+        }
+      }
+
+      const image = req.file ? `/uploads/${req.file.filename}` : data.image;
+
+      const updateData: any = {};
+      if (data.slug !== undefined) updateData.slug = data.slug;
+      if (data.nameAr !== undefined) updateData.nameAr = data.nameAr;
+      if (data.nameEn !== undefined) updateData.nameEn = data.nameEn;
+      if (data.descriptionAr !== undefined) updateData.descriptionAr = data.descriptionAr;
+      if (data.descriptionEn !== undefined) updateData.descriptionEn = data.descriptionEn;
+      if (data.ingredientsAr !== undefined) updateData.ingredientsAr = data.ingredientsAr;
+      if (data.ingredientsEn !== undefined) updateData.ingredientsEn = data.ingredientsEn;
+      if (data.featuresAr !== undefined) updateData.featuresAr = data.featuresAr;
+      if (data.featuresEn !== undefined) updateData.featuresEn = data.featuresEn;
+      if (data.sizesAr !== undefined) updateData.sizesAr = data.sizesAr;
+      if (data.sizesEn !== undefined) updateData.sizesEn = data.sizesEn;
+      if (data.certificates !== undefined) updateData.certificates = data.certificates;
+      if (image !== undefined) updateData.image = image;
+      if (data.gradientFrom !== undefined) updateData.gradientFrom = data.gradientFrom;
+      if (data.gradientTo !== undefined) updateData.gradientTo = data.gradientTo;
+      if (data.isActive !== undefined) updateData.isActive = data.isActive === "true" || data.isActive === true;
+      if (data.sortOrder !== undefined) updateData.sortOrder = parseInt(data.sortOrder) || 0;
+
+      const product = await storage.updateProduct(id, updateData);
+      res.json(product);
+    } catch (error) {
+      console.error("Update product error:", error);
+      res.status(500).json({ message: "حدث خطأ" });
+    }
+  });
+
+  app.delete("/api/admin/products/:id", requireAuth, async (req, res) => {
+    try {
+      await storage.deleteProduct(parseInt(req.params.id));
+      res.json({ message: "تم حذف المنتج" });
+    } catch (error) {
+      res.status(500).json({ message: "حدث خطأ" });
+    }
+  });
+
+  // Public Products API
+  app.get("/api/products", async (req, res) => {
+    try {
+      const products = await storage.getActiveProducts();
+      res.json(products);
+    } catch (error) {
+      res.status(500).json({ message: "حدث خطأ" });
+    }
+  });
+
+  app.get("/api/products/:slug", async (req, res) => {
+    try {
+      const product = await storage.getProductBySlug(req.params.slug);
+      if (!product || !product.isActive) {
+        return res.status(404).json({ message: "المنتج غير موجود" });
+      }
+      res.json(product);
+    } catch (error) {
+      res.status(500).json({ message: "حدث خطأ" });
     }
   });
 }
