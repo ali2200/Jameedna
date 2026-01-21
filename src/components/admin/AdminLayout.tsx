@@ -21,10 +21,10 @@ import { cn } from "@/lib/utils";
 
 const menuItems = [
   { icon: LayoutDashboard, label: "لوحة التحكم", path: "/admin" },
+  { icon: Package, label: "المنتجات", path: "/admin/products" },
   { icon: MessageSquare, label: "رسائل التواصل", path: "/admin/contacts" },
-  { icon: Package, label: "طلبات عروض الأسعار", path: "/admin/quotes" },
-  { icon: FileText, label: "المقالات", path: "/admin/articles" },
-  { icon: FileEdit, label: "مقال جديد", path: "/admin/articles/new" },
+  { icon: FileText, label: "طلبات عروض الأسعار", path: "/admin/quotes" },
+  { icon: FileEdit, label: "المقالات", path: "/admin/articles" },
   { icon: Users, label: "المستخدمين", path: "/admin/users" },
   { icon: Settings, label: "الإعدادات", path: "/admin/settings" },
 ];

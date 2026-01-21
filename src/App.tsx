@@ -24,6 +24,8 @@ import AdminArticles from "./pages/admin/Articles";
 import ArticleEditor from "./pages/admin/ArticleEditor";
 import AdminUsers from "./pages/admin/Users";
 import AdminSettings from "./pages/admin/Settings";
+import AdminProducts from "./pages/admin/Products";
+import ProductEditor from "./pages/admin/ProductEditor";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +52,9 @@ const App = () => (
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminDashboard />} />
+              <Route path="products" element={<AdminProducts />} />
+              <Route path="products/new" element={<ProductEditor />} />
+              <Route path="products/:id/edit" element={<ProductEditor />} />
               <Route path="contacts" element={<AdminContacts />} />
               <Route path="quotes" element={<AdminQuotes />} />
               <Route path="articles" element={<AdminArticles />} />
