@@ -72,6 +72,29 @@ export const settings = pgTable("settings", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+export const products = pgTable("products", {
+  id: serial("id").primaryKey(),
+  slug: varchar("slug", { length: 200 }).unique().notNull(),
+  nameAr: varchar("name_ar", { length: 300 }).notNull(),
+  nameEn: varchar("name_en", { length: 300 }).notNull(),
+  descriptionAr: text("description_ar"),
+  descriptionEn: text("description_en"),
+  ingredientsAr: text("ingredients_ar"),
+  ingredientsEn: text("ingredients_en"),
+  featuresAr: text("features_ar"),
+  featuresEn: text("features_en"),
+  sizesAr: text("sizes_ar"),
+  sizesEn: text("sizes_en"),
+  certificates: text("certificates"),
+  image: text("image"),
+  gradientFrom: varchar("gradient_from", { length: 50 }),
+  gradientTo: varchar("gradient_to", { length: 50 }),
+  isActive: boolean("is_active").default(true).notNull(),
+  sortOrder: integer("sort_order").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
   createdAt: true,
@@ -105,3 +128,12 @@ export type InsertContact = typeof contacts.$inferInsert;
 export type Quote = typeof quotes.$inferSelect;
 export type InsertQuote = typeof quotes.$inferInsert;
 export type Setting = typeof settings.$inferSelect;
+
+export const insertProductSchema = createInsertSchema(products).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type Product = typeof products.$inferSelect;
+export type InsertProduct = typeof products.$inferInsert;
