@@ -1,10 +1,16 @@
 import express, { type Request, Response, NextFunction } from "express";
 import session from "express-session";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 import { registerRoutes } from "./routes";
 import { pool } from "./db";
 import connectPgSimple from "connect-pg-simple";
 import { startScheduler } from "./scheduler";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const isProduction = process.env.NODE_ENV === "production";
 
 const app = express();
 
@@ -69,6 +75,14 @@ app.use((req, res, next) => {
 (async () => {
   registerRoutes(app);
 
+  if (isProduction) {
+    const distPath = path.join(__dirname, "..");
+    app.use(express.static(distPath));
+    app.get("*", (_req, res) => {
+      res.sendFile(path.join(distPath, "index.html"));
+    });
+  }
+
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
@@ -77,7 +91,7 @@ app.use((req, res, next) => {
     throw err;
   });
 
-  const port = 3001;
+  const port = isProduction ? 5000 : 3001;
   app.listen(port, "0.0.0.0", () => {
     console.log(`Server running on port ${port}`);
     startScheduler();

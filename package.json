@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "concurrently \"npm run server\" \"vite\"",
     "server": "tsx server/index.ts",
-    "build": "vite build",
+    "build": "vite build && npm run build:server",
+    "build:server": "esbuild server/index.ts --bundle --platform=node --outdir=dist/server --packages=external --format=esm",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "vite preview --host 0.0.0.0 --port 8080",
+    "start": "node dist/server/index.js",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio"
   },
