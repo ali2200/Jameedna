@@ -53,13 +53,15 @@ export const contacts = pgTable("contacts", {
 
 export const quotes = pgTable("quotes", {
   id: serial("id").primaryKey(),
-  name: varchar("name", { length: 200 }).notNull(),
+  companyName: varchar("company_name", { length: 200 }).notNull(),
   email: varchar("email", { length: 255 }).notNull(),
   phone: varchar("phone", { length: 50 }),
-  company: varchar("company", { length: 200 }),
   country: varchar("country", { length: 100 }),
+  city: varchar("city", { length: 100 }),
   product: varchar("product", { length: 200 }),
   quantity: varchar("quantity", { length: 100 }),
+  packaging: varchar("packaging", { length: 100 }),
+  deliveryDate: varchar("delivery_date", { length: 50 }),
   message: text("message"),
   isRead: boolean("is_read").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
