@@ -179,7 +179,7 @@ const ContactRFQ = () => {
                   {language === 'ar' ? 'زوروا موقعنا الإلكتروني' : 'Visit Our Website'}
                 </h4>
                 <p className="text-primary-foreground/90 mb-4">
-                  www.alfursanjo.com
+                  <a href="https://www.alfursanjo.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">www.alfursanjo.com</a>
                 </p>
                 <p className="text-sm text-primary-foreground/80">
                   {language === 'ar' 

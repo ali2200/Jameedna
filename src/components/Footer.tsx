@@ -116,9 +116,9 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
                   <Globe className="h-4 w-4 text-primary-foreground/80 flex-shrink-0" />
-                  <span className="text-sm text-primary-foreground/80">
-                    www.altursanjo.com
-                  </span>
+                  <a href="https://www.alfursanjo.com/" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                    www.alfursanjo.com
+                  </a>
                 </div>
               </div>
             </div>
