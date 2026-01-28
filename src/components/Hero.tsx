@@ -57,32 +57,29 @@ const Hero = () => {
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 flex items-center justify-center min-h-screen">
         <div className="text-center py-20">
-          {/* Modern Heading with Glass Effect */}
+          {/* Modern Heading */}
           <div className="mx-auto max-w-5xl">
-            {/* Blue Semi-transparent Background Overlay */}
-            <div className="relative bg-primary/40 backdrop-blur-md rounded-3xl px-4 sm:px-8 py-8 sm:py-12">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 border border-white/40 backdrop-blur-sm mb-8 animate-fade-in-up">
-                <Sparkles className="h-4 w-4 text-white" />
-                <span className="text-sm text-white font-medium">{t('home.hero.badge')}</span>
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in-up leading-tight">
-                <span className="block text-white drop-shadow-lg">
-                  {t('home.hero.title1')}
-                </span>
-                <span className="block text-white drop-shadow-lg animate-glow">
-                  {t('home.hero.title2')}
-                </span>
-                <span className="block text-white drop-shadow-md text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-3">
-                  {t('home.hero.subtitle')}
-                </span>
-              </h1>
-
-              <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-white drop-shadow-md max-w-2xl mx-auto leading-relaxed animate-slide-in-right">
-                {t('home.hero.description')}
-              </p>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/60 border border-white/40 backdrop-blur-sm mb-8 animate-fade-in-up">
+              <Sparkles className="h-4 w-4 text-white" />
+              <span className="text-sm text-white font-medium">{t('home.hero.badge')}</span>
             </div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in-up leading-tight">
+              <span className="block text-white drop-shadow-lg">
+                {t('home.hero.title1')}
+              </span>
+              <span className="block text-white drop-shadow-lg">
+                {t('home.hero.title2')}
+              </span>
+              <span className="block text-white drop-shadow-md text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-3">
+                {t('home.hero.subtitle')}
+              </span>
+            </h1>
+
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-white drop-shadow-md max-w-2xl mx-auto leading-relaxed animate-slide-in-right">
+              {t('home.hero.description')}
+            </p>
           </div>
 
           {/* Modern CTA Buttons */}
